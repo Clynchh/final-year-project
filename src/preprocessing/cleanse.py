@@ -225,8 +225,8 @@ def _lcs_length(s1, s2):
     return dp[m][n]
 
 
-RAW_BASE = "Data/raw/BBC News TV"
-CLEAN_BASE = "Data/clean/BBC News TV"
+RAW_BASE = "data/raw/BBC News TV"
+CLEAN_BASE = "data/clean/BBC News TV"
 
 for year_dir in os.listdir(RAW_BASE):
     raw_year_path = os.path.join(RAW_BASE, year_dir)

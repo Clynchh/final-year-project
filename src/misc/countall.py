@@ -1,7 +1,7 @@
 import os
 #count all line of text in dataset
 
-root = "/home/corey/Uni/ThirdYr/final-year-project/Data/filtered"
+root = "/home/corey/Uni/ThirdYr/final-year-project/data/filtered"
 total_lines = 0
 
 for dirpath, dirnames, filenames in os.walk(root, onerror=lambda e: None):
