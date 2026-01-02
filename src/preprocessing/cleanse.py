@@ -103,10 +103,19 @@ def _remove_single_letters(text):
     i = 0
     while i < len(text):
         if text[i].isalpha() and text[i].lower() not in ('a', 'i'):
-            before_ok = (i == 0) or (not text[i-1].isalpha() and text[i-1] not in apostrophes)
-            after_ok = (i == len(text) - 1) or (not text[i+1].isalpha() and text[i+1] not in apostrophes)
+            before_char = text[i-1] if i > 0 else ' '
+            after_char = text[i+1] if i < len(text) - 1 else ' '
             
-            if before_ok and after_ok:
+            before_is_space = before_char.isspace()
+            after_is_space = after_char.isspace()
+            before_is_apostrophe = before_char in apostrophes
+            after_is_apostrophe = after_char in apostrophes
+            before_is_letter = before_char.isalpha()
+            after_is_letter = after_char.isalpha()
+            
+            is_standalone = before_is_space and after_is_space
+            
+            if is_standalone and not before_is_apostrophe and not after_is_apostrophe:
                 i += 1
                 continue
         
@@ -216,8 +225,8 @@ def _lcs_length(s1, s2):
     return dp[m][n]
 
 
-RAW_BASE = "Raw Data/BBC News TV"
-CLEAN_BASE = "Clean Data/BBC News TV"
+RAW_BASE = "Data/Raw Data/BBC News TV"
+CLEAN_BASE = "Data/Clean Data/BBC News TV"
 
 for year_dir in os.listdir(RAW_BASE):
     raw_year_path = os.path.join(RAW_BASE, year_dir)
