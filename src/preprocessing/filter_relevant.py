@@ -1,8 +1,8 @@
 import os
 import re
 
-SEGMENTED_DIR = "../../Data/Segmented Data/BBC News TV"
-FILTERED_DIR = "../../Data/Filtered Data/BBC News TV"
+SEGMENTED_DIR = "../../Data/segmented/BBC News TV"
+FILTERED_DIR = "../../Data/filtered/BBC News TV"
 
 os.makedirs(FILTERED_DIR, exist_ok=True)
 

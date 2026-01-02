@@ -5,8 +5,8 @@ from pathlib import Path
 CURRENT = Path(__file__).resolve()
 PROJECT_ROOT = next(p for p in CURRENT.parents if (p / "Data").exists())
 
-CLEAN_BASE = PROJECT_ROOT / "Data" / "Clean Data" / "BBC News TV"
-SEGMENTED_BASE = PROJECT_ROOT / "Data" / "Segmented Data" / "BBC News TV"
+CLEAN_BASE = PROJECT_ROOT / "Data" / "clean" / "BBC News TV"
+SEGMENTED_BASE = PROJECT_ROOT / "Data" / "segmented" / "BBC News TV"
 
 nlp = spacy.load(
     "en_core_web_sm",
