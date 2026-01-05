@@ -3,7 +3,7 @@ import spacy  # type: ignore
 from pathlib import Path
 
 CURRENT = Path(__file__).resolve()
-PROJECT_ROOT = next(p for p in CURRENT.parents if (p / "Data").exists())
+PROJECT_ROOT = next(p for p in CURRENT.parents if (p / "data").exists())
 
 CLEAN_BASE = PROJECT_ROOT / "data" / "clean" / "BBC News TV"
 SEGMENTED_BASE = PROJECT_ROOT / "data" / "segmented" / "BBC News TV"

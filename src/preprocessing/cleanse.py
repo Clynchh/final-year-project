@@ -29,6 +29,7 @@ def clean_transcript(text):
         
         def normalize(s):
             s = s.lower().replace('—', '-').replace('–', '-')
+            s = s.replace(''', "'").replace(''', "'").replace('"', '"').replace('"', '"')
             return s
         
         def remove_spaces(s):
@@ -40,19 +41,23 @@ def clean_transcript(text):
         prev_nospace = remove_spaces(prev_norm)
         curr_nospace = remove_spaces(curr_norm)
         
-        for overlap_len in range(min(len(prev_nospace), len(curr_nospace)), 5, -1):
+        for overlap_len in range(min(len(prev_nospace), len(curr_nospace)), 10, -1):
             prev_suffix = prev_nospace[-overlap_len:]
             curr_prefix = curr_nospace[:overlap_len]
             
-            if _fuzzy_match_string(prev_suffix, curr_prefix):
+            if prev_suffix == curr_prefix:
                 found_overlap = True
                 
                 char_count = 0
                 cut_point = 0
+                curr_norm_lower = normalize(current_line)
                 
                 while char_count < overlap_len and cut_point < len(current_line):
                     if not current_line[cut_point].isspace():
                         char_count += 1
+                    cut_point += 1
+                
+                while cut_point < len(current_line) and not current_line[cut_point].isspace():
                     cut_point += 1
                 
                 best_overlap_end = cut_point
@@ -72,13 +77,19 @@ def clean_transcript(text):
     
     cleaned = re.sub(r'\.{2,}', '', cleaned)
     
-    cleaned = re.sub(r'\b[A-Z]{2,}\b', '', cleaned)
+    cleaned = re.sub(r"\b[A-Z]{2,}(?:['''][a-zA-Z]+)?\b", '', cleaned)
+    
+    cleaned = _normalize_apostrophes(cleaned)
     
     cleaned = _remove_single_letters(cleaned)
     
     cleaned = cleaned.lower()
     
     cleaned = _remove_nonsense_words(cleaned)
+    
+    cleaned = re.sub(r"[''']s\b", '', cleaned)
+    
+    cleaned = re.sub(r"^[''']s\s*", '', cleaned)
     
     cleaned = re.sub(r'([.!?])\s*', r'\1\n', cleaned)
     
@@ -95,6 +106,13 @@ def clean_transcript(text):
     cleaned = cleaned.strip()
     
     return cleaned
+
+
+def _normalize_apostrophes(text):
+    text = text.replace(''', "'").replace(''', "'")
+    text = text.replace('"', '"').replace('"', '"')
+    text = text.replace('—', '-').replace('–', '-')
+    return text
 
 
 def _remove_single_letters(text):
@@ -198,35 +216,8 @@ def _remove_nonsense_words(text):
     return ' '.join(filtered_words)
 
 
-def _fuzzy_match_string(s1, s2, threshold=0.85):
-    if s1 == s2:
-        return True
-    
-    if len(s1) == 0 or len(s2) == 0:
-        return False
-    
-    lcs_len = _lcs_length(s1, s2)
-    max_len = max(len(s1), len(s2))
-    
-    return lcs_len / max_len >= threshold
-
-
-def _lcs_length(s1, s2):
-    m, n = len(s1), len(s2)
-    dp = [[0] * (n + 1) for _ in range(m + 1)]
-    
-    for i in range(1, m + 1):
-        for j in range(1, n + 1):
-            if s1[i-1] == s2[j-1]:
-                dp[i][j] = dp[i-1][j-1] + 1
-            else:
-                dp[i][j] = max(dp[i-1][j], dp[i][j-1])
-    
-    return dp[m][n]
-
-
-RAW_BASE = "data/raw/BBC News TV"
-CLEAN_BASE = "data/clean/BBC News TV"
+RAW_BASE = "../../data/raw/BBC News TV"
+CLEAN_BASE = "../../data/clean/BBC News TV"
 
 for year_dir in os.listdir(RAW_BASE):
     raw_year_path = os.path.join(RAW_BASE, year_dir)
