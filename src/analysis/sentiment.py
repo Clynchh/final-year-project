@@ -4,7 +4,7 @@ import csv
 from transformers import AutoModelForSequenceClassification, AutoTokenizer
 import torch
 
-MODEL_NAME = "cardiffnlp/twitter-roberta-base-sentiment"
+MODEL_NAME = "siebert/sentiment-roberta-large-english"
 
 tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME)
 model = AutoModelForSequenceClassification.from_pretrained(MODEL_NAME)
@@ -113,7 +113,7 @@ def analyse_sentiment(input_dir, output_csv):
     print(f"Total sentences processed: {sentence_id}")
 
 
-INPUT_DIR = "../../data/filtered/BBC News TV"
-OUTPUT_CSV = "sentiment_analysis_details.csv"
+INPUT_DIR = "../../data/filtered/tight/BBC News TV"
+OUTPUT_CSV = "sentiment_analysis_details_tight_altmodel.csv"
 
 analyse_sentiment(INPUT_DIR, OUTPUT_CSV)

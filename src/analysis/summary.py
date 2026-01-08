@@ -50,4 +50,4 @@ def summarise_sentiment(input_csv, output_csv):
     print(f"Monthly summary saved to: {output_csv}")
 
 
-summarise_sentiment("sentiment_analysis_details.csv", "sentiment_analysis_monthly.csv")
+summarise_sentiment("sentiment_analysis_details_tight_altmodel.csv", "sentiment_analysis_monthly_tight_altmodel.csv")

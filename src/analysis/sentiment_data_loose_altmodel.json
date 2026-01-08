@@ -1,0 +1,422 @@
+[
+  {
+    "year_month": "2019-12",
+    "mean_sentiment": -0.3333,
+    "median_sentiment": 0.0,
+    "positive_pct": 0.0,
+    "neutral_pct": 66.67,
+    "negative_pct": 33.33,
+    "sentence_count": 84,
+    "sentiment_std": 0.4742
+  },
+  {
+    "year_month": "2020-01",
+    "mean_sentiment": -0.5472,
+    "median_sentiment": -1.0,
+    "positive_pct": 0.0,
+    "neutral_pct": 45.28,
+    "negative_pct": 54.72,
+    "sentence_count": 53,
+    "sentiment_std": 0.5025
+  },
+  {
+    "year_month": "2020-02",
+    "mean_sentiment": -0.7237,
+    "median_sentiment": -1.0,
+    "positive_pct": 0.0,
+    "neutral_pct": 27.63,
+    "negative_pct": 72.37,
+    "sentence_count": 152,
+    "sentiment_std": 0.4487
+  },
+  {
+    "year_month": "2020-03",
+    "mean_sentiment": -0.6906,
+    "median_sentiment": -1.0,
+    "positive_pct": 0.0,
+    "neutral_pct": 30.94,
+    "negative_pct": 69.06,
+    "sentence_count": 320,
+    "sentiment_std": 0.463
+  },
+  {
+    "year_month": "2020-04",
+    "mean_sentiment": -0.5863,
+    "median_sentiment": -1.0,
+    "positive_pct": 0.0,
+    "neutral_pct": 41.37,
+    "negative_pct": 58.63,
+    "sentence_count": 249,
+    "sentiment_std": 0.4935
+  },
+  {
+    "year_month": "2020-05",
+    "mean_sentiment": -0.5184,
+    "median_sentiment": -1.0,
+    "positive_pct": 0.0,
+    "neutral_pct": 48.16,
+    "negative_pct": 51.84,
+    "sentence_count": 461,
+    "sentiment_std": 0.5002
+  },
+  {
+    "year_month": "2020-06",
+    "mean_sentiment": -0.5251,
+    "median_sentiment": -1.0,
+    "positive_pct": 0.0,
+    "neutral_pct": 47.49,
+    "negative_pct": 52.51,
+    "sentence_count": 259,
+    "sentiment_std": 0.5003
+  },
+  {
+    "year_month": "2020-07",
+    "mean_sentiment": -0.5482,
+    "median_sentiment": -1.0,
+    "positive_pct": 0.0,
+    "neutral_pct": 45.18,
+    "negative_pct": 54.82,
+    "sentence_count": 301,
+    "sentiment_std": 0.4985
+  },
+  {
+    "year_month": "2020-08",
+    "mean_sentiment": -0.6201,
+    "median_sentiment": -1.0,
+    "positive_pct": 0.0,
+    "neutral_pct": 37.99,
+    "negative_pct": 62.01,
+    "sentence_count": 329,
+    "sentiment_std": 0.4861
+  },
+  {
+    "year_month": "2020-09",
+    "mean_sentiment": -0.6048,
+    "median_sentiment": -1.0,
+    "positive_pct": 0.0,
+    "neutral_pct": 39.52,
+    "negative_pct": 60.48,
+    "sentence_count": 248,
+    "sentiment_std": 0.4899
+  },
+  {
+    "year_month": "2020-10",
+    "mean_sentiment": -0.6667,
+    "median_sentiment": -1.0,
+    "positive_pct": 0.0,
+    "neutral_pct": 33.33,
+    "negative_pct": 66.67,
+    "sentence_count": 507,
+    "sentiment_std": 0.4719
+  },
+  {
+    "year_month": "2020-11",
+    "mean_sentiment": -0.6496,
+    "median_sentiment": -1.0,
+    "positive_pct": 0.0,
+    "neutral_pct": 35.04,
+    "negative_pct": 64.96,
+    "sentence_count": 391,
+    "sentiment_std": 0.4777
+  },
+  {
+    "year_month": "2020-12",
+    "mean_sentiment": -0.2783,
+    "median_sentiment": 0.0,
+    "positive_pct": 0.0,
+    "neutral_pct": 72.17,
+    "negative_pct": 27.83,
+    "sentence_count": 424,
+    "sentiment_std": 0.4487
+  },
+  {
+    "year_month": "2021-01",
+    "mean_sentiment": -0.4218,
+    "median_sentiment": 0.0,
+    "positive_pct": 0.0,
+    "neutral_pct": 57.82,
+    "negative_pct": 42.18,
+    "sentence_count": 377,
+    "sentiment_std": 0.4945
+  },
+  {
+    "year_month": "2021-02",
+    "mean_sentiment": -0.4246,
+    "median_sentiment": 0.0,
+    "positive_pct": 0.0,
+    "neutral_pct": 57.54,
+    "negative_pct": 42.46,
+    "sentence_count": 179,
+    "sentiment_std": 0.4957
+  },
+  {
+    "year_month": "2021-03",
+    "mean_sentiment": -0.428,
+    "median_sentiment": 0.0,
+    "positive_pct": 0.0,
+    "neutral_pct": 57.2,
+    "negative_pct": 42.8,
+    "sentence_count": 250,
+    "sentiment_std": 0.4958
+  },
+  {
+    "year_month": "2021-04",
+    "mean_sentiment": -0.5417,
+    "median_sentiment": -1.0,
+    "positive_pct": 0.0,
+    "neutral_pct": 45.83,
+    "negative_pct": 54.17,
+    "sentence_count": 216,
+    "sentiment_std": 0.4994
+  },
+  {
+    "year_month": "2021-05",
+    "mean_sentiment": -0.5767,
+    "median_sentiment": -1.0,
+    "positive_pct": 0.0,
+    "neutral_pct": 42.33,
+    "negative_pct": 57.67,
+    "sentence_count": 163,
+    "sentiment_std": 0.4956
+  },
+  {
+    "year_month": "2021-06",
+    "mean_sentiment": -0.432,
+    "median_sentiment": 0.0,
+    "positive_pct": 0.0,
+    "neutral_pct": 56.8,
+    "negative_pct": 43.2,
+    "sentence_count": 169,
+    "sentiment_std": 0.4968
+  },
+  {
+    "year_month": "2021-07",
+    "mean_sentiment": -0.4281,
+    "median_sentiment": 0.0,
+    "positive_pct": 0.0,
+    "neutral_pct": 57.19,
+    "negative_pct": 42.81,
+    "sentence_count": 327,
+    "sentiment_std": 0.4956
+  },
+  {
+    "year_month": "2021-08",
+    "mean_sentiment": -0.4733,
+    "median_sentiment": 0.0,
+    "positive_pct": 0.0,
+    "neutral_pct": 52.67,
+    "negative_pct": 47.33,
+    "sentence_count": 262,
+    "sentiment_std": 0.5002
+  },
+  {
+    "year_month": "2021-09",
+    "mean_sentiment": -0.3585,
+    "median_sentiment": 0.0,
+    "positive_pct": 0.0,
+    "neutral_pct": 64.15,
+    "negative_pct": 35.85,
+    "sentence_count": 106,
+    "sentiment_std": 0.4818
+  },
+  {
+    "year_month": "2021-10",
+    "mean_sentiment": -0.4615,
+    "median_sentiment": 0.0,
+    "positive_pct": 0.0,
+    "neutral_pct": 53.85,
+    "negative_pct": 46.15,
+    "sentence_count": 78,
+    "sentiment_std": 0.5017
+  },
+  {
+    "year_month": "2021-11",
+    "mean_sentiment": -0.3862,
+    "median_sentiment": 0.0,
+    "positive_pct": 0.0,
+    "neutral_pct": 61.38,
+    "negative_pct": 38.62,
+    "sentence_count": 189,
+    "sentiment_std": 0.4882
+  },
+  {
+    "year_month": "2021-12",
+    "mean_sentiment": -0.5257,
+    "median_sentiment": -1.0,
+    "positive_pct": 0.0,
+    "neutral_pct": 47.43,
+    "negative_pct": 52.57,
+    "sentence_count": 331,
+    "sentiment_std": 0.5001
+  },
+  {
+    "year_month": "2022-01",
+    "mean_sentiment": -0.5865,
+    "median_sentiment": -1.0,
+    "positive_pct": 0.0,
+    "neutral_pct": 41.35,
+    "negative_pct": 58.65,
+    "sentence_count": 133,
+    "sentiment_std": 0.4943
+  },
+  {
+    "year_month": "2022-02",
+    "mean_sentiment": -0.4848,
+    "median_sentiment": 0.0,
+    "positive_pct": 0.0,
+    "neutral_pct": 51.52,
+    "negative_pct": 48.48,
+    "sentence_count": 132,
+    "sentiment_std": 0.5017
+  },
+  {
+    "year_month": "2022-03",
+    "mean_sentiment": -0.4737,
+    "median_sentiment": 0.0,
+    "positive_pct": 0.0,
+    "neutral_pct": 52.63,
+    "negative_pct": 47.37,
+    "sentence_count": 57,
+    "sentiment_std": 0.5037
+  },
+  {
+    "year_month": "2022-04",
+    "mean_sentiment": -0.5821,
+    "median_sentiment": -1.0,
+    "positive_pct": 0.0,
+    "neutral_pct": 41.79,
+    "negative_pct": 58.21,
+    "sentence_count": 67,
+    "sentiment_std": 0.4969
+  },
+  {
+    "year_month": "2022-05",
+    "mean_sentiment": -0.7209,
+    "median_sentiment": -1.0,
+    "positive_pct": 0.0,
+    "neutral_pct": 27.91,
+    "negative_pct": 72.09,
+    "sentence_count": 86,
+    "sentiment_std": 0.4512
+  },
+  {
+    "year_month": "2022-06",
+    "mean_sentiment": -0.4559,
+    "median_sentiment": 0.0,
+    "positive_pct": 0.0,
+    "neutral_pct": 54.41,
+    "negative_pct": 45.59,
+    "sentence_count": 68,
+    "sentiment_std": 0.5018
+  },
+  {
+    "year_month": "2022-07",
+    "mean_sentiment": -0.7234,
+    "median_sentiment": -1.0,
+    "positive_pct": 0.0,
+    "neutral_pct": 27.66,
+    "negative_pct": 72.34,
+    "sentence_count": 47,
+    "sentiment_std": 0.4522
+  },
+  {
+    "year_month": "2022-08",
+    "mean_sentiment": -0.4845,
+    "median_sentiment": 0.0,
+    "positive_pct": 0.0,
+    "neutral_pct": 51.55,
+    "negative_pct": 48.45,
+    "sentence_count": 97,
+    "sentiment_std": 0.5024
+  },
+  {
+    "year_month": "2022-09",
+    "mean_sentiment": -0.2727,
+    "median_sentiment": 0.0,
+    "positive_pct": 0.0,
+    "neutral_pct": 72.73,
+    "negative_pct": 27.27,
+    "sentence_count": 11,
+    "sentiment_std": 0.4671
+  },
+  {
+    "year_month": "2022-10",
+    "mean_sentiment": -0.4762,
+    "median_sentiment": 0.0,
+    "positive_pct": 0.0,
+    "neutral_pct": 52.38,
+    "negative_pct": 47.62,
+    "sentence_count": 63,
+    "sentiment_std": 0.5034
+  },
+  {
+    "year_month": "2022-11",
+    "mean_sentiment": -0.4255,
+    "median_sentiment": 0.0,
+    "positive_pct": 0.0,
+    "neutral_pct": 57.45,
+    "negative_pct": 42.55,
+    "sentence_count": 47,
+    "sentiment_std": 0.4998
+  },
+  {
+    "year_month": "2022-12",
+    "mean_sentiment": -0.5781,
+    "median_sentiment": -1.0,
+    "positive_pct": 0.0,
+    "neutral_pct": 42.19,
+    "negative_pct": 57.81,
+    "sentence_count": 64,
+    "sentiment_std": 0.4978
+  },
+  {
+    "year_month": "2023-01",
+    "mean_sentiment": -0.5224,
+    "median_sentiment": -1.0,
+    "positive_pct": 0.0,
+    "neutral_pct": 47.76,
+    "negative_pct": 52.24,
+    "sentence_count": 67,
+    "sentiment_std": 0.5033
+  },
+  {
+    "year_month": "2023-02",
+    "mean_sentiment": -0.3667,
+    "median_sentiment": 0.0,
+    "positive_pct": 0.0,
+    "neutral_pct": 63.33,
+    "negative_pct": 36.67,
+    "sentence_count": 30,
+    "sentiment_std": 0.4901
+  },
+  {
+    "year_month": "2023-03",
+    "mean_sentiment": -0.6452,
+    "median_sentiment": -1.0,
+    "positive_pct": 0.0,
+    "neutral_pct": 35.48,
+    "negative_pct": 64.52,
+    "sentence_count": 31,
+    "sentiment_std": 0.4864
+  },
+  {
+    "year_month": "2023-04",
+    "mean_sentiment": -0.5143,
+    "median_sentiment": -1.0,
+    "positive_pct": 0.0,
+    "neutral_pct": 48.57,
+    "negative_pct": 51.43,
+    "sentence_count": 35,
+    "sentiment_std": 0.5071
+  },
+  {
+    "year_month": "2023-05",
+    "mean_sentiment": -0.6047,
+    "median_sentiment": -1.0,
+    "positive_pct": 0.0,
+    "neutral_pct": 39.53,
+    "negative_pct": 60.47,
+    "sentence_count": 43,
+    "sentiment_std": 0.4947
+  }
+]

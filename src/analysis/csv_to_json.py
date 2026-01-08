@@ -25,4 +25,4 @@ def convert_csv_to_json(input_csv, output_json):
     print(f"Converted {len(data)} rows to {output_json}")
 
 
-convert_csv_to_json("sentiment_analysis_monthly.csv", "sentiment_data.json")
+convert_csv_to_json("sentence_count.csv", "sentence_count.json")

@@ -131,6 +131,7 @@
         .stat-card.negative .value { color: #f44336; }
         .stat-card.mean .value { color: #2196F3; }
         .stat-card.count .value { color: #9C27B0; }
+        .stat-card.coverage .value { color: #00BCD4; }
         
         .row {
             display: grid;
@@ -177,11 +178,83 @@
         .play-controls .reset-btn:hover {
             background: #555;
         }
+        
+        .dataset-selector {
+            background: rgba(255,255,255,0.1);
+            border-radius: 15px;
+            padding: 20px 30px;
+            margin-bottom: 30px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+        }
+        
+        .dataset-selector h2 {
+            margin-bottom: 15px;
+            color: #fff;
+        }
+        
+        .toggle-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .toggle-btn {
+            padding: 12px 24px;
+            font-size: 1rem;
+            border: 2px solid #555;
+            border-radius: 8px;
+            background: transparent;
+            color: #aaa;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .toggle-btn:hover {
+            border-color: #888;
+            color: #fff;
+        }
+        
+        .toggle-btn.active {
+            border-color: #4CAF50;
+            background: rgba(76, 175, 80, 0.2);
+            color: #4CAF50;
+        }
+        
+        .dataset-info {
+            margin-top: 15px;
+            padding: 15px;
+            background: rgba(0,0,0,0.2);
+            border-radius: 8px;
+            font-size: 0.95rem;
+            color: #bbb;
+        }
+        
+        .dataset-info strong {
+            color: #4CAF50;
+        }
+        
+        .hidden {
+            display: none !important;
+        }
     </style>
 </head>
 <body>
     <div class="dashboard">
         <h1>COVID-19 BBC News Sentiment Analysis</h1>
+        
+        <div class="dataset-selector">
+            <h2>Select Dataset</h2>
+            <div class="toggle-group">
+                <button class="toggle-btn active" data-dataset="loose">Loose Filter - Base Model</button>
+                <button class="toggle-btn" data-dataset="loose_altmodel">Loose Filter - Alt Model</button>
+                <button class="toggle-btn" data-dataset="tight">Tight Filter - Base Model</button>
+                <button class="toggle-btn" data-dataset="tight_altmodel">Tight Filter - Alt Model</button>
+            </div>
+            <div class="dataset-info">
+                <strong>Current:</strong> <span id="datasetDescription">Loose filtering with base sentiment model (twitter-roberta-base-sentiment)</span>
+            </div>
+        </div>
         
         <div class="slider-container">
             <h2>Explore Data Over Time</h2>
@@ -202,7 +275,7 @@
                     <div class="value" id="sliderPositive">-</div>
                     <div class="label">Positive %</div>
                 </div>
-                <div class="stat-card neutral">
+                <div class="stat-card neutral" id="neutralCard">
                     <div class="value" id="sliderNeutral">-</div>
                     <div class="label">Neutral %</div>
                 </div>
@@ -212,7 +285,11 @@
                 </div>
                 <div class="stat-card count">
                     <div class="value" id="sliderCount">-</div>
-                    <div class="label">Sentences</div>
+                    <div class="label">COVID Sentences</div>
+                </div>
+                <div class="stat-card coverage">
+                    <div class="value" id="sliderCoverage">-</div>
+                    <div class="label">COVID per 100</div>
                 </div>
             </div>
         </div>
@@ -241,9 +318,16 @@
         </div>
         
         <div class="chart-container">
-            <h2>Covid-Lexicon-Related Sentence Count Over Time</h2>
+            <h2>Covid-Related Sentence Counts</h2>
             <div class="chart-wrapper">
                 <canvas id="countChart"></canvas>
+            </div>
+        </div>
+
+        <div class="chart-container">
+            <h2>COVID-Related Sentences per 100 Sentences</h2>
+            <div class="chart-wrapper">
+                <canvas id="coverageChart"></canvas>
             </div>
         </div>
         
@@ -256,27 +340,118 @@
     </div>
 
     <script>
+        const DATASETS = {
+            loose: {
+                file: 'sentiment_data_loose.json',
+                description: 'Loose filtering with base sentiment model (twitter-roberta-base-sentiment)',
+                isAltModel: false
+            },
+            loose_altmodel: {
+                file: 'sentiment_data_loose_altmodel.json',
+                description: 'Loose filtering with alternative sentiment model (siebert/sentiment-roberta-large-english)',
+                isAltModel: true
+            },
+            tight: {
+                file: 'sentiment_data_tight.json',
+                description: 'Tight filtering with base sentiment model (twitter-roberta-base-sentiment)',
+                isAltModel: false
+            },
+            tight_altmodel: {
+                file: 'sentiment_data_tight_altmodel.json',
+                description: 'Tight filtering with alternative sentiment model (siebert/sentiment-roberta-large-english)',
+                isAltModel: true
+            }
+        };
+        
+        const MONTH_MAP = {
+            'Jan': '01', 'Feb': '02', 'Mar': '03', 'Apr': '04',
+            'May': '05', 'Jun': '06', 'Jul': '07', 'Aug': '08',
+            'Sep': '09', 'Oct': '10', 'Nov': '11', 'Dec': '12'
+        };
+        
+        let currentDataset = 'loose';
         let sentimentData = [];
-        let meanChart, stackedChart, pieChart, countChart, stdChart;
+        let processedData = [];
+        let totalSentencesData = {};
+        let meanChart, stackedChart, pieChart, countChart, stdChart, coverageChart;
         let isPlaying = false;
         let playInterval;
         
-        async function loadData() {
+        function processData(data, isAltModel) {
+            if (!isAltModel) {
+                return data;
+            }
+            
+            return data.map(d => ({
+                ...d,
+                positive_pct: d.positive_pct + d.neutral_pct,
+                neutral_pct: 0
+            }));
+        }
+        
+        async function loadTotalSentences() {
             try {
-                const response = await fetch('sentiment_data.json');
+                const response = await fetch('sentence_count.json');
+                const data = await response.json();
+                
+                data.forEach(item => {
+                    const monthNum = MONTH_MAP[item.month];
+                    const key = `${item.year}-${monthNum}`;
+                    totalSentencesData[key] = item.count;
+                });
+            } catch (error) {
+                console.error('Error loading total sentences:', error);
+            }
+        }
+        
+        function calculateCoverage(yearMonth, covidCount) {
+            const totalCount = totalSentencesData[yearMonth];
+            if (totalCount && totalCount > 0) {
+                return (covidCount / totalCount) * 100;
+            }
+            return null;
+        }
+        
+        async function loadData(datasetKey) {
+            try {
+                const response = await fetch(DATASETS[datasetKey].file);
                 sentimentData = await response.json();
+                processedData = processData(sentimentData, DATASETS[datasetKey].isAltModel);
+                
+                processedData = processedData.map(d => ({
+                    ...d,
+                    covid_per_100: calculateCoverage(d.year_month, d.sentence_count)
+                }));
+                
+                document.getElementById('datasetDescription').textContent = DATASETS[datasetKey].description;
+                
+                const neutralCard = document.getElementById('neutralCard');
+                if (DATASETS[datasetKey].isAltModel) {
+                    neutralCard.classList.add('hidden');
+                } else {
+                    neutralCard.classList.remove('hidden');
+                }
+                
                 initDashboard();
             } catch (error) {
                 console.error('Error loading data:', error);
-                document.body.innerHTML = '<h1 style="color: red; text-align: center; margin-top: 50px;">Error loading sentiment_data.json. Make sure the file exists.</h1>';
+                alert('Error loading ' + DATASETS[datasetKey].file + '. Make sure the file exists.');
             }
         }
         
         function initDashboard() {
             const slider = document.getElementById('timeSlider');
-            slider.max = sentimentData.length - 1;
+            slider.max = processedData.length - 1;
             slider.value = 0;
             
+            if (meanChart) meanChart.destroy();
+            if (stackedChart) stackedChart.destroy();
+            if (pieChart) pieChart.destroy();
+            if (countChart) countChart.destroy();
+            if (stdChart) stdChart.destroy();
+            if (coverageChart) coverageChart.destroy();
+            
+            createCoverageChart();
             createMeanChart();
             createStackedChart();
             createPieChart();
@@ -284,17 +459,11 @@
             createStdChart();
             
             updateSliderDisplay(0);
-            
-            slider.addEventListener('input', (e) => {
-                updateSliderDisplay(parseInt(e.target.value));
-            });
-            
-            document.getElementById('playBtn').addEventListener('click', togglePlay);
-            document.getElementById('resetBtn').addEventListener('click', resetSlider);
         }
         
         function updateSliderDisplay(index) {
-            const data = sentimentData[index];
+            const data = processedData[index];
+            const isAltModel = DATASETS[currentDataset].isAltModel;
             
             document.getElementById('currentDate').textContent = data.year_month;
             document.getElementById('sliderMean').textContent = data.mean_sentiment.toFixed(3);
@@ -302,8 +471,9 @@
             document.getElementById('sliderNeutral').textContent = data.neutral_pct.toFixed(1) + '%';
             document.getElementById('sliderNegative').textContent = data.negative_pct.toFixed(1) + '%';
             document.getElementById('sliderCount').textContent = data.sentence_count;
+            document.getElementById('sliderCoverage').textContent = data.covid_per_100 !== null ? data.covid_per_100.toFixed(2) : 'N/A';
             
-            updatePieChart(data);
+            updatePieChart(data, isAltModel);
             updateChartHighlight(index);
         }
         
@@ -321,14 +491,14 @@
                 
                 playInterval = setInterval(() => {
                     let currentValue = parseInt(slider.value);
-                    if (currentValue >= sentimentData.length - 1) {
+                    if (currentValue >= processedData.length - 1) {
                         slider.value = 0;
                         currentValue = 0;
                     } else {
                         slider.value = currentValue + 1;
                     }
                     updateSliderDisplay(parseInt(slider.value));
-                }, 250);
+                }, 1000);
             }
         }
         
@@ -342,16 +512,57 @@
             }
         }
         
+        function createCoverageChart() {
+            const ctx = document.getElementById('coverageChart').getContext('2d');
+            
+            coverageChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: processedData.map(d => d.year_month),
+                    datasets: [{
+                        label: 'COVID Sentences per 100',
+                        data: processedData.map(d => d.covid_per_100),
+                        borderColor: '#00BCD4',
+                        backgroundColor: 'rgba(0, 188, 212, 0.1)',
+                        fill: true,
+                        tension: 0.3,
+                        pointRadius: 4,
+                        pointHoverRadius: 8
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            labels: { color: '#fff' }
+                        }
+                    },
+                    scales: {
+                        x: {
+                            ticks: { color: '#aaa' },
+                            grid: { color: 'rgba(255,255,255,0.1)' }
+                        },
+                        y: {
+                            ticks: { color: '#aaa' },
+                            grid: { color: 'rgba(255,255,255,0.1)' },
+                            min: 0
+                        }
+                    }
+                }
+            });
+        }
+        
         function createMeanChart() {
             const ctx = document.getElementById('meanChart').getContext('2d');
             
             meanChart = new Chart(ctx, {
                 type: 'line',
                 data: {
-                    labels: sentimentData.map(d => d.year_month),
+                    labels: processedData.map(d => d.year_month),
                     datasets: [{
                         label: 'Mean Sentiment',
-                        data: sentimentData.map(d => d.mean_sentiment),
+                        data: processedData.map(d => d.mean_sentiment),
                         borderColor: '#2196F3',
                         backgroundColor: 'rgba(33, 150, 243, 0.1)',
                         fill: true,
@@ -386,28 +597,34 @@
         
         function createStackedChart() {
             const ctx = document.getElementById('stackedChart').getContext('2d');
+            const isAltModel = DATASETS[currentDataset].isAltModel;
+            
+            const datasets = [
+                {
+                    label: 'Positive %',
+                    data: processedData.map(d => d.positive_pct),
+                    backgroundColor: '#4CAF50'
+                },
+                {
+                    label: 'Negative %',
+                    data: processedData.map(d => d.negative_pct),
+                    backgroundColor: '#f44336'
+                }
+            ];
+            
+            if (!isAltModel) {
+                datasets.splice(1, 0, {
+                    label: 'Neutral %',
+                    data: processedData.map(d => d.neutral_pct),
+                    backgroundColor: '#FFC107'
+                });
+            }
             
             stackedChart = new Chart(ctx, {
                 type: 'bar',
                 data: {
-                    labels: sentimentData.map(d => d.year_month),
-                    datasets: [
-                        {
-                            label: 'Positive %',
-                            data: sentimentData.map(d => d.positive_pct),
-                            backgroundColor: '#4CAF50'
-                        },
-                        {
-                            label: 'Neutral %',
-                            data: sentimentData.map(d => d.neutral_pct),
-                            backgroundColor: '#FFC107'
-                        },
-                        {
-                            label: 'Negative %',
-                            data: sentimentData.map(d => d.negative_pct),
-                            backgroundColor: '#f44336'
-                        }
-                    ]
+                    labels: processedData.map(d => d.year_month),
+                    datasets: datasets
                 },
                 options: {
                     responsive: true,
@@ -436,15 +653,28 @@
         
         function createPieChart() {
             const ctx = document.getElementById('pieChart').getContext('2d');
-            const data = sentimentData[0];
+            const data = processedData[0];
+            const isAltModel = DATASETS[currentDataset].isAltModel;
+            
+            let labels, values, colors;
+            
+            if (isAltModel) {
+                labels = ['Positive', 'Negative'];
+                values = [data.positive_pct, data.negative_pct];
+                colors = ['#4CAF50', '#f44336'];
+            } else {
+                labels = ['Positive', 'Neutral', 'Negative'];
+                values = [data.positive_pct, data.neutral_pct, data.negative_pct];
+                colors = ['#4CAF50', '#FFC107', '#f44336'];
+            }
             
             pieChart = new Chart(ctx, {
                 type: 'doughnut',
                 data: {
-                    labels: ['Positive', 'Neutral', 'Negative'],
+                    labels: labels,
                     datasets: [{
-                        data: [data.positive_pct, data.neutral_pct, data.negative_pct],
-                        backgroundColor: ['#4CAF50', '#FFC107', '#f44336'],
+                        data: values,
+                        backgroundColor: colors,
                         borderWidth: 0
                     }]
                 },
@@ -461,8 +691,16 @@
             });
         }
         
-        function updatePieChart(data) {
-            pieChart.data.datasets[0].data = [data.positive_pct, data.neutral_pct, data.negative_pct];
+        function updatePieChart(data, isAltModel) {
+            if (isAltModel) {
+                pieChart.data.labels = ['Positive', 'Negative'];
+                pieChart.data.datasets[0].data = [data.positive_pct, data.negative_pct];
+                pieChart.data.datasets[0].backgroundColor = ['#4CAF50', '#f44336'];
+            } else {
+                pieChart.data.labels = ['Positive', 'Neutral', 'Negative'];
+                pieChart.data.datasets[0].data = [data.positive_pct, data.neutral_pct, data.negative_pct];
+                pieChart.data.datasets[0].backgroundColor = ['#4CAF50', '#FFC107', '#f44336'];
+            }
             pieChart.update();
         }
         
@@ -472,10 +710,10 @@
             countChart = new Chart(ctx, {
                 type: 'bar',
                 data: {
-                    labels: sentimentData.map(d => d.year_month),
+                    labels: processedData.map(d => d.year_month),
                     datasets: [{
-                        label: 'Sentence Count',
-                        data: sentimentData.map(d => d.sentence_count),
+                        label: 'COVID Sentence Count',
+                        data: processedData.map(d => d.sentence_count),
                         backgroundColor: '#9C27B0',
                         borderRadius: 4
                     }]
@@ -508,10 +746,10 @@
             stdChart = new Chart(ctx, {
                 type: 'line',
                 data: {
-                    labels: sentimentData.map(d => d.year_month),
+                    labels: processedData.map(d => d.year_month),
                     datasets: [{
                         label: 'Sentiment Std Dev',
-                        data: sentimentData.map(d => d.sentiment_std),
+                        data: processedData.map(d => d.sentiment_std),
                         borderColor: '#FF9800',
                         backgroundColor: 'rgba(255, 152, 0, 0.1)',
                         fill: true,
@@ -543,16 +781,50 @@
         }
         
         function updateChartHighlight(index) {
-            const highlightColors = sentimentData.map((_, i) => 
+            const highlightColors = processedData.map((_, i) => 
                 i === index ? 'rgba(255,255,255,0.8)' : 'rgba(33, 150, 243, 0.6)'
             );
             
             meanChart.data.datasets[0].pointBackgroundColor = highlightColors;
-            meanChart.data.datasets[0].pointRadius = sentimentData.map((_, i) => i === index ? 10 : 4);
+            meanChart.data.datasets[0].pointRadius = processedData.map((_, i) => i === index ? 10 : 4);
             meanChart.update();
+            
+            const coverageHighlightColors = processedData.map((_, i) => 
+                i === index ? 'rgba(255,255,255,0.8)' : 'rgba(0, 188, 212, 0.6)'
+            );
+            
+            coverageChart.data.datasets[0].pointBackgroundColor = coverageHighlightColors;
+            coverageChart.data.datasets[0].pointRadius = processedData.map((_, i) => i === index ? 10 : 4);
+            coverageChart.update();
         }
         
-        loadData();
+        document.querySelectorAll('.toggle-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                if (isPlaying) {
+                    togglePlay();
+                }
+                
+                document.querySelectorAll('.toggle-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                
+                currentDataset = this.dataset.dataset;
+                loadData(currentDataset);
+            });
+        });
+        
+        document.getElementById('timeSlider').addEventListener('input', (e) => {
+            updateSliderDisplay(parseInt(e.target.value));
+        });
+        
+        document.getElementById('playBtn').addEventListener('click', togglePlay);
+        document.getElementById('resetBtn').addEventListener('click', resetSlider);
+        
+        async function init() {
+            await loadTotalSentences();
+            loadData(currentDataset);
+        }
+        
+        init();
     </script>
 </body>
 </html>

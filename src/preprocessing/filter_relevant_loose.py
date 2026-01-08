@@ -15,7 +15,7 @@ COVID_TERMS = [
     "testing", "test", "pcr", "lateral flow", "antigen",
     "positive", "negative", "cases", "case numbers", "deaths", "fatalities",
     "mortality", "hospitalisations", "hospital", "ventilator", "oxygen",
-    "symptoms", "long covid",     "fever", "cough", "breathlessness", "fatigue",
+    "symptoms", "long covid", "fever", "cough", "breathlessness", "fatigue",
     "loss of taste", "loss of smell",
     "lockdown", "restrictions", "measures", "rules", "guidelines", "tiers",
     "stay-at-home", "stay at home", "curfew", "quarantine", "isolation", "shielding",
@@ -28,7 +28,7 @@ COVID_TERMS = [
     "schools closure", "remote learning", "work from home", "furlough",
     "economic impact", "business closures", "supply chain",
     "first wave", "second wave", "third wave", "surge", "peak",
-    "decline", "recovery", "post-pandemic", "living with covid"
+    "decline", "recovery", "post-pandemic"
 ]
 
 
