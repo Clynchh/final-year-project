@@ -1,5 +1,5 @@
-import os
 import re
+from pathlib import Path
 
 def clean_transcript(text):
     lines = [line.strip() for line in text.strip().split('\n') if line.strip()]
@@ -216,31 +216,20 @@ def _remove_nonsense_words(text):
     return ' '.join(filtered_words)
 
 
-RAW_BASE = "../../data/raw/BBC News TV"
-CLEAN_BASE = "../../data/clean/BBC News TV"
+if __name__ == "__main__":
+    _CURRENT = Path(__file__).resolve()
+    PROJECT_ROOT = next(p for p in _CURRENT.parents if (p / "data").exists())
 
-for year_dir in os.listdir(RAW_BASE):
-    raw_year_path = os.path.join(RAW_BASE, year_dir)
-    
-    if not os.path.isdir(raw_year_path):
-        continue
-    
-    clean_year_path = os.path.join(CLEAN_BASE, year_dir)
-    os.makedirs(clean_year_path, exist_ok=True)
-    
-    for filename in os.listdir(raw_year_path):
-        if not filename.lower().endswith(".txt"):
-            continue
-        
-        raw_file_path = os.path.join(raw_year_path, filename)
-        clean_file_path = os.path.join(clean_year_path, filename)
-        
-        with open(raw_file_path, "r", encoding="utf-8") as f:
-            raw_text = f.read()
-        
+    RAW_BASE = PROJECT_ROOT / "data" / "raw"
+    CLEAN_BASE = PROJECT_ROOT / "data" / "clean"
+
+    for raw_file_path in sorted(RAW_BASE.rglob("*.txt")):
+        rel_path = raw_file_path.relative_to(RAW_BASE)
+        clean_file_path = CLEAN_BASE / rel_path
+        clean_file_path.parent.mkdir(parents=True, exist_ok=True)
+
+        raw_text = raw_file_path.read_text(encoding="utf-8")
         cleaned_text = clean_transcript(raw_text)
-        
-        with open(clean_file_path, "w", encoding="utf-8") as f:
-            f.write(cleaned_text)
-        
-        print(f"Cleaned: {raw_file_path} -> {clean_file_path}")
+        clean_file_path.write_text(cleaned_text, encoding="utf-8")
+
+        print(f"Cleaned: {rel_path}")

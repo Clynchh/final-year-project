@@ -5,3 +5,12 @@ venv/
 # Python cache
 __pycache__/
 *.pyc
+
+# Saved browser sessions (contain auth cookies — do not commit)
+bob_session.json
+bbc_sounds_session.json
+
+
+# Misc files
+FYP_Demo.odp
+demo and improvement.txt

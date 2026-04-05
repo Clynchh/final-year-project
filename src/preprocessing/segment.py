@@ -1,43 +1,36 @@
-import os
 import spacy  # type: ignore
 from pathlib import Path
 
-CURRENT = Path(__file__).resolve()
-PROJECT_ROOT = next(p for p in CURRENT.parents if (p / "data").exists())
+_CURRENT = Path(__file__).resolve()
+PROJECT_ROOT = next(p for p in _CURRENT.parents if (p / "data").exists())
 
-CLEAN_BASE = PROJECT_ROOT / "data" / "clean" / "BBC News TV"
-SEGMENTED_BASE = PROJECT_ROOT / "data" / "segmented" / "BBC News TV"
+CLEAN_BASE = PROJECT_ROOT / "data" / "clean"
+SEGMENTED_BASE = PROJECT_ROOT / "data" / "segmented"
 
-nlp = spacy.load(
-    "en_core_web_sm",
-    disable=["ner", "tagger", "lemmatizer"]
-)
 
 def segment_text(text: str) -> list[str]:
     doc = nlp(text)
     return [sent.text.strip() for sent in doc.sents if sent.text.strip()]
 
-for root, _, files in os.walk(CLEAN_BASE):
-    root_path = Path(root)
 
-    if not files:
-        continue
+if __name__ == "__main__":
+    nlp = spacy.load("en_core_web_sm", disable=["ner", "tagger", "lemmatizer"])
 
-    rel_path = root_path.relative_to(CLEAN_BASE)
-    output_dir = SEGMENTED_BASE / rel_path
-    output_dir.mkdir(parents=True, exist_ok=True)
-
-    for filename in files:
-        if not filename.lower().endswith(".txt"):
+    for root_path in sorted(CLEAN_BASE.rglob("*")):
+        if not root_path.is_dir():
             continue
 
-        input_file = root_path / filename
-        output_file = output_dir / filename
+        txt_files = sorted(root_path.glob("*.txt"))
+        if not txt_files:
+            continue
 
-        with open(input_file, "r", encoding="utf-8") as f:
-            text = f.read()
+        rel_path = root_path.relative_to(CLEAN_BASE)
+        output_dir = SEGMENTED_BASE / rel_path
+        output_dir.mkdir(parents=True, exist_ok=True)
 
-        sentences = segment_text(text)
-
-        with open(output_file, "w", encoding="utf-8") as f:
-            f.write("\n".join(sentences))
+        for input_file in txt_files:
+            output_file = output_dir / input_file.name
+            text = input_file.read_text(encoding="utf-8")
+            sentences = segment_text(text)
+            output_file.write_text("\n".join(sentences), encoding="utf-8")
+            print(f"Segmented: {input_file} -> {output_file}")
