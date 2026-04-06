@@ -176,6 +176,7 @@
             <div class="toggle-group" id="datasetToggle">
                 <button class="toggle-btn active" data-dataset="tight_altmodel">Tight Filter</button>
                 <button class="toggle-btn" data-dataset="loose_altmodel">Loose Filter</button>
+                <button class="toggle-btn" data-dataset="sample">Random Sample</button>
             </div>
         </div>
     </div>
@@ -334,6 +335,11 @@ const DATASETS = {
         emotFile: "emotion_data_loose.json",
         isAltModel: true,
     },
+    sample: {
+        sentFile: "sentiment_data_sample_altmodel.json",
+        emotFile: null,  // no emotion analysis for random sample
+        isAltModel: true,
+    },
 };
 
 let sentimentRaw = [];
@@ -391,7 +397,8 @@ async function loadAll() {
     const sentResp = await fetch(DATASETS[currentDataset].sentFile).catch(() => null);
     sentimentRaw = sentResp ? await sentResp.json() : [];
 
-    const emResp = await fetch(DATASETS[currentDataset].emotFile).catch(() => null);
+    const emotFile = DATASETS[currentDataset].emotFile;
+    const emResp = emotFile ? await fetch(emotFile).catch(() => null) : null;
     emotionRaw = emResp ? await emResp.json() : [];
 
     const tcResp = await fetch("sentence_count.json").catch(() => null);

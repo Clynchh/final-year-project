@@ -29,7 +29,7 @@ def convert_csv_to_json(input_csv: Path, output_json: Path) -> None:
 if __name__ == "__main__":
     import argparse
     parser = argparse.ArgumentParser()
-    parser.add_argument("--filter", choices=["tight", "loose"], default="tight")
+    parser.add_argument("--filter", choices=["tight", "loose", "sample"], default="tight")
     args = parser.parse_args()
 
     convert_csv_to_json(

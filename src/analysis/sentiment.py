@@ -114,10 +114,10 @@ def analyse_sentiment(input_dir: Path, output_csv: Path, tokenizer, model, devic
 if __name__ == "__main__":
     import argparse
     parser = argparse.ArgumentParser()
-    parser.add_argument("--filter", choices=["tight", "loose"], default="tight")
+    parser.add_argument("--filter", choices=["tight", "loose", "sample"], default="tight")
     args = parser.parse_args()
 
-    INPUT_DIR = PROJECT_ROOT / "data" / "filtered" / args.filter
+    INPUT_DIR = PROJECT_ROOT / "data" / "sampled" if args.filter == "sample" else PROJECT_ROOT / "data" / "filtered" / args.filter
     OUTPUT_CSV = _CURRENT.parent / f"sentiment_analysis_details_{args.filter}_altmodel.csv"
 
     tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME)

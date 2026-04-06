@@ -81,7 +81,7 @@ def summarise_sentiment(input_csv: Path, output_csv: Path) -> None:
 if __name__ == "__main__":
     import argparse
     parser = argparse.ArgumentParser()
-    parser.add_argument("--filter", choices=["tight", "loose"], default="tight")
+    parser.add_argument("--filter", choices=["tight", "loose", "sample"], default="tight")
     args = parser.parse_args()
     f = args.filter
 
@@ -89,7 +89,9 @@ if __name__ == "__main__":
         _CURRENT.parent / f"sentiment_analysis_details_{f}_altmodel.csv",
         _CURRENT.parent / f"sentiment_analysis_monthly_{f}_altmodel.csv",
     )
-    summarise_emotions(
-        _CURRENT.parent / f"emotion_analysis_details_{f}.csv",
-        _CURRENT.parent / f"emotion_analysis_monthly_{f}.csv",
-    )
+    # sample filter has no emotion analysis
+    if f != "sample":
+        summarise_emotions(
+            _CURRENT.parent / f"emotion_analysis_details_{f}.csv",
+            _CURRENT.parent / f"emotion_analysis_monthly_{f}.csv",
+        )

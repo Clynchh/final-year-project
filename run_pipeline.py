@@ -15,6 +15,7 @@ STEPS = [
         SRC / "preprocessing" / "filter_relevant_loose.py",
         SRC / "preprocessing" / "filter_relevant_tight.py",
     ]),
+    ("sample",    SRC / "preprocessing" / "sample_sentences.py"),
     ("sentiment", SRC / "analysis" / "sentiment.py"),
     ("emotion",   SRC / "analysis" / "emotion_analysis.py"),
     ("summary",   SRC / "analysis" / "summary.py"),
@@ -41,14 +42,14 @@ def main() -> None:
         if idx + 1 < len(sys.argv):
             start_from = sys.argv[idx + 1]
 
-    filter_type = "tight"  # set via --filter loose|tight
+    filter_type = "tight"  # set via --filter tight|loose|sample
     if "--filter" in sys.argv:
         idx = sys.argv.index("--filter")
         if idx + 1 < len(sys.argv):
             filter_type = sys.argv[idx + 1]
 
     filter_arg = ["--filter", filter_type]
-    filter_steps = {"sentiment", "emotion", "summary", "convert"}  # steps that accept --filter
+    filter_steps = {"sentiment", "emotion", "summary", "convert"}  # steps that accept --filter (sample does not)
 
     step_names = [name for name, _ in STEPS]
     if start_from and start_from not in step_names:
