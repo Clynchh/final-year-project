@@ -5,6 +5,7 @@ import json
 from pathlib import Path
 
 _CURRENT = Path(__file__).resolve()
+RESULTS = _CURRENT.parent.parent / "results"
 
 EMOTIONS = ["anger", "disgust", "fear", "joy", "neutral", "sadness", "surprise"]
 
@@ -14,8 +15,8 @@ if __name__ == "__main__":
     parser.add_argument("--filter", choices=["tight", "loose"], default="tight")
     args = parser.parse_args()
 
-    input_csv = _CURRENT.parent / f"emotion_analysis_monthly_{args.filter}.csv"
-    output_json = _CURRENT.parent / f"emotion_data_{args.filter}.json"
+    input_csv = RESULTS / "csv" / f"emotion_analysis_monthly_{args.filter}.csv"
+    output_json = RESULTS / "json" / f"emotion_data_{args.filter}.json"
 
     data = []
     with open(input_csv, "r", encoding="utf-8") as f:

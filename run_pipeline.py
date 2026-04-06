@@ -16,12 +16,12 @@ STEPS = [
         SRC / "preprocessing" / "filter_relevant_tight.py",
     ]),
     ("sample",    SRC / "preprocessing" / "sample_sentences.py"),
-    ("sentiment", SRC / "analysis" / "sentiment.py"),
+    ("sentiment", SRC / "analysis" / "polarity_analysis.py"),
     ("emotion",   SRC / "analysis" / "emotion_analysis.py"),
     ("summary",   SRC / "analysis" / "summary.py"),
     ("convert",   [
         SRC / "analysis" / "csv_to_json.py",
-        SRC / "analysis" / "count_csv_to_json.py",
+        SRC / "analysis" / "sentence_count_to_json.py",
         SRC / "analysis" / "emotion_to_json.py",
     ]),
 ]
@@ -69,7 +69,7 @@ def main() -> None:
         args = filter_arg if name in filter_steps else []
         for script in script_list:
             # count_csv_to_json.py doesn't need --filter
-            run_script(script, args if "count_csv_to_json" not in script.name else [])
+            run_script(script, args if "sentence_count_to_json" not in script.name else [])
 
     print("\nPipeline complete.")
 

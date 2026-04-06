@@ -3,6 +3,7 @@ import json
 from pathlib import Path
 
 _CURRENT = Path(__file__).resolve()
+RESULTS = _CURRENT.parent.parent / "results"
 
 
 def convert_csv_to_json(input_csv: Path, output_json: Path) -> None:
@@ -21,6 +22,6 @@ def convert_csv_to_json(input_csv: Path, output_json: Path) -> None:
 
 if __name__ == "__main__":
     convert_csv_to_json(
-        _CURRENT.parent / "sentence_count.csv",
-        _CURRENT.parent / "sentence_count.json",
+        RESULTS / "csv" / "sentence_count.csv",
+        RESULTS / "json" / "sentence_count.json",
     )

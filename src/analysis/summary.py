@@ -6,6 +6,7 @@ from pathlib import Path
 from statistics import mean, median, stdev
 
 _CURRENT = Path(__file__).resolve()
+RESULTS = _CURRENT.parent.parent / "results"
 
 EMOTIONS = ["anger", "disgust", "fear", "joy", "neutral", "sadness", "surprise"]
 
@@ -86,12 +87,12 @@ if __name__ == "__main__":
     f = args.filter
 
     summarise_sentiment(
-        _CURRENT.parent / f"sentiment_analysis_details_{f}_altmodel.csv",
-        _CURRENT.parent / f"sentiment_analysis_monthly_{f}_altmodel.csv",
+        RESULTS / "csv" / f"sentiment_analysis_details_{f}_altmodel.csv",
+        RESULTS / "csv" / f"sentiment_analysis_monthly_{f}_altmodel.csv",
     )
     # sample filter has no emotion analysis
     if f != "sample":
         summarise_emotions(
-            _CURRENT.parent / f"emotion_analysis_details_{f}.csv",
-            _CURRENT.parent / f"emotion_analysis_monthly_{f}.csv",
+            RESULTS / "csv" / f"emotion_analysis_details_{f}.csv",
+            RESULTS / "csv" / f"emotion_analysis_monthly_{f}.csv",
         )

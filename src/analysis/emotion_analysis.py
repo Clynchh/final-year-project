@@ -8,6 +8,7 @@ import torch
 
 _CURRENT = Path(__file__).resolve()
 PROJECT_ROOT = next(p for p in _CURRENT.parents if (p / "data").exists())
+RESULTS = _CURRENT.parent.parent / "results"
 
 MODEL_NAME = "j-hartmann/emotion-english-distilroberta-base"
 BATCH_SIZE = 8
@@ -112,7 +113,7 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     INPUT_DIR = PROJECT_ROOT / "data" / "sampled" if args.filter == "sample" else PROJECT_ROOT / "data" / "filtered" / args.filter
-    OUTPUT_CSV = _CURRENT.parent / f"emotion_analysis_details_{args.filter}.csv"
+    OUTPUT_CSV = RESULTS / "csv" / f"emotion_analysis_details_{args.filter}.csv"
 
     tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME)
     model = AutoModelForSequenceClassification.from_pretrained(MODEL_NAME)

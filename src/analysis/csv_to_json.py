@@ -3,6 +3,7 @@ import json
 from pathlib import Path
 
 _CURRENT = Path(__file__).resolve()
+RESULTS = _CURRENT.parent.parent / "results"
 
 
 def convert_csv_to_json(input_csv: Path, output_json: Path) -> None:
@@ -33,6 +34,6 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     convert_csv_to_json(
-        _CURRENT.parent / f"sentiment_analysis_monthly_{args.filter}_altmodel.csv",
-        _CURRENT.parent / f"sentiment_data_{args.filter}_altmodel.json",
+        RESULTS / "csv" / f"sentiment_analysis_monthly_{args.filter}_altmodel.csv",
+        RESULTS / "json" / f"sentiment_data_{args.filter}_altmodel.json",
     )

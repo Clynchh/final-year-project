@@ -326,17 +326,17 @@ const SOURCE_LABELS = {
 
 const DATASETS = {
     tight_altmodel: {
-        sentFile: "sentiment_data_tight_altmodel.json",
-        emotFile: "emotion_data_tight.json",
+        sentFile: "json/sentiment_data_tight_altmodel.json",
+        emotFile: "json/emotion_data_tight.json",
         isAltModel: true,
     },
     loose_altmodel: {
-        sentFile: "sentiment_data_loose_altmodel.json",
-        emotFile: "emotion_data_loose.json",
+        sentFile: "json/sentiment_data_loose_altmodel.json",
+        emotFile: "json/emotion_data_loose.json",
         isAltModel: true,
     },
     sample: {
-        sentFile: "sentiment_data_sample_altmodel.json",
+        sentFile: "json/sentiment_data_sample_altmodel.json",
         emotFile: null,  // no emotion analysis for random sample
         isAltModel: true,
     },
@@ -427,7 +427,7 @@ async function loadAll() {
     const emResp = emotFile ? await fetch(emotFile).catch(() => null) : null;
     emotionRaw = emResp ? await emResp.json() : [];
 
-    const tcResp = await fetch("sentence_count.json").catch(() => null);
+    const tcResp = await fetch("json/sentence_count.json").catch(() => null);
     if (tcResp) {
         const tc = await tcResp.json();
         const MONTH_MAP = {Jan:"01",Feb:"02",Mar:"03",Apr:"04",May:"05",Jun:"06",
