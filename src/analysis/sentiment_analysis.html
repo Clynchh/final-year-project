@@ -374,7 +374,6 @@ function applyFilters(data) {
 }
 
 function aggregateByMonth(data, fields) {
-    // If multiple sources are selected, average numeric fields across sources per month
     const grouped = {};
     data.forEach(d => {
         const key = d.year_month;
@@ -390,6 +389,33 @@ function aggregateByMonth(data, fields) {
         result.sentence_count = rows.reduce((s, r) => s + (parseInt(r.sentence_count) || 0), 0);
         return result;
     }).sort((a, b) => a.year_month.localeCompare(b.year_month));
+}
+
+function generateMonthRange(startYM, endYM) {
+    const months = [];
+    let [y, m] = startYM.split("-").map(Number);
+    const [ey, em] = endYM.split("-").map(Number);
+    while (y < ey || (y === ey && m <= em)) {
+        months.push(`${y}-${String(m).padStart(2, "0")}`);
+        m++; if (m > 12) { m = 1; y++; }
+    }
+    return months;
+}
+
+function fillGaps(data, fields) {
+    if (!data.length) return data;
+    const period = document.getElementById("periodSelect").value;
+    const startYM = period === "covid" ? "2019-12" : "2016-06";
+    const endYM   = period === "control" ? "2019-11" : "2023-05";
+    const allMonths = generateMonthRange(startYM, endYM);
+    const dataMap = {};
+    data.forEach(d => { dataMap[d.year_month] = d; });
+    return allMonths.map(ym => {
+        if (dataMap[ym]) return dataMap[ym];
+        const empty = { year_month: ym, sentence_count: 0, covid_per_100: 0 };
+        fields.forEach(f => { empty[f] = 0; });
+        return empty;
+    });
 }
 
 // ---- data load ----
@@ -419,18 +445,18 @@ function refresh() {
     filteredEmotion   = applyFilters(emotionRaw);
 
     const sentFields = ["mean_sentiment","positive_pct","neutral_pct","negative_pct","sentiment_std"];
-    const sentData = aggregateByMonth(filteredSentiment, sentFields).map(d => ({
+    const sentData = fillGaps(aggregateByMonth(filteredSentiment, sentFields), sentFields).map(d => ({
         ...d,
         covid_per_100: totalSentencesData[d.year_month]
             ? (d.sentence_count / totalSentencesData[d.year_month]) * 100
-            : null,
+            : 0,
         positive_pct: DATASETS[currentDataset].isAltModel
             ? d.positive_pct + d.neutral_pct : d.positive_pct,
         neutral_pct: DATASETS[currentDataset].isAltModel ? 0 : d.neutral_pct,
     }));
 
     const emFields = EMOTIONS.map(e => `${e}_pct`);
-    const emData = aggregateByMonth(filteredEmotion, emFields);
+    const emData = fillGaps(aggregateByMonth(filteredEmotion, emFields), emFields);
 
     buildSentimentSection(sentData);
     buildEmotionSection(emData);
@@ -526,7 +552,10 @@ function buildSentimentSection(data) {
             label:"COVID Sentence Count", data: data.map(d=>d.sentence_count),
             backgroundColor:"#9C27B0", borderRadius:4,
         }]},
-        options: chartOpts(),
+        options: chartOpts({ scales:{
+            x:{ticks:{color:"#aaa"},grid:{color:"rgba(255,255,255,0.08)"}},
+            y:{ticks:{color:"#aaa"},grid:{color:"rgba(255,255,255,0.08)"},min:0},
+        }}),
     });
 
     stdChart = new Chart(document.getElementById("stdChart"), {
@@ -536,7 +565,10 @@ function buildSentimentSection(data) {
             borderColor:"#FF9800", backgroundColor:"rgba(255,152,0,0.1)",
             fill:true, tension:0.3, pointRadius:4, pointHoverRadius:8,
         }]},
-        options: chartOpts(),
+        options: chartOpts({ scales:{
+            x:{ticks:{color:"#aaa"},grid:{color:"rgba(255,255,255,0.08)"}},
+            y:{ticks:{color:"#aaa"},grid:{color:"rgba(255,255,255,0.08)"},min:0,max:1},
+        }}),
     });
 
     // store for slider
@@ -605,7 +637,7 @@ function buildEmotionSection(data) {
                 ticks: { color: "#aaa", backdropColor: "transparent" },
                 grid:  { color: "rgba(255,255,255,0.15)" },
                 pointLabels: { color: "#fff", font: { size: 13 } },
-                min: 0,
+                min: 0, max: 100,
             }},
         },
     });
@@ -637,7 +669,10 @@ function buildEmotionSection(data) {
                 pointHoverRadius: 7,
             })),
         },
-        options: chartOpts(),
+        options: chartOpts({ scales: {
+            x: { ticks:{color:"#aaa"}, grid:{color:"rgba(255,255,255,0.08)"} },
+            y: { ticks:{color:"#aaa"}, grid:{color:"rgba(255,255,255,0.08)"}, min:0, max:100 },
+        }}),
     });
 
     // stacked emotion bar
@@ -709,11 +744,11 @@ function buildCompareSection() {
     // covid vs control per source
     const covidMeans   = sources.map(src => {
         const rows = sentimentRaw.filter(d => d.source===src && d.period==="covid");
-        return rows.length ? rows.reduce((s,r)=>s+parseFloat(r.mean_sentiment),0)/rows.length : null;
+        return rows.length ? rows.reduce((s,r)=>s+parseFloat(r.mean_sentiment),0)/rows.length : 0;
     });
     const controlMeans = sources.map(src => {
         const rows = sentimentRaw.filter(d => d.source===src && d.period==="control");
-        return rows.length ? rows.reduce((s,r)=>s+parseFloat(r.mean_sentiment),0)/rows.length : null;
+        return rows.length ? rows.reduce((s,r)=>s+parseFloat(r.mean_sentiment),0)/rows.length : 0;
     });
 
     covidControlChart = new Chart(document.getElementById("covidControlChart"), {
@@ -760,7 +795,7 @@ function buildCompareSection() {
                 ticks:{color:"#aaa",backdropColor:"transparent"},
                 grid:{color:"rgba(255,255,255,0.15)"},
                 pointLabels:{color:"#fff",font:{size:12}},
-                min:0,
+                min:0, max:100,
             }},
         },
     });
