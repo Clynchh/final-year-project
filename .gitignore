@@ -14,8 +14,7 @@ bbc_sounds_session.json
 # Audio files (large, not needed in repo)
 *.m4a
 
-# Data directories (raw/clean/segmented corpus — large, stored locally only)
-data/raw/
+# Data directories (clean/segmented corpus — derived, stored locally only)
 data/clean/
 data/segmented/
 

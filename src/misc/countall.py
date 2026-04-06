@@ -1,7 +1,7 @@
 # Count all lines of text across raw dataset .txt files.
 import os
 
-root = "/home/corey/Uni/ThirdYr/final-year-project/data/raw"
+root = "/home/corey/Uni/ThirdYr/final-year-project/data/filtered/tight"
 total_lines = 0
 
 for dirpath, dirnames, filenames in os.walk(root, onerror=lambda e: None):

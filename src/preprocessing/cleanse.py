@@ -7,9 +7,9 @@ def clean_transcript(text):
     if not lines:
         return ""
     
-    if lines:
-        lines = lines[:-1]
-    
+    if len(lines) > 1 and lines[-1].startswith('---'):
+        lines = lines[:-2]  # remove citation separator and citation line
+
     if not lines:
         return ""
     
