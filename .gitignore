@@ -14,6 +14,11 @@ bbc_sounds_session.json
 # Audio files (large, not needed in repo)
 *.m4a
 
+# Data directories (raw/clean/segmented corpus — large, stored locally only)
+data/raw/
+data/clean/
+data/segmented/
+
 # Misc files
 FYP_Demo.odp
 demo and improvement.txt
