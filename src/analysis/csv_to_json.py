@@ -27,7 +27,12 @@ def convert_csv_to_json(input_csv: Path, output_json: Path) -> None:
 
 
 if __name__ == "__main__":
+    import argparse
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--filter", choices=["tight", "loose"], default="tight")
+    args = parser.parse_args()
+
     convert_csv_to_json(
-        _CURRENT.parent / "sentiment_analysis_monthly_tight_altmodel.csv",
-        _CURRENT.parent / "sentiment_data_tight_altmodel.json",
+        _CURRENT.parent / f"sentiment_analysis_monthly_{args.filter}_altmodel.csv",
+        _CURRENT.parent / f"sentiment_data_{args.filter}_altmodel.json",
     )
