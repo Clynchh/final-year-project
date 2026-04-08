@@ -161,6 +161,7 @@
                 <option value="all">All Sources</option>
                 <option value="bbc_news_tv">BBC News TV</option>
                 <option value="bbc_radio4">BBC Radio 4</option>
+                <option value="entertainment">Entertainment (All)</option>
                 <option value="graham_norton">Graham Norton</option>
                 <option value="qi">QI</option>
                 <option value="the_last_leg">The Last Leg</option>
@@ -263,13 +264,16 @@
         </div>
 
         <div class="card">
-            <h2>Emotion Trends Over Time</h2>
-            <div class="chart-wrapper" style="height:460px;"><canvas id="emotionLineChart"></canvas></div>
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
+                <h2 style="margin:0;">Emotion Proportion Over Time (Normalised to 100%)</h2>
+                <button class="toggle-btn" id="neutralToggle">Hide Neutral</button>
+            </div>
+            <div class="chart-wrapper" style="height:460px;"><canvas id="emotionAreaNorm"></canvas></div>
         </div>
 
         <div class="card">
-            <h2>Emotion Stacked Distribution Over Time</h2>
-            <div class="chart-wrapper"><canvas id="emotionStackedChart"></canvas></div>
+            <h2>Emotion Volume Over Time</h2>
+            <div class="chart-wrapper" style="height:460px;"><canvas id="emotionAreaAbs"></canvas></div>
         </div>
     </div>
 
@@ -304,7 +308,7 @@ const EMOTIONS = ["anger","disgust","fear","joy","neutral","sadness","surprise"]
 const EMOTION_COLORS = {
     anger:    "#f44336",
     disgust:  "#9C27B0",
-    fear:     "#FF5722",
+    fear:     "#6D4C41",
     joy:      "#4CAF50",
     neutral:  "#9E9E9E",
     sadness:  "#2196F3",
@@ -323,6 +327,8 @@ const SOURCE_LABELS = {
     the_last_leg: "The Last Leg",
     the_one_show: "The One Show",
 };
+
+const ENTERTAINMENT_SOURCES = ["graham_norton", "qi", "the_last_leg", "the_one_show"];
 
 const DATASETS = {
     tight_altmodel: {
@@ -350,11 +356,12 @@ let filteredSentiment = [];
 let filteredEmotion = [];
 
 let meanChart, stackedChart, pieChart, countChart, stdChart, coverageChart;
-let radarChart, emotionPieChart, emotionLineChart, emotionStackedChart;
+let radarChart, emotionPieChart, emotionAreaNorm, emotionAreaAbs;
 let compareBarChart, covidControlChart, sourceRadarChart, emotionBySourceChart;
 
 let isPlaying = false;
 let playInterval;
+let showNeutral = true;
 
 // ---- filters ----
 function getFilters() {
@@ -367,7 +374,9 @@ function getFilters() {
 function applyFilters(data) {
     const { source, period } = getFilters();
     return data.filter(d => {
-        const sourceOk = source === "all" || d.source === source;
+        const sourceOk = source === "all"
+            || (source === "entertainment" && ENTERTAINMENT_SOURCES.includes(d.source))
+            || d.source === source;
         const periodOk = period === "both" || d.period === period;
         return sourceOk && periodOk;
     });
@@ -420,11 +429,12 @@ function fillGaps(data, fields) {
 
 // ---- data load ----
 async function loadAll() {
-    const sentResp = await fetch(DATASETS[currentDataset].sentFile).catch(() => null);
+    const bust = "?v=" + Date.now();
+    const sentResp = await fetch(DATASETS[currentDataset].sentFile + bust).catch(() => null);
     sentimentRaw = sentResp ? await sentResp.json() : [];
 
     const emotFile = DATASETS[currentDataset].emotFile;
-    const emResp = emotFile ? await fetch(emotFile).catch(() => null) : null;
+    const emResp = emotFile ? await fetch(emotFile + bust).catch(() => null) : null;
     emotionRaw = emResp ? await emResp.json() : [];
 
     const tcResp = await fetch("json/sentence_count.json").catch(() => null);
@@ -612,7 +622,7 @@ function buildEmotionSection(data) {
     slider.max = Math.max(0, data.length - 1);
     slider.value = 0;
 
-    destroy(radarChart, emotionPieChart, emotionLineChart, emotionStackedChart);
+    destroy(radarChart, emotionPieChart, emotionAreaNorm, emotionAreaAbs);
 
     const labels = data.map(d => d.year_month);
 
@@ -654,41 +664,56 @@ function buildEmotionSection(data) {
             plugins:{ legend:{ position:"right", labels:{color:"#fff",padding:15} } } },
     });
 
-    // emotion line chart (all emotions over time)
-    emotionLineChart = new Chart(document.getElementById("emotionLineChart"), {
+    // normalised stacked area (always fills to 100%)
+    const emotionSet = showNeutral ? [...EMOTIONS.filter(e => e !== "neutral"), "neutral"] : EMOTIONS.filter(e => e !== "neutral");
+    const emotionsNeutralTop = emotionSet;
+    const normData = data.map(d => {
+        const total = emotionsNeutralTop.reduce((s, e) => s + (d[`${e}_pct`] || 0), 0) || 1;
+        const norm = {};
+        emotionsNeutralTop.forEach(e => { norm[e] = ((d[`${e}_pct`] || 0) / total) * 100; });
+        return norm;
+    });
+    emotionAreaNorm = new Chart(document.getElementById("emotionAreaNorm"), {
         type: "line",
         data: {
             labels,
-            datasets: EMOTIONS.map(e => ({
+            datasets: emotionsNeutralTop.map(e => ({
                 label: e.charAt(0).toUpperCase() + e.slice(1),
-                data: data.map(d => d[`${e}_pct`]),
+                data: normData.map(d => d[e]),
                 borderColor: EMOTION_COLORS[e],
-                backgroundColor: "transparent",
+                backgroundColor: EMOTION_COLORS[e] + "cc",
+                fill: true,
                 tension: 0.3,
-                pointRadius: 3,
-                pointHoverRadius: 7,
+                pointRadius: 0,
+                pointHoverRadius: 5,
             })),
         },
         options: chartOpts({ scales: {
-            x: { ticks:{color:"#aaa"}, grid:{color:"rgba(255,255,255,0.08)"} },
-            y: { ticks:{color:"#aaa"}, grid:{color:"rgba(255,255,255,0.08)"}, min:0, max:100 },
+            x: { stacked:true, ticks:{color:"#aaa"}, grid:{color:"rgba(255,255,255,0.08)"} },
+            y: { stacked:true, ticks:{color:"#aaa"}, grid:{color:"rgba(255,255,255,0.08)"}, min:0, max:100 },
         }}),
     });
 
-    // stacked emotion bar
-    emotionStackedChart = new Chart(document.getElementById("emotionStackedChart"), {
-        type: "bar",
+    // absolute stacked area — height = actual sentence count per emotion per month
+    emotionAreaAbs = new Chart(document.getElementById("emotionAreaAbs"), {
+        type: "line",
         data: {
             labels,
-            datasets: EMOTIONS.map(e => ({
+            datasets: emotionsNeutralTop.map(e => ({
                 label: e.charAt(0).toUpperCase() + e.slice(1),
-                data: data.map(d => d[`${e}_pct`]),
-                backgroundColor: EMOTION_COLORS[e],
+                data: data.map(d => Math.round(((d[`${e}_pct`] || 0) / 100) * (d.sentence_count || 0))),
+                borderColor: EMOTION_COLORS[e],
+                backgroundColor: EMOTION_COLORS[e] + "cc",
+                fill: true,
+                tension: 0.3,
+                pointRadius: 0,
+                pointHoverRadius: 5,
             })),
         },
-        options: chartOpts({ scales:{
-            x:{stacked:true,ticks:{color:"#aaa"},grid:{color:"rgba(255,255,255,0.08)"}},
-            y:{stacked:true,ticks:{color:"#aaa"},grid:{color:"rgba(255,255,255,0.08)"},max:100},
+        options: chartOpts({ scales: {
+            x: { stacked:true, ticks:{color:"#aaa"}, grid:{color:"rgba(255,255,255,0.08)"} },
+            y: { stacked:true, ticks:{color:"#aaa"}, grid:{color:"rgba(255,255,255,0.08)"}, min:0,
+                 title: { display:true, text:"Sentence Count", color:"#aaa" } },
         }}),
     });
 
@@ -869,6 +894,15 @@ document.querySelectorAll(".toggle-btn[data-dataset]").forEach(btn => {
 
 document.getElementById("sourceSelect").addEventListener("change", refresh);
 document.getElementById("periodSelect").addEventListener("change", refresh);
+
+document.getElementById("neutralToggle").addEventListener("click", function () {
+    showNeutral = !showNeutral;
+    this.textContent = showNeutral ? "Hide Neutral" : "Show Neutral";
+    this.classList.toggle("active", !showNeutral);
+    const emFields = EMOTIONS.map(e => `${e}_pct`);
+    const emData = fillGaps(aggregateByMonth(filteredEmotion, emFields), emFields);
+    buildEmotionSection(emData);
+});
 
 document.querySelectorAll(".section-tab").forEach(tab => {
     tab.addEventListener("click", function () {
