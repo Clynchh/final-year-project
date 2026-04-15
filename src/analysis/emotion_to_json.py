@@ -12,7 +12,7 @@ EMOTIONS = ["anger", "disgust", "fear", "joy", "neutral", "sadness", "surprise"]
 if __name__ == "__main__":
     import argparse
     parser = argparse.ArgumentParser()
-    parser.add_argument("--filter", choices=["tight", "loose"], default="tight")
+    parser.add_argument("--filter", choices=["tight", "loose", "sample"], default="tight")
     args = parser.parse_args()
 
     input_csv = RESULTS / "csv" / f"emotion_analysis_monthly_{args.filter}.csv"

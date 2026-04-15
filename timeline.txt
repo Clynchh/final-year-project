@@ -1,0 +1,77 @@
+Dec 2019 - First Cases of Covid-19 confirmed in Wuhan, China
+ciation - Allam Z (2020). "The First 50 days of COVID-19: A Detailed Chronological Timeline and Extensive Review of Literature Documenting the Pandemic". Surveying the Covid-19 Pandemic and its Implications. pp. 1–7. doi:10.1016/B978-0-12-824313-8.00001-2. ISBN 9780128243138. PMC 7378494.
+
+Jan 2020 - First Reported Covid-19 Death in China, Covid-19 Spreads to other countries
+ciation - https://www.nytimes.com/2020/01/10/world/asia/china-virus-wuhan-death.html
+
+Feb 2020 - Global death count surpasses 1000
+
+Mar 2020 - WHO declares Covid-19 a Pandemic
+
+Apr 2020 - National Lockdowns take effect
+
+May 2020 - Self-isolation required for travel, cautious easing of lockdowns
+
+Jun 2020 - Face Masks mandatory for public transport in the uk
+
+Jul 2020 - Eat out to help out scheme to keep restaurants afloat
+
+Aug 2020 - second wave of infections identified
+
+Sep 2020 - UK deaths increase by more than 100, first time since July
+
+Oct 2020 - Three Tier Restriction system introduced
+
+Nov 2020 - England enters second national lockdowns
+
+Dec 2020 - UK becomes first country to approve and deploy Phizer Vaccines
+
+Jan 2021 - UK Enters 3rd national lockdown as national death count surpasses 100k
+
+Feb 2021 - UK PM Boris Johnson sets out 4 step roadmap out of lockdown
+
+Mar 2021 - Phased restriction lifting starts, 17m vaccinated
+
+Apr 2021 - Shops and outdoor hospitality reopen
+
+May 2021 - Delta Variant declared a national concern
+
+Jun 2021 - Restriction easing delayed by a month due to Delta strain concerns
+
+Jul 2021 - All legal covid restrictions lifted in England
+
+Aug 2021 - 
+
+Sept 2021 - booster vaccination programme begins, starting with the most vulnerable
+
+Oct 2021 - 
+
+Nov 2021 - Omicron Variant leads to new travel resrictions in the UK
+
+Dec 2021 - UK introduces 'Plan B' restrictions following Omicron concerns
+
+Jan 2022 - Daily Covid cases surpasses 200k in England and Scotland for the first time
+
+Feb 2022 - UK Govt. releases 'Living with Covid' Plan to end remaining restrictions
+
+Mar 2022 - Free Mass testing ends, scientists voice concern about lack of testing data
+
+Apr 2022 - NHS releases spring booster programme
+
+May 2022 - UK Covid Enquiry announced
+
+June 2022 - NHS faces record waiting lists due to covid backlogs
+
+July 2022 - Secretary of health Matt Hancock resigns after breaching his own Covid restrictions
+
+Aug 2022 - UK reports 80 million covid cases since pandemic began
+
+Sept 2022 - 
+
+
+
+
+
+remember this but i have a few changes i want to make:
+-when viewing both periods, please make a vertical line where the month is 12-2019 that clearly indicates to the user that this is the first covid period month
+-just like you had grouped all the entertainment sources, id like you to group the bbc news tv and radio together so i have a 'news

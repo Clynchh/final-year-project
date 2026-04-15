@@ -1,5 +1,6 @@
 # Orchestrates the full pipeline: cleanse → segment → filter → sentiment → summary → convert.
 # Supports resuming from a named step via --from <step>.
+# Use --model vader to run VADER instead of RoBERTa for the sentiment step.
 
 import subprocess
 import sys
@@ -16,11 +17,12 @@ STEPS = [
         SRC / "preprocessing" / "filter_relevant_tight.py",
     ]),
     ("sample",    SRC / "preprocessing" / "sample_sentences.py"),
-    ("sentiment", SRC / "analysis" / "polarity_analysis.py"),
+    ("sentiment", None),  # resolved at runtime based on --model
     ("emotion",   SRC / "analysis" / "emotion_analysis.py"),
     ("summary",   SRC / "analysis" / "summary.py"),
     ("convert",   [
         SRC / "analysis" / "csv_to_json.py",
+        SRC / "analysis" / "generate_sentence_count.py",
         SRC / "analysis" / "sentence_count_to_json.py",
         SRC / "analysis" / "emotion_to_json.py",
     ]),
@@ -36,27 +38,42 @@ def run_script(script: Path, extra_args: list[str] = []) -> None:
 
 
 def main() -> None:
-    start_from = None  # set via --from <step> to skip earlier steps
+    start_from = None
     if "--from" in sys.argv:
         idx = sys.argv.index("--from")
         if idx + 1 < len(sys.argv):
             start_from = sys.argv[idx + 1]
 
-    filter_type = "tight"  # set via --filter tight|loose|sample
+    filter_type = "tight"
     if "--filter" in sys.argv:
         idx = sys.argv.index("--filter")
         if idx + 1 < len(sys.argv):
             filter_type = sys.argv[idx + 1]
 
+    model = "altmodel"
+    if "--model" in sys.argv:
+        idx = sys.argv.index("--model")
+        if idx + 1 < len(sys.argv):
+            model = sys.argv[idx + 1]
+
+    # resolve sentiment script based on model
+    sentiment_script = (
+        SRC / "analysis" / "vader_analysis.py"
+        if model == "vader"
+        else SRC / "analysis" / "polarity_analysis.py"
+    )
+
     filter_arg = ["--filter", filter_type]
-    filter_steps = {"sentiment", "emotion", "summary", "convert"}  # steps that accept --filter (sample does not)
+    model_arg  = ["--model", model]
+    filter_steps = {"sentiment", "emotion", "summary", "convert"}
+    model_steps  = {"summary", "convert"}  # steps that also accept --model
 
     step_names = [name for name, _ in STEPS]
     if start_from and start_from not in step_names:
         print(f"Unknown step '{start_from}'. Valid steps: {', '.join(step_names)}")
         sys.exit(1)
 
-    print(f"Filter: {filter_type}")
+    print(f"Filter: {filter_type} | Model: {model}")
     active = start_from is None
     for name, scripts in STEPS:
         if start_from == name:
@@ -65,11 +82,26 @@ def main() -> None:
             print(f"Skipping: {name}")
             continue
 
+        # resolve sentiment script
+        if name == "sentiment":
+            scripts = sentiment_script
+
         script_list = scripts if isinstance(scripts, list) else [scripts]
-        args = filter_arg if name in filter_steps else []
+
         for script in script_list:
-            # count_csv_to_json.py doesn't need --filter
-            run_script(script, args if "sentence_count_to_json" not in script.name else [])
+            if "sentence_count_to_json" in script.name or "generate_sentence_count" in script.name:
+                run_script(script, [])
+            elif "emotion_to_json" in script.name:
+                # only run emotion_to_json for altmodel, not vader
+                if model == "altmodel":
+                    run_script(script, filter_arg)
+            else:
+                args = []
+                if name in filter_steps:
+                    args += filter_arg
+                if name in model_steps:
+                    args += model_arg
+                run_script(script, args)
 
     print("\nPipeline complete.")
 

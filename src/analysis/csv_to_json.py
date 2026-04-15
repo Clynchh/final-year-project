@@ -31,9 +31,10 @@ if __name__ == "__main__":
     import argparse
     parser = argparse.ArgumentParser()
     parser.add_argument("--filter", choices=["tight", "loose", "sample"], default="tight")
+    parser.add_argument("--model", choices=["altmodel", "vader"], default="altmodel")
     args = parser.parse_args()
 
     convert_csv_to_json(
-        RESULTS / "csv" / f"sentiment_analysis_monthly_{args.filter}_altmodel.csv",
-        RESULTS / "json" / f"sentiment_data_{args.filter}_altmodel.json",
+        RESULTS / "csv" / f"sentiment_analysis_monthly_{args.filter}_{args.model}.csv",
+        RESULTS / "json" / f"sentiment_data_{args.filter}_{args.model}.json",
     )

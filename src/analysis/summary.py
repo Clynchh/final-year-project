@@ -83,15 +83,17 @@ if __name__ == "__main__":
     import argparse
     parser = argparse.ArgumentParser()
     parser.add_argument("--filter", choices=["tight", "loose", "sample"], default="tight")
+    parser.add_argument("--model", choices=["altmodel", "vader"], default="altmodel")
     args = parser.parse_args()
     f = args.filter
+    m = args.model
 
     summarise_sentiment(
-        RESULTS / "csv" / f"sentiment_analysis_details_{f}_altmodel.csv",
-        RESULTS / "csv" / f"sentiment_analysis_monthly_{f}_altmodel.csv",
+        RESULTS / "csv" / f"sentiment_analysis_details_{f}_{m}.csv",
+        RESULTS / "csv" / f"sentiment_analysis_monthly_{f}_{m}.csv",
     )
-    # sample filter has no emotion analysis
-    if f != "sample":
+    # vader doesn't use emotion
+    if m == "altmodel":
         summarise_emotions(
             RESULTS / "csv" / f"emotion_analysis_details_{f}.csv",
             RESULTS / "csv" / f"emotion_analysis_monthly_{f}.csv",

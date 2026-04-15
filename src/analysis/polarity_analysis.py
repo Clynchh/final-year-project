@@ -11,7 +11,7 @@ RESULTS = _CURRENT.parent.parent / "results"
 MODEL_NAME = "siebert/sentiment-roberta-large-english"
 BATCH_SIZE = 8  # conservative for CPU — increase if more RAM is available
 
-LABEL_MAP = {0: "negative", 1: "neutral", 2: "positive"}
+LABEL_MAP = {0: "negative", 1: "positive"}  # siebert is binary — no neutral class
 SCORE_MAP = {"negative": -1, "neutral": 0, "positive": 1}
 
 MONTH_MAP = {
