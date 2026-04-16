@@ -1,0 +1,1749 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>COVID-19 Sentiment Analysis Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            min-height: 100vh;
+            padding: 20px;
+            color: #eee;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2.2rem;
+            color: #fff;
+        }
+
+        .dashboard { max-width: 1400px; margin: 0 auto; }
+
+        .card {
+            background: rgba(255,255,255,0.08);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 30px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+        }
+
+        .card h2 { margin-bottom: 15px; color: #fff; font-size: 1.3rem; }
+
+        .chart-wrapper { position: relative; height: 400px; }
+        .chart-wrapper-sm { position: relative; height: 340px; }
+
+        .row { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+        .row3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 30px; }
+        @media (max-width: 1000px) { .row, .row3 { grid-template-columns: 1fr; } }
+
+        /* controls */
+        .controls-bar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .controls-bar label { color: #aaa; font-size: 0.9rem; }
+
+        select {
+            background: rgba(255,255,255,0.1);
+            color: #fff;
+            border: 1px solid #555;
+            border-radius: 8px;
+            padding: 8px 12px;
+            font-size: 0.95rem;
+            cursor: pointer;
+        }
+
+        select option { background: #1a1a2e; }
+
+        .toggle-group { display: flex; flex-wrap: wrap; gap: 8px; }
+
+        .toggle-btn {
+            padding: 8px 18px;
+            font-size: 0.9rem;
+            border: 2px solid #555;
+            border-radius: 8px;
+            background: transparent;
+            color: #aaa;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .toggle-btn:hover { border-color: #888; color: #fff; }
+        .toggle-btn.active {
+            border-color: #4CAF50;
+            background: rgba(76,175,80,0.2);
+            color: #4CAF50;
+        }
+
+        /* slider */
+        .slider-wrapper { display: flex; align-items: center; gap: 15px; margin-bottom: 15px; }
+        .slider-wrapper input[type="range"] {
+            flex: 1; height: 6px; border-radius: 4px;
+            background: #444; outline: none; -webkit-appearance: none;
+        }
+        .slider-wrapper input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none; width: 20px; height: 20px;
+            border-radius: 50%; background: #4CAF50; cursor: pointer;
+        }
+        .current-date { font-size: 1.3rem; font-weight: bold; color: #4CAF50; min-width: 90px; }
+
+        .play-controls { display: flex; gap: 10px; justify-content: center; margin-top: 10px; }
+        .play-controls button {
+            padding: 8px 20px; font-size: 0.95rem;
+            border: none; border-radius: 8px; cursor: pointer; transition: all 0.2s;
+        }
+        .play-btn { background: #4CAF50; color: white; }
+        .play-btn:hover { background: #45a049; }
+        .reset-btn { background: #666; color: white; }
+        .reset-btn:hover { background: #555; }
+
+        /* stat cards */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+            gap: 12px;
+            margin-top: 18px;
+        }
+        .stat-card {
+            background: rgba(255,255,255,0.08);
+            border-radius: 10px;
+            padding: 12px;
+            text-align: center;
+        }
+        .stat-card .value { font-size: 1.6rem; font-weight: bold; margin-bottom: 4px; }
+        .stat-card .label { font-size: 0.8rem; color: #aaa; }
+        .stat-card.positive .value { color: #4CAF50; }
+        .stat-card.neutral .value  { color: #FFC107; }
+        .stat-card.negative .value { color: #f44336; }
+        .stat-card.mean .value     { color: #2196F3; }
+        .stat-card.count .value    { color: #9C27B0; }
+        .stat-card.coverage .value { color: #00BCD4; }
+        .stat-card.anger .value   { color: #f44336; }
+        .stat-card.disgust .value { color: #9C27B0; }
+        .stat-card.fear .value    { color: #6D4C41; }
+        .stat-card.joy .value     { color: #4CAF50; }
+        .stat-card.sadness .value { color: #2196F3; }
+        .stat-card.surprise .value{ color: #FF9800; }
+
+        /* section tabs */
+        .section-tabs { display: flex; gap: 8px; margin-bottom: 25px; flex-wrap: wrap; }
+        .section-tab {
+            padding: 10px 22px; font-size: 1rem;
+            border: 2px solid #555; border-radius: 10px;
+            background: transparent; color: #aaa; cursor: pointer; transition: all 0.2s;
+        }
+        .section-tab:hover { border-color: #888; color: #fff; }
+        .section-tab.active {
+            border-color: #2196F3;
+            background: rgba(33,150,243,0.2);
+            color: #2196F3;
+        }
+
+        .section { display: none; }
+        .section.active { display: block; }
+
+        .hidden { display: none !important; }
+
+        .source-comparison-header {
+            color: #fff;
+            font-size: 3rem;
+            font-weight: 600;
+            margin: 32px 0 16px 0;
+            padding-bottom: 8px;
+            border-bottom: 1px solid rgba(255,255,255,0.15);
+            letter-spacing: 0.02em;
+        }
+    </style>
+</head>
+<body>
+<div class="dashboard">
+    <h1>COVID-19 Media Sentiment Analysis</h1>
+
+    <!-- global controls -->
+    <div class="card">
+        <div class="controls-bar">
+            <label>Source:</label>
+            <select id="sourceSelect">
+                <option value="all">All Sources</option>
+                <option value="news">News (BBC)</option>
+                <option value="bbc_news_tv">BBC News TV</option>
+                <option value="bbc_radio4">BBC Radio 4</option>
+                <option value="entertainment">Entertainment (All)</option>
+                <option value="graham_norton">Graham Norton</option>
+                <option value="qi">QI</option>
+                <option value="the_last_leg">The Last Leg</option>
+                <option value="the_one_show">The One Show</option>
+            </select>
+            <label>Period:</label>
+            <select id="periodSelect">
+                <option value="covid">COVID (Dec 2019 - May 2023)</option>
+                <option value="control">Control (Jun 2016 - Nov 2019)</option>
+                <option value="both" selected>Both</option>
+            </select>
+            <label>Dataset:</label>
+            <div class="toggle-group" id="datasetToggle">
+                <button class="toggle-btn" data-dataset="tight">Tight Filter</button>
+                <button class="toggle-btn active" data-dataset="loose">Loose Filter</button>
+                <button class="toggle-btn" data-dataset="sample">Random Sample</button>
+            </div>
+            <div id="modelToggleContainer" style="display:contents">
+                <label>Model:</label>
+                <div class="toggle-group" id="modelToggle">
+                    <button class="toggle-btn active" data-model="altmodel">RoBERTa</button>
+                    <button class="toggle-btn" data-model="vader">VADER</button>
+                </div>
+            </div>
+            <label>Min. sentences:</label>
+            <input type="range" id="minCountSlider" min="0" max="10" value="5"
+                style="width:110px;vertical-align:middle;accent-color:#4CAF50;">
+            <span id="minCountVal" style="min-width:24px;display:inline-block;color:#4CAF50;font-weight:bold;">5</span>
+        </div>
+    </div>
+
+    <!-- section tabs -->
+    <div class="section-tabs">
+        <button class="section-tab active" data-section="sentiment">Polar Sentiment</button>
+        <button class="section-tab" data-section="emotion">Emotional Sentiment</button>
+    </div>
+
+    <!-- ========== SENTIMENT SECTION ========== -->
+    <div class="section active" id="section-sentiment">
+
+        <div class="card">
+            <h2>Explore Over Time</h2>
+            <div class="slider-wrapper">
+                <span class="current-date" id="currentDate">-</span>
+                <input type="range" id="timeSlider" min="0" max="0" value="0">
+            </div>
+            <div class="stats-grid">
+                <div class="stat-card mean"><div class="value" id="sliderMean">-</div><div class="label">Mean Sentiment</div></div>
+                <div class="stat-card positive"><div class="value" id="sliderPositive">-</div><div class="label">Positive %</div></div>
+                <div class="stat-card neutral"><div class="value" id="sliderNeutral">-</div><div class="label">Neutral %</div></div>
+                <div class="stat-card negative"><div class="value" id="sliderNegative">-</div><div class="label">Negative %</div></div>
+                <div class="stat-card count"><div class="value" id="sliderCount">-</div><div class="label">COVID Sentences</div></div>
+                <div class="stat-card coverage"><div class="value" id="sliderCoverage">-</div><div class="label">COVID per 100</div></div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;flex-wrap:wrap;gap:8px;">
+                <h2 style="margin:0;">Mean Sentiment Over Time</h2>
+                <div style="display:flex;gap:12px;flex-wrap:wrap;align-items:center;">
+                    <div class="toggle-group" id="overlayToggle">
+                        <button class="toggle-btn active" data-overlay="trend">Trendline</button>
+                        <button class="toggle-btn" data-overlay="ma3">3-Month MA</button>
+                        <button class="toggle-btn" data-overlay="ma6">6-Month MA</button>
+                        <button class="toggle-btn" data-overlay="ma12">12-Month MA</button>
+                    </div>
+                    <button class="toggle-btn active" id="stdBandToggle">Std Band</button>
+                </div>
+            </div>
+            <div class="chart-wrapper"><canvas id="meanChart"></canvas></div>
+        </div>
+
+        <div class="card">
+            <h2>Cross-Filter Comparison</h2>
+            <div class="chart-wrapper"><canvas id="crossFilterChart"></canvas></div>
+        </div>
+
+        <div class="row">
+            <div class="card">
+                <h2>Sentiment Distribution Over Time</h2>
+                <div class="chart-wrapper"><canvas id="stackedChart"></canvas></div>
+            </div>
+            <div class="card">
+                <h2>Current Month Breakdown</h2>
+                <div class="chart-wrapper"><canvas id="pieChart"></canvas></div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>COVID-Related Sentences per 100 Sentences</h2>
+            <div class="chart-wrapper"><canvas id="coverageChart"></canvas></div>
+        </div>
+
+        <div class="row">
+            <div class="card">
+                <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
+                    <h2 style="margin:0;">COVID-Related Sentence Counts</h2>
+                    <button class="toggle-btn" id="countProportionalToggle" style="display:none;">Proportional</button>
+                </div>
+                <div class="chart-wrapper"><canvas id="countChart"></canvas></div>
+            </div>
+            <div class="card">
+                <h2>Sentiment Volatility (Std Dev)</h2>
+                <div class="chart-wrapper"><canvas id="stdChart"></canvas></div>
+            </div>
+        </div>
+
+        <h3 class="source-comparison-header">Source Comparison</h3>
+
+        <div class="card">
+            <h2>Mean Sentiment by Source</h2>
+            <div class="chart-wrapper"><canvas id="compareBarChart"></canvas></div>
+        </div>
+
+        <div class="card">
+            <h2>Sentiment: COVID vs Control by Source</h2>
+            <div class="chart-wrapper"><canvas id="covidControlChart"></canvas></div>
+        </div>
+
+        <div class="card">
+            <h2>RoBERTa vs VADER — Model Agreement Over Time</h2>
+            <div class="chart-wrapper"><canvas id="modelAgreementChart"></canvas></div>
+        </div>
+    </div>
+
+    <!-- ========== EMOTION SECTION ========== -->
+    <div class="section" id="section-emotion">
+
+        <div style="display:flex;justify-content:flex-end;margin-bottom:12px;">
+            <button class="toggle-btn" id="neutralToggle">Hide Neutral</button>
+        </div>
+
+        <div class="card">
+            <h2>Explore Over Time</h2>
+            <div class="slider-wrapper">
+                <span class="current-date" id="radarDate">-</span>
+                <input type="range" id="radarSlider" min="0" max="0" value="0">
+            </div>
+            <div class="stats-grid">
+                <div class="stat-card anger"><div class="value" id="emotionStat-anger">-</div><div class="label">Anger %</div></div>
+                <div class="stat-card disgust"><div class="value" id="emotionStat-disgust">-</div><div class="label">Disgust %</div></div>
+                <div class="stat-card fear"><div class="value" id="emotionStat-fear">-</div><div class="label">Fear %</div></div>
+                <div class="stat-card joy"><div class="value" id="emotionStat-joy">-</div><div class="label">Joy %</div></div>
+                <div class="stat-card neutral"><div class="value" id="emotionStat-neutral">-</div><div class="label">Neutral %</div></div>
+                <div class="stat-card sadness"><div class="value" id="emotionStat-sadness">-</div><div class="label">Sadness %</div></div>
+                <div class="stat-card surprise"><div class="value" id="emotionStat-surprise">-</div><div class="label">Surprise %</div></div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="card">
+                <h2>Emotion Radar - Current Month</h2>
+                <div class="chart-wrapper"><canvas id="radarChart"></canvas></div>
+            </div>
+            <div class="card">
+                <h2>Emotion Distribution - Current Month</h2>
+                <div class="chart-wrapper"><canvas id="emotionPieChart"></canvas></div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>Emotion Proportion Over Time (Normalised to 100%)</h2>
+            <div class="chart-wrapper" style="height:460px;"><canvas id="emotionAreaNorm"></canvas></div>
+        </div>
+
+        <div class="card">
+            <h2>Emotion Volume Over Time</h2>
+            <div class="chart-wrapper" style="height:460px;"><canvas id="emotionAreaAbs"></canvas></div>
+        </div>
+
+        <h3 class="source-comparison-header">Source Comparison</h3>
+
+        <div class="card">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;flex-wrap:wrap;gap:8px;">
+                <h2 style="margin:0;">Average Emotion Profile by Source (Radar)</h2>
+                <div class="toggle-group">
+                    <button class="toggle-btn" id="radarBySourceBtn">By Source</button>
+                    <button class="toggle-btn active" id="radarByGroupBtn">By Group</button>
+                </div>
+            </div>
+            <div class="chart-wrapper"><canvas id="sourceRadarChart"></canvas></div>
+        </div>
+
+        <div class="card">
+            <h2>Dominant Emotion by Source</h2>
+            <div class="chart-wrapper"><canvas id="emotionBySourceChart"></canvas></div>
+        </div>
+    </div>
+</div>
+
+<script>
+const EMOTIONS = ["anger","disgust","fear","joy","neutral","sadness","surprise"];
+const EMOTION_COLORS = {
+    anger:    "#f44336",
+    disgust:  "#9C27B0",
+    fear:     "#6D4C41",
+    joy:      "#4CAF50",
+    neutral:  "#9E9E9E",
+    sadness:  "#2196F3",
+    surprise: "#FF9800",
+};
+
+const SOURCE_COLORS = [
+    "#2196F3","#4CAF50","#FF9800","#f44336","#9C27B0","#00BCD4"
+];
+
+const SOURCE_LABELS = {
+    bbc_news_tv: "BBC News TV",
+    bbc_radio4:  "BBC Radio 4",
+    graham_norton: "Graham Norton",
+    qi: "QI",
+    the_last_leg: "The Last Leg",
+    the_one_show: "The One Show",
+};
+
+const ENTERTAINMENT_SOURCES = ["graham_norton", "qi", "the_last_leg", "the_one_show"];
+const BBC_NEWS_SOURCES = ["bbc_news_tv", "bbc_radio4"];
+
+const TIMELINE_HEADLINES = {
+    "2019-12": "First cases of COVID-19 confirmed in Wuhan, China [GLOBAL]",
+    "2020-01": "First two COVID-19 cases confirmed in the UK (York); British Airways suspends all flights to mainland China",
+    "2020-02": "First British COVID-19 death confirmed (Diamond Princess cruise ship); first cases confirmed in Wales and Northern Ireland",
+    "2020-03": "First official UK COVID-19 death (5 Mar); all schools closed (20 Mar); UK enters first national lockdown (23 Mar)",
+    "2020-04": "UK weekly deaths reach 21,805 - 207% of five-year average; NHS Nightingale hospitals open",
+    "2020-05": "Lockdown begins to ease; Boris Johnson unveils four-step reopening plan and \"Stay Alert\" messaging",
+    "2020-06": "Face coverings made mandatory on public transport in England (15 Jun); NHS Test and Trace launches",
+    "2020-07": "GBP 30bn recovery package; face coverings mandatory in English shops (24 Jul); UK signs vaccine deals with Pfizer/BioNTech and Oxford/AstraZeneca",
+    "2020-08": "\"Eat Out to Help Out\" discount dining scheme launches (3 Aug)",
+    "2020-09": "\"Rule of Six\" comes into effect to tackle coronavirus",
+    "2020-10": "England introduces three-tier COVID restriction system (14 Oct)",
+    "2020-11": "England enters second national lockdown (5 Nov)",
+    "2020-12": "UK becomes first country in world to approve the Pfizer-BioNTech vaccine (2 Dec)",
+    "2021-01": "England enters third national lockdown (5 Jan); record 62,322 daily cases; UK deaths pass 100,000; Moderna vaccine approved (8 Jan)",
+    "2021-02": "Prime Minister sets out roadmap to cautiously ease lockdown restrictions (22 Feb)",
+    "2021-03": "Schools and colleges reopen as Step 1 of roadmap begins (8 Mar)",
+    "2021-04": "Further easing of COVID restrictions confirmed for 12 April (Step 2 of roadmap)",
+    "2021-05": "England moves to Step 3 of roadmap (17 May); indoor hospitality and larger events permitted",
+    "2021-06": "\"Freedom Day\" delayed four weeks to 19 Jul due to rising Delta variant cases; daily UK cases exceed 30,000",
+    "2021-07": "\"Freedom Day\": all legal COVID restrictions lifted in England (19 Jul); nightclubs reopen; \"pingdemic\" hits businesses and NHS",
+    "2021-08": "All UK adults offered first vaccine dose; \"pingdemic\" disrupts supply chains; NHS app sends 500k+ isolation alerts in one week",
+    "2021-09": "NHS begins COVID-19 booster vaccination campaign for over-50s and clinically vulnerable",
+    "2021-10": "Government holds off on \"Plan B\" restrictions despite rising cases; care home staff vaccination mandate comes into force",
+    "2021-11": "Two Omicron variant cases detected in UK (27 Nov); UK reimposes face covering requirements in shops and on public transport",
+    "2021-12": "England moves to \"Plan B\" restrictions (8 Dec) as Omicron surges; first UK Omicron death (13 Dec); Paxlovid antiviral approved",
+    "2022-01": "Record 218,724 daily COVID cases (4 Jan); UK deaths pass 150,000; \"Partygate\" scandal emerges over alleged Downing Street gatherings",
+    "2022-02": "All remaining COVID restrictions in England lifted; self-isolation legal requirement ends (24 Feb)",
+    "2022-03": "Last coronavirus legal restrictions in England revoked (18 Mar); NHS Spring Booster launched; free mass testing to end in April",
+    "2022-04": "Free mass COVID testing ends in England (1 Apr)",
+    "2022-05": "ONS estimates 1.3 million people in UK have Long COVID; COVID-related NHS backlogs persist",
+    "2022-06": "Cases rise again driven by Omicron BA.4/BA.5; UK COVID-19 public inquiry formally opens (28 Jun)",
+    "2022-07": "UK COVID deaths pass 200,000 (13 Jul); public inquiry formally launches (21 Jul); autumn booster extended to all over-50s",
+    "2022-08": "UK first country to approve updated Moderna bivalent vaccine targeting Omicron (15 Aug); routine hospital COVID testing paused",
+    "2022-09": "UK COVID public inquiry examines Johnson Government decisions; autumn booster begins; cases lowest since Oct 2021",
+    "2022-10": "First preliminary hearing of UK COVID-19 Inquiry (4 Oct); NHS waiting lists reach record 7 million; cases rise among over-70s",
+    "2022-11": "COVID cases fall below one million for first time since September; inquiry requests Boris Johnson's WhatsApp messages",
+    "2022-12": "Flu hospital admissions overtake COVID-19 in UK (16 Dec); first UK double-lung transplant post-COVID (7 Dec)",
+    "2023-01": "COVID, flu and scarlet fever put \"massive pressure\" on NHS; 2 million UK people have Long COVID; 1 in 20 test positive over Christmas",
+    "2023-02": "COVID cases rise in England for first time in 2023; Queen Camilla tests positive (13 Feb)",
+    "2023-03": "Matt Hancock WhatsApp messages leaked; Boris Johnson gives evidence to Partygate inquiry (22 Mar); third anniversary of first UK lockdown (23 Mar)",
+    "2023-04": "NHS England launches spring booster for over-75s (3 Apr); NHS COVID-19 app closes (27 Apr); COVID-19 no longer a leading cause of death",
+    "2023-05": "WHO declares end of COVID-19 as a global public health emergency of international concern (5 May) [GLOBAL]",
+};
+
+const DATASETS = {
+    tight_altmodel:  { sentFile: "json/sentiment_data_tight_altmodel.json",  emotFile: "json/emotion_data_tight.json" },
+    loose_altmodel:  { sentFile: "json/sentiment_data_loose_altmodel.json",  emotFile: "json/emotion_data_loose.json" },
+    sample_altmodel: { sentFile: "json/sentiment_data_sample_altmodel.json", emotFile: "json/emotion_data_sample.json" },
+    tight_vader:     { sentFile: "json/sentiment_data_tight_vader.json",     emotFile: "json/emotion_data_tight.json" },
+    loose_vader:     { sentFile: "json/sentiment_data_loose_vader.json",     emotFile: "json/emotion_data_loose.json" },
+    sample_vader:    { sentFile: "json/sentiment_data_sample_vader.json",    emotFile: null },
+};
+
+let sentimentRaw = [];
+let emotionRaw = [];
+let allSentimentRaw = {};  // keyed by "filter_model", e.g. "tight_altmodel"
+let totalSentencesData = {};
+let sampleCovidData = {};  // { "source|period|year_month": { total_sampled, covid_count } }
+let currentFilter = "loose";
+let currentModel  = "altmodel";
+let currentDataset = "loose_altmodel";  // derived: currentFilter + "_" + currentModel
+let filteredSentiment = [];
+let filteredEmotion = [];
+
+let meanChart, stackedChart, pieChart, countChart, stdChart, coverageChart;
+let radarChart, emotionPieChart, emotionAreaNorm, emotionAreaAbs;
+let compareBarChart, covidControlChart, sourceRadarChart, emotionBySourceChart;
+let crossFilterChart, modelAgreementChart;
+
+let showNeutral = true;
+let compareRadarByGroup = true;
+let countProportional = false;
+let overlayMode = "trend";
+let showStdBand = true;
+let minCount = 5;
+
+
+// ---- helpers ----
+function hexToRgba(hex, alpha) {
+    const r = parseInt(hex.slice(1, 3), 16);
+    const g = parseInt(hex.slice(3, 5), 16);
+    const b = parseInt(hex.slice(5, 7), 16);
+    return `rgba(${r},${g},${b},${alpha})`;
+}
+
+function normalizeEmotionData(d, emotions) {
+    const total = emotions.reduce((s, e) => s + (d[`${e}_pct`] || 0), 0) || 1;
+    return emotions.map(e => ((d[`${e}_pct`] || 0) / total) * 100);
+}
+
+function radarMax(vals) {
+    const m = Math.max(...vals);
+    return Math.max(50, Math.ceil(m / 10) * 10);
+}
+
+function wrapText(text, maxChars) {
+    const words = text.split(" ");
+    const lines = [];
+    let current = "";
+    words.forEach(w => {
+        const candidate = current ? current + " " + w : w;
+        if (candidate.length > maxChars && current) {
+            lines.push(current);
+            current = w;
+        } else {
+            current = candidate;
+        }
+    });
+    if (current) lines.push(current);
+    return lines;
+}
+
+// draws a dashed vertical line at "2019-12" when period === "both"
+const covidStartLinePlugin = {
+    id: "covidStartLine",
+    afterDraw(chart) {
+        if (!chart.scales || !chart.scales.x) return;
+        const labels = chart.data.labels;
+        if (!labels) return;
+        const idx = labels.indexOf("2019-12");
+        if (idx === -1) return;
+        const ctx = chart.ctx;
+        const x = chart.scales.x.getPixelForValue(idx);
+        const { top, bottom } = chart.chartArea;
+        ctx.save();
+        // Semi-transparent black background rect to make line stand out
+        ctx.fillStyle = "rgba(0, 0, 0, 0.25)";
+        ctx.fillRect(x - 3, top, 6, bottom - top);
+        ctx.beginPath();
+        ctx.moveTo(x, top);
+        ctx.lineTo(x, bottom);
+        ctx.strokeStyle = "#ffffff";
+        ctx.lineWidth = 2.5;
+        ctx.setLineDash([6, 4]);
+        ctx.stroke();
+        ctx.setLineDash([]);
+        // Label with opaque black background
+        const label = "< COVID Start";
+        ctx.font = "bold 11px sans-serif";
+        const lw = ctx.measureText(label).width;
+        ctx.fillStyle = "rgba(0, 0, 0, 0.85)";
+        ctx.fillRect(x + 4, top + 3, lw + 6, 17);
+        ctx.fillStyle = "rgba(255, 255, 255, 0.95)";
+        ctx.textAlign = "left";
+        ctx.fillText(label, x + 7, top + 15);
+        ctx.restore();
+    }
+};
+Chart.register(covidStartLinePlugin);
+
+// draws a white dotted horizontal line at y=0 for sentiment charts
+const zeroLinePlugin = {
+    id: "zeroLine",
+    afterDraw(chart) {
+        if (!chart.config.options.plugins?.zeroLine?.enabled) return;
+        if (!chart.scales?.y) return;
+        const y = chart.scales.y.getPixelForValue(0);
+        const { left, right } = chart.chartArea;
+        const ctx = chart.ctx;
+        ctx.save();
+        ctx.fillStyle = "rgba(255, 255, 255, 0.1)";
+        ctx.fillRect(left, y - 3, right - left, 6);
+        ctx.beginPath();
+        ctx.moveTo(left, y);
+        ctx.lineTo(right, y);
+        ctx.strokeStyle = "rgba(255, 255, 255, 0.75)";
+        ctx.lineWidth = 1.5;
+        ctx.setLineDash([5, 4]);
+        ctx.stroke();
+        ctx.setLineDash([]);
+        ctx.restore();
+    }
+};
+Chart.register(zeroLinePlugin);
+
+// shades the area between the sentiment line and y=0: green above, red below
+const sentimentFillPlugin = {
+    id: "sentimentFill",
+    beforeDatasetsDraw(chart) {
+        if (!chart.config.options.plugins?.sentimentFill?.enabled) return;
+        const { ctx, chartArea, scales } = chart;
+        if (!chartArea || !scales?.y) return;
+
+        // Resolve data before touching canvas state so an early exit doesn't
+        // leave an unbalanced save/restore on the context stack.
+        let meta, rawData, zeroY, n;
+        try {
+            meta    = chart.getDatasetMeta(0);
+            rawData = chart.data.datasets[0]?.data;
+            if (!meta?.data?.length || !rawData) return;
+            zeroY = scales.y.getPixelForValue(0);
+            n     = Math.min(meta.data.length, rawData.length);
+        } catch (e) { return; }
+
+        // ctx.save is now outside the try so ctx.restore in finally always
+        // has a matching save — a broken draw never corrupts the canvas state.
+        ctx.save();
+        try {
+            for (let i = 0; i < n - 1; i++) {
+                const v0 = rawData[i];
+                const v1 = rawData[i + 1];
+                if (v0 == null || v1 == null) continue;
+
+                const x0 = meta.data[i].x,     y0 = meta.data[i].y;
+                const x1 = meta.data[i + 1].x, y1 = meta.data[i + 1].y;
+                if (!isFinite(x0) || !isFinite(y0) || !isFinite(x1) || !isFinite(y1)) continue;
+
+                if ((v0 >= 0) === (v1 >= 0)) {
+                    ctx.fillStyle = v0 >= 0 ? "rgba(76,175,80,0.25)" : "rgba(244,67,54,0.25)";
+                    ctx.beginPath();
+                    ctx.moveTo(x0, y0);
+                    ctx.lineTo(x1, y1);
+                    ctx.lineTo(x1, zeroY);
+                    ctx.lineTo(x0, zeroY);
+                    ctx.closePath();
+                    ctx.fill();
+                } else {
+                    const t = v0 / (v0 - v1);
+                    const xCross = x0 + t * (x1 - x0);
+
+                    ctx.fillStyle = v0 >= 0 ? "rgba(76,175,80,0.25)" : "rgba(244,67,54,0.25)";
+                    ctx.beginPath();
+                    ctx.moveTo(x0, y0);
+                    ctx.lineTo(xCross, zeroY);
+                    ctx.lineTo(x0, zeroY);
+                    ctx.closePath();
+                    ctx.fill();
+
+                    ctx.fillStyle = v0 >= 0 ? "rgba(244,67,54,0.25)" : "rgba(76,175,80,0.25)";
+                    ctx.beginPath();
+                    ctx.moveTo(xCross, zeroY);
+                    ctx.lineTo(x1, y1);
+                    ctx.lineTo(x1, zeroY);
+                    ctx.closePath();
+                    ctx.fill();
+                }
+            }
+        } finally {
+            ctx.restore();  // always restore, even if a draw step throws
+        }
+    }
+};
+Chart.register(sentimentFillPlugin);
+
+// ---- filters ----
+function getFilters() {
+    return {
+        source: document.getElementById("sourceSelect").value,
+        period: document.getElementById("periodSelect").value,
+    };
+}
+
+function applyFilters(data) {
+    const { source, period } = getFilters();
+    return data.filter(d => {
+        const sourceOk = source === "all"
+            || (source === "entertainment" && ENTERTAINMENT_SOURCES.includes(d.source))
+            || (source === "news" && BBC_NEWS_SOURCES.includes(d.source))
+            || d.source === source;
+        const periodOk = period === "both" || d.period === period;
+        return sourceOk && periodOk;
+    });
+}
+
+function aggregateByMonth(data, fields) {
+    const grouped = {};
+    data.forEach(d => {
+        const key = d.year_month;
+        if (!grouped[key]) grouped[key] = { year_month: key, source: d.source, period: d.period, _rows: [] };
+        grouped[key]._rows.push(d);
+    });
+    return Object.values(grouped).map(g => {
+        const rows = g._rows;
+        const result = { year_month: g.year_month, source: g.source, period: g.period };
+        fields.forEach(f => {
+            result[f] = rows.reduce((s, r) => s + (parseFloat(r[f]) || 0), 0) / rows.length;
+        });
+        result.sentence_count = rows.reduce((s, r) => s + (parseInt(r.sentence_count) || 0), 0);
+        return result;
+    }).sort((a, b) => a.year_month.localeCompare(b.year_month));
+}
+
+function generateMonthRange(startYM, endYM) {
+    const months = [];
+    let [y, m] = startYM.split("-").map(Number);
+    const [ey, em] = endYM.split("-").map(Number);
+    while (y < ey || (y === ey && m <= em)) {
+        months.push(`${y}-${String(m).padStart(2, "0")}`);
+        m++; if (m > 12) { m = 1; y++; }
+    }
+    return months;
+}
+
+function fillGaps(data, fields) {
+    if (!data.length) return data;
+    const period = document.getElementById("periodSelect").value;
+    const startYM = period === "covid" ? "2019-12" : "2016-06";
+    const endYM   = period === "control" ? "2019-11" : "2023-05";
+    const allMonths = generateMonthRange(startYM, endYM);
+    const dataMap = {};
+    data.forEach(d => { dataMap[d.year_month] = d; });
+    return allMonths.map(ym => {
+        if (dataMap[ym]) return dataMap[ym];
+        const empty = { year_month: ym, sentence_count: 0, covid_per_100: 0 };
+        fields.forEach(f => { empty[f] = 0; });
+        return empty;
+    });
+}
+
+// ---- data load ----
+async function loadAll() {
+    const bust = "?v=" + Date.now();
+
+    // Fetch all 6 sentiment datasets in parallel so cross-filter and inter-model charts always have data
+    const sentFetches = Object.entries(DATASETS).map(async ([key, ds]) => {
+        const resp = await fetch(ds.sentFile + bust).catch(() => null);
+        allSentimentRaw[key] = resp ? await resp.json() : [];
+    });
+    await Promise.all(sentFetches);
+    sentimentRaw = allSentimentRaw[currentDataset] || [];
+
+    const emotFile = DATASETS[currentDataset].emotFile;
+    const emResp = emotFile ? await fetch(emotFile + bust).catch(() => null) : null;
+    emotionRaw = emResp ? await emResp.json() : [];
+
+    const tcResp = await fetch("json/sentence_count.json" + bust).catch(() => null);
+    if (tcResp) {
+        const tc = await tcResp.json();
+        const MONTH_MAP = {Jan:"01",Feb:"02",Mar:"03",Apr:"04",May:"05",Jun:"06",
+                           Jul:"07",Aug:"08",Sep:"09",Oct:"10",Nov:"11",Dec:"12"};
+        tc.forEach(item => {
+            totalSentencesData[`${item.year}-${MONTH_MAP[item.month]}`] = item.count;
+        });
+    }
+
+    sampleCovidData = {};
+    if (currentFilter === "sample") {
+        const scResp = await fetch("json/sample_covid_count.json" + bust).catch(() => null);
+        if (scResp) {
+            const sc = await scResp.json();
+            sc.forEach(item => {
+                const key = `${item.source}|${item.period}|${item.year_month}`;
+                sampleCovidData[key] = { total: item.total_sampled, covid: item.covid_count };
+            });
+        }
+    }
+
+    refresh();
+}
+
+function refresh() {
+    filteredSentiment = applyFilters(sentimentRaw);
+    filteredEmotion   = applyFilters(emotionRaw);
+
+    const sentFields = ["mean_sentiment","positive_pct","neutral_pct","negative_pct","sentiment_std"];
+    const { source: srcFilter, period: perFilter } = getFilters();
+    const sentData = fillGaps(aggregateByMonth(filteredSentiment, sentFields), sentFields).map(d => {
+        let covid_per_100 = 0;
+        let covid_sentence_count = d.sentence_count;
+        let proportional_covid_count = covid_sentence_count;
+        if (currentFilter === "sample") {
+            const matchingKeys = Object.keys(sampleCovidData).filter(k => {
+                const [src, per, ym] = k.split("|");
+                const srcOk = srcFilter === "all"
+                    || (srcFilter === "entertainment" && ENTERTAINMENT_SOURCES.includes(src))
+                    || (srcFilter === "news" && BBC_NEWS_SOURCES.includes(src))
+                    || src === srcFilter;
+                const perOk = perFilter === "both" || per === perFilter;
+                return ym === d.year_month && srcOk && perOk;
+            });
+            const totalSampled = matchingKeys.reduce((s, k) => s + sampleCovidData[k].total, 0);
+            const totalCovid   = matchingKeys.reduce((s, k) => s + sampleCovidData[k].covid, 0);
+            covid_sentence_count = totalCovid;
+            const totalAll = totalSentencesData[d.year_month] || totalSampled || 1;
+            proportional_covid_count = totalSampled ? Math.round(totalCovid * (totalAll / totalSampled)) : 0;
+            covid_per_100 = totalSampled ? (totalCovid / totalSampled) * 100 : 0;
+        } else {
+            covid_per_100 = totalSentencesData[d.year_month]
+                ? (d.sentence_count / totalSentencesData[d.year_month]) * 100
+                : 0;
+        }
+        return {
+            ...d,
+            covid_per_100,
+            covid_sentence_count,
+            proportional_covid_count,
+            positive_pct: d.positive_pct,
+            neutral_pct: d.neutral_pct,
+        };
+    });
+
+    const emFields = EMOTIONS.map(e => `${e}_pct`);
+    const emData = fillGaps(aggregateByMonth(filteredEmotion, emFields), emFields);
+
+    buildSentimentSection(sentData);
+    buildEmotionSection(emData);
+    buildCompareSection();
+    buildCrossFilterChart();
+    buildModelAgreementChart();
+}
+
+// ---- chart helpers ----
+function chartOpts(extras = {}) {
+    return {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: { legend: { labels: { color: "#fff" } } },
+        scales: {
+            x: { ticks: { color: "#aaa" }, grid: { color: "rgba(255,255,255,0.08)" } },
+            y: { ticks: { color: "#aaa" }, grid: { color: "rgba(255,255,255,0.08)" } },
+        },
+        ...extras,
+    };
+}
+
+function destroy(...charts) {
+    charts.forEach(c => { if (c) c.destroy(); });
+}
+
+// ---- overlay helpers ----
+function linearRegression(data, valueKey) {
+    const points = data.reduce((acc, d, i) => {
+        if (d.sentence_count > 0) acc.push({ x: i, y: d[valueKey] });
+        return acc;
+    }, []);
+    if (points.length < 2) return null;
+    const n = points.length;
+    const sumX  = points.reduce((s, p) => s + p.x, 0);
+    const sumY  = points.reduce((s, p) => s + p.y, 0);
+    const sumXY = points.reduce((s, p) => s + p.x * p.y, 0);
+    const sumX2 = points.reduce((s, p) => s + p.x * p.x, 0);
+    const slope     = (n * sumXY - sumX * sumY) / (n * sumX2 - sumX * sumX);
+    const intercept = (sumY - slope * sumX) / n;
+    return { slope, intercept };
+}
+
+function movingAverage(data, window) {
+    return data.map((_, i) => {
+        const vals = [];
+        for (let j = Math.max(0, i - window + 1); j <= i; j++) {
+            if (data[j].sentence_count > 0) vals.push(data[j].mean_sentiment);
+        }
+        if (vals.length < Math.ceil(window / 2)) return null;
+        return +(vals.reduce((s, v) => s + v, 0) / vals.length).toFixed(4);
+    });
+}
+
+// ---- SENTIMENT SECTION ----
+function buildSentimentSection(data) {
+    const slider = document.getElementById("timeSlider");
+    slider.max = Math.max(0, data.length - 1);
+    slider.value = 0;
+
+    destroy(meanChart, stackedChart, pieChart, countChart, stdChart, coverageChart, crossFilterChart, modelAgreementChart);
+
+    const labels = data.map(d => d.year_month);
+
+    const meanValues = data.map(d => d.sentence_count === 0 ? null : d.mean_sentiment);
+    const pointColors = data.map(d => {
+        if (d.sentence_count === 0) return "transparent";
+        if (d.sentence_count < minCount) return "rgba(150,150,150,0.7)";
+        return "rgba(33,150,243,0.6)";
+    });
+    const pointRadii = data.map(d => {
+        if (d.sentence_count === 0) return 0;
+        if (d.sentence_count < minCount) return 3;
+        return 4;
+    });
+
+    const stdUpperValues = data.map(d => d.sentence_count === 0 ? null : Math.min(1, d.mean_sentiment + d.sentiment_std));
+    const stdLowerValues = data.map(d => d.sentence_count === 0 ? null : Math.max(-1, d.mean_sentiment - d.sentiment_std));
+
+    const reg = linearRegression(data, "mean_sentiment");
+    const trendValues = reg ? data.map((_, i) => +(reg.slope * i + reg.intercept).toFixed(4)) : [];
+    const ma3Values  = movingAverage(data, 3);
+    const ma6Values  = movingAverage(data, 6);
+    const ma12Values = movingAverage(data, 12);
+
+    meanChart = new Chart(document.getElementById("meanChart"), {
+        type: "line",
+        data: { labels, datasets: [
+            {
+                label: "Mean Sentiment",
+                data: meanValues,
+                borderColor: "#2196F3",
+                backgroundColor: "transparent",
+                fill: false, tension: 0.3,
+                pointRadius: pointRadii,
+                pointHoverRadius: 8,
+                pointBackgroundColor: pointColors,
+                spanGaps: false,
+                order: 1,
+                segment: {
+                    borderDash: ctx => {
+                        const p0 = data[ctx.p0DataIndex];
+                        const p1 = data[ctx.p1DataIndex];
+                        const low = d => d && d.sentence_count > 0 && d.sentence_count < minCount;
+                        if (low(p0) || low(p1)) return [5, 4];
+                    },
+                    borderColor: ctx => {
+                        const p0 = data[ctx.p0DataIndex];
+                        const p1 = data[ctx.p1DataIndex];
+                        const low = d => d && d.sentence_count > 0 && d.sentence_count < minCount;
+                        if (low(p0) || low(p1)) return "rgba(150,150,150,0.6)";
+                        return "#2196F3";
+                    },
+                },
+            },
+            {
+                label: "",
+                data: stdUpperValues,
+                borderColor: "transparent",
+                backgroundColor: "rgba(33,150,243,0.12)",
+                fill: "+1",
+                tension: 0.3,
+                pointRadius: 0,
+                spanGaps: false,
+                order: 3,
+                hidden: !showStdBand,
+            },
+            {
+                label: "",
+                data: stdLowerValues,
+                borderColor: "transparent",
+                backgroundColor: "transparent",
+                fill: false,
+                tension: 0.3,
+                pointRadius: 0,
+                spanGaps: false,
+                order: 3,
+                hidden: !showStdBand,
+            },
+            {
+                label: "Trendline",
+                data: trendValues,
+                borderColor: "#FFD54F",
+                backgroundColor: "transparent",
+                fill: false, tension: 0,
+                pointRadius: 0, borderWidth: 2,
+                borderDash: [6, 4], spanGaps: true, order: 2,
+                hidden: overlayMode !== "trend",
+            },
+            {
+                label: "3-Month MA",
+                data: ma3Values,
+                borderColor: "#4CAF50",
+                backgroundColor: "transparent",
+                fill: false, tension: 0.3,
+                pointRadius: 0, borderWidth: 2,
+                spanGaps: false, order: 2,
+                hidden: overlayMode !== "ma3",
+            },
+            {
+                label: "6-Month MA",
+                data: ma6Values,
+                borderColor: "#FF9800",
+                backgroundColor: "transparent",
+                fill: false, tension: 0.3,
+                pointRadius: 0, borderWidth: 2,
+                spanGaps: false, order: 2,
+                hidden: overlayMode !== "ma6",
+            },
+            {
+                label: "12-Month MA",
+                data: ma12Values,
+                borderColor: "#f44336",
+                backgroundColor: "transparent",
+                fill: false, tension: 0.3,
+                pointRadius: 0, borderWidth: 2.5,
+                spanGaps: false, order: 2,
+                hidden: overlayMode !== "ma12",
+            },
+        ]},
+        options: chartOpts({
+            scales: {
+                x: { ticks:{color:"#aaa"}, grid:{color:"rgba(255,255,255,0.08)"} },
+                y: { ticks:{color:"#aaa"}, grid:{color:"rgba(255,255,255,0.08)"}, min:-1, max:1 },
+            },
+            plugins: {
+                legend: {
+                    labels: {
+                        color: "#fff",
+                        filter: item => item.text !== "",
+                    },
+                },
+                sentimentFill: { enabled: true },
+                tooltip: {
+                    callbacks: {
+                        afterBody(context) {
+                            const idx = context[0]?.dataIndex;
+                            const d = data[idx];
+                            const lines = [];
+                            if (d && d.sentence_count > 0 && d.sentence_count < minCount) {
+                                lines.push(`! Low confidence (${d.sentence_count} sentences)`);
+                            }
+                            const headline = TIMELINE_HEADLINES[context[0]?.label];
+                            if (headline) lines.push("", ...wrapText(headline, 52));
+                            return lines;
+                        },
+                    },
+                },
+            },
+        }),
+    });
+
+    const stackedDatasets = [
+        { label:"Positive %", data: data.map(d=>d.positive_pct), backgroundColor:"#4CAF50" },
+        { label:"Neutral %", data: data.map(d=>d.neutral_pct), backgroundColor:"#FFC107" },
+        { label:"Negative %", data: data.map(d=>d.negative_pct), backgroundColor:"#f44336" },
+    ];
+    stackedChart = new Chart(document.getElementById("stackedChart"), {
+        type: "bar",
+        data: { labels, datasets: stackedDatasets },
+        options: chartOpts({ scales: {
+            x: { stacked:true, ticks:{color:"#aaa"}, grid:{color:"rgba(255,255,255,0.08)"} },
+            y: { stacked:true, ticks:{color:"#aaa"}, grid:{color:"rgba(255,255,255,0.08)"}, max:100 },
+        }}),
+    });
+
+    const d0 = data[0] || {};
+    const pieLabels = ["Positive","Neutral","Negative"];
+    const pieVals   = [d0.positive_pct||0, d0.neutral_pct||0, d0.negative_pct||0];
+    const pieColors = ["#4CAF50","#FFC107","#f44336"];
+    pieChart = new Chart(document.getElementById("pieChart"), {
+        type: "doughnut",
+        data: { labels: pieLabels, datasets:[{ data: pieVals, backgroundColor: pieColors, borderWidth:0 }] },
+        options: { responsive:true, maintainAspectRatio:false,
+            plugins:{ legend:{ position:"bottom", labels:{color:"#fff",padding:20} } } },
+    });
+
+    coverageChart = new Chart(document.getElementById("coverageChart"), {
+        type: "line",
+        data: { labels, datasets:[{
+            label:"COVID Sentences per 100", data: data.map(d=>d.covid_per_100),
+            borderColor:"#00BCD4", backgroundColor:"rgba(0,188,212,0.1)",
+            fill:true, tension:0.3, pointRadius:4, pointHoverRadius:8,
+        }]},
+        options: {
+            responsive: true, maintainAspectRatio: false,
+            scales:{
+                x:{ticks:{color:"#aaa"},grid:{color:"rgba(255,255,255,0.08)"}},
+                y:{ticks:{color:"#aaa"},grid:{color:"rgba(255,255,255,0.08)"},min:0},
+            },
+            plugins:{
+                legend:{ labels:{ color:"#fff" } },
+                tooltip:{
+                    callbacks:{
+                        label(context) {
+                            const v = context.parsed.y;
+                            if (v > 0 && v < 1) return "COVID per 100: <1";
+                            return `COVID per 100: ${v.toFixed(2)}`;
+                        }
+                    }
+                }
+            },
+        },
+    });
+
+    countChart = new Chart(document.getElementById("countChart"), {
+        type: "bar",
+        data: { labels, datasets:[{
+            label:"COVID Sentence Count", data: data.map(d => countProportional ? d.proportional_covid_count : d.covid_sentence_count),
+            backgroundColor:"#9C27B0", borderRadius:4,
+        }]},
+        options: chartOpts({ scales:{
+            x:{ticks:{color:"#aaa"},grid:{color:"rgba(255,255,255,0.08)"}},
+            y:{ticks:{color:"#aaa"},grid:{color:"rgba(255,255,255,0.08)"},min:0},
+        }}),
+    });
+
+    stdChart = new Chart(document.getElementById("stdChart"), {
+        type: "line",
+        data: { labels, datasets:[{
+            label:"Sentiment Std Dev", data: data.map(d=>d.sentiment_std),
+            borderColor:"#FF9800", backgroundColor:"rgba(255,152,0,0.1)",
+            fill:true, tension:0.3, pointRadius:4, pointHoverRadius:8,
+        }]},
+        options: chartOpts({ scales:{
+            x:{ticks:{color:"#aaa"},grid:{color:"rgba(255,255,255,0.08)"}},
+            y:{ticks:{color:"#aaa"},grid:{color:"rgba(255,255,255,0.08)"},min:0,max:1},
+        }}),
+    });
+
+    // show proportional toggle only for sample filter
+    const toggleBtn = document.getElementById("countProportionalToggle");
+    toggleBtn.style.display = currentFilter === "sample" ? "" : "none";
+    toggleBtn.textContent = countProportional ? "Proportional (on)" : "Proportional";
+    toggleBtn.classList.toggle("active", countProportional);
+
+    // store for slider
+    window._sentData = data;
+    updateSlider(0);
+}
+
+function updateSlider(idx) {
+    const data = window._sentData || [];
+    if (!data.length) return;
+    const d = data[Math.min(idx, data.length - 1)];
+    const filtered = d.sentence_count === 0;
+    const lowConf  = d.sentence_count > 0 && d.sentence_count < minCount;
+
+    document.getElementById("currentDate").textContent    = d.year_month + (filtered ? " (filtered)" : lowConf ? " (!)" : "");
+    document.getElementById("sliderMean").textContent     = filtered ? "-" : d.mean_sentiment.toFixed(3);
+    document.getElementById("sliderPositive").textContent = filtered ? "-" : d.positive_pct.toFixed(1) + "%";
+    document.getElementById("sliderNeutral").textContent  = filtered ? "-" : d.neutral_pct.toFixed(1) + "%";
+    document.getElementById("sliderNegative").textContent = filtered ? "-" : d.negative_pct.toFixed(1) + "%";
+    document.getElementById("sliderCount").textContent    = d.sentence_count + (lowConf ? " (!)" : "");
+    document.getElementById("sliderCoverage").textContent = filtered ? "-" : d.covid_per_100 != null ? d.covid_per_100.toFixed(2) : "N/A";
+
+    if (!filtered) {
+        pieChart.data.datasets[0].data = [d.positive_pct, d.neutral_pct, d.negative_pct];
+        pieChart.update();
+    }
+
+    if (meanChart) {
+        meanChart.data.datasets[0].pointBackgroundColor = data.map((row, i) => {
+            if (i === idx) return "rgba(255,255,255,0.9)";
+            if (row.sentence_count === 0) return "transparent";
+            if (row.sentence_count < minCount) return "rgba(150,150,150,0.7)";
+            return "rgba(33,150,243,0.6)";
+        });
+        meanChart.data.datasets[0].pointRadius = data.map((row, i) => {
+            if (i === idx) return 10;
+            if (row.sentence_count === 0) return 0;
+            if (row.sentence_count < minCount) return 3;
+            return 4;
+        });
+        meanChart.update();
+    }
+}
+
+// ---- EMOTION SECTION ----
+function buildEmotionSection(data) {
+    const slider = document.getElementById("radarSlider");
+    slider.max = Math.max(0, data.length - 1);
+    slider.value = 0;
+
+    destroy(radarChart, emotionPieChart, emotionAreaNorm, emotionAreaAbs);
+
+    const labels = data.map(d => d.year_month);
+    const visibleEmotions = showNeutral
+        ? [...EMOTIONS.filter(e => e !== "neutral"), "neutral"]
+        : EMOTIONS.filter(e => e !== "neutral");
+
+    // radar for first month
+    const initVals = data[0] ? normalizeEmotionData(data[0], visibleEmotions) : visibleEmotions.map(() => 0);
+    radarChart = new Chart(document.getElementById("radarChart"), {
+        type: "radar",
+        data: {
+            labels: visibleEmotions.map(e => e.charAt(0).toUpperCase() + e.slice(1)),
+            datasets: [{
+                label: "Emotion %",
+                data: initVals,
+                backgroundColor: "rgba(33,150,243,0.25)",
+                borderColor: "#2196F3",
+                pointBackgroundColor: visibleEmotions.map(e => EMOTION_COLORS[e]),
+                pointRadius: 5,
+            }],
+        },
+        options: {
+            responsive: true, maintainAspectRatio: false,
+            plugins: { legend: { labels: { color: "#fff" } } },
+            scales: { r: {
+                ticks: { color: "#aaa", backdropColor: "transparent", stepSize: 10 },
+                grid:  { color: "rgba(255,255,255,0.15)" },
+                pointLabels: { color: "#fff", font: { size: 13 } },
+                min: 0, max: radarMax(initVals),
+            }},
+        },
+    });
+
+    // emotion doughnut
+    emotionPieChart = new Chart(document.getElementById("emotionPieChart"), {
+        type: "doughnut",
+        data: {
+            labels: visibleEmotions.map(e => e.charAt(0).toUpperCase() + e.slice(1)),
+            datasets: [{
+                data: data[0] ? normalizeEmotionData(data[0], visibleEmotions) : visibleEmotions.map(() => 0),
+                backgroundColor: visibleEmotions.map(e => EMOTION_COLORS[e]),
+                borderWidth: 0,
+            }],
+        },
+        options: { responsive:true, maintainAspectRatio:false,
+            plugins:{ legend:{ position:"right", labels:{color:"#fff",padding:15} } } },
+    });
+
+    // normalised stacked area (always fills to 100%)
+    const normData = data.map(d => {
+        const vals = normalizeEmotionData(d, visibleEmotions);
+        const norm = {};
+        visibleEmotions.forEach((e, i) => { norm[e] = vals[i]; });
+        return norm;
+    });
+    emotionAreaNorm = new Chart(document.getElementById("emotionAreaNorm"), {
+        type: "line",
+        data: {
+            labels,
+            datasets: visibleEmotions.map(e => ({
+                label: e.charAt(0).toUpperCase() + e.slice(1),
+                data: normData.map(d => d[e]),
+                borderColor: EMOTION_COLORS[e],
+                backgroundColor: EMOTION_COLORS[e] + "cc",
+                fill: true,
+                tension: 0.3,
+                pointRadius: 0,
+                pointHoverRadius: 5,
+            })),
+        },
+        options: chartOpts({ scales: {
+            x: { stacked:true, ticks:{color:"#aaa"}, grid:{color:"rgba(255,255,255,0.08)"} },
+            y: { stacked:true, ticks:{color:"#aaa"}, grid:{color:"rgba(255,255,255,0.08)"}, min:0, max:100 },
+        }}),
+    });
+
+    // absolute stacked area - height = actual sentence count per emotion per month
+    emotionAreaAbs = new Chart(document.getElementById("emotionAreaAbs"), {
+        type: "line",
+        data: {
+            labels,
+            datasets: visibleEmotions.map(e => ({
+                label: e.charAt(0).toUpperCase() + e.slice(1),
+                data: data.map(d => Math.round(((d[`${e}_pct`] || 0) / 100) * (d.sentence_count || 0))),
+                borderColor: EMOTION_COLORS[e],
+                backgroundColor: EMOTION_COLORS[e] + "cc",
+                fill: true,
+                tension: 0.3,
+                pointRadius: 0,
+                pointHoverRadius: 5,
+            })),
+        },
+        options: chartOpts({ scales: {
+            x: { stacked:true, ticks:{color:"#aaa"}, grid:{color:"rgba(255,255,255,0.08)"} },
+            y: { stacked:true, ticks:{color:"#aaa"}, grid:{color:"rgba(255,255,255,0.08)"}, min:0,
+                 title: { display:true, text:"Sentence Count", color:"#aaa" } },
+        }}),
+    });
+
+    window._emData = data;
+    updateRadarSlider(0);
+}
+
+function updateRadarSlider(idx) {
+    const data = window._emData || [];
+    if (!data.length) return;
+    const d = data[Math.min(idx, data.length - 1)];
+    document.getElementById("radarDate").textContent = d.year_month;
+    const visibleForStats = showNeutral
+        ? EMOTIONS
+        : EMOTIONS.filter(e => e !== "neutral");
+    const rawTotal = visibleForStats.reduce((s, e) => s + (parseFloat(d[`${e}_pct`]) || 0), 0) || 1;
+    EMOTIONS.forEach(e => {
+        const card = document.getElementById(`emotionStat-${e}`)?.closest(".stat-card");
+        const el   = document.getElementById(`emotionStat-${e}`);
+        const hidden = !showNeutral && e === "neutral";
+        if (card) card.style.display = hidden ? "none" : "";
+        if (el && !hidden) {
+            const normalised = ((parseFloat(d[`${e}_pct`]) || 0) / rawTotal) * 100;
+            el.textContent = normalised.toFixed(1) + "%";
+        }
+    });
+    const visibleEmotions = showNeutral
+        ? [...EMOTIONS.filter(e => e !== "neutral"), "neutral"]
+        : EMOTIONS.filter(e => e !== "neutral");
+    const vals = normalizeEmotionData(d, visibleEmotions);
+    const capLabels = visibleEmotions.map(e => e.charAt(0).toUpperCase() + e.slice(1));
+    radarChart.data.labels = capLabels;
+    radarChart.data.datasets[0].data = vals;
+    radarChart.data.datasets[0].pointBackgroundColor = visibleEmotions.map(e => EMOTION_COLORS[e]);
+    radarChart.data.datasets[0].label = d.year_month;
+    radarChart.options.scales.r.max = radarMax(vals);
+    radarChart.update();
+    emotionPieChart.data.labels = capLabels;
+    emotionPieChart.data.datasets[0].data = vals;
+    emotionPieChart.data.datasets[0].backgroundColor = visibleEmotions.map(e => EMOTION_COLORS[e]);
+    emotionPieChart.update();
+}
+
+// ---- SOURCE RADAR ----
+function buildSourceRadar() {
+    if (sourceRadarChart) sourceRadarChart.destroy();
+
+    const { period } = getFilters();
+    const visibleEmotions = showNeutral
+        ? [...EMOTIONS.filter(e => e !== "neutral"), "neutral"]
+        : EMOTIONS.filter(e => e !== "neutral");
+
+    let groups;
+    if (compareRadarByGroup) {
+        groups = [
+            { label: "News (BBC)",          sources: BBC_NEWS_SOURCES },
+            { label: "Entertainment (All)", sources: ENTERTAINMENT_SOURCES },
+        ];
+    } else {
+        const sources = [...new Set(emotionRaw.map(d => d.source))].sort();
+        groups = sources.map(src => ({ label: SOURCE_LABELS[src] || src, sources: [src] }));
+    }
+
+    const datasets = groups.map((group, i) => {
+        const rows = emotionRaw.filter(d =>
+            group.sources.includes(d.source) && (period === "both" || d.period === period)
+        );
+        const avgD = {};
+        visibleEmotions.forEach(e => {
+            avgD[`${e}_pct`] = rows.length
+                ? rows.reduce((s, r) => s + (parseFloat(r[`${e}_pct`]) || 0), 0) / rows.length
+                : 0;
+        });
+        const color = SOURCE_COLORS[i % SOURCE_COLORS.length];
+        return {
+            label: group.label,
+            data: normalizeEmotionData(avgD, visibleEmotions),
+            borderColor: color,
+            backgroundColor: hexToRgba(color, 0.07),
+            pointRadius: 2,
+            pointHoverRadius: 5,
+        };
+    });
+
+    const allVals = datasets.flatMap(ds => ds.data);
+    sourceRadarChart = new Chart(document.getElementById("sourceRadarChart"), {
+        type: "radar",
+        data: {
+            labels: visibleEmotions.map(e => e.charAt(0).toUpperCase() + e.slice(1)),
+            datasets,
+        },
+        options: {
+            responsive: true, maintainAspectRatio: false,
+            plugins: { legend: { labels: { color: "#fff" } } },
+            scales: { r: {
+                ticks: { color: "#aaa", backdropColor: "transparent", stepSize: 10 },
+                grid:  { color: "rgba(255,255,255,0.15)" },
+                pointLabels: { color: "#fff", font: { size: 12 } },
+                min: 0, max: radarMax(allVals),
+            }},
+        },
+    });
+}
+
+// ---- DOMINANT EMOTION CHART ----
+function buildDominantEmotionChart(sources, period) {
+    if (emotionBySourceChart) emotionBySourceChart.destroy();
+
+    // Respect the same neutral toggle used by the source radar
+    const dominantEmotions = showNeutral
+        ? [...EMOTIONS.filter(e => e !== "neutral"), "neutral"]  // neutral on top
+        : EMOTIONS.filter(e => e !== "neutral");
+
+    // Pre-compute per-source averages then normalise if neutral is hidden
+    const sourceAvgPcts = sources.map(src => {
+        const rows = emotionRaw.filter(d => d.source === src && (period === "both" || d.period === period));
+        const avg = {};
+        dominantEmotions.forEach(em => {
+            avg[em] = rows.length
+                ? rows.reduce((s, r) => s + (parseFloat(r[`${em}_pct`]) || 0), 0) / rows.length
+                : 0;
+        });
+        if (!showNeutral) {
+            const total = dominantEmotions.reduce((s, em) => s + avg[em], 0) || 1;
+            dominantEmotions.forEach(em => { avg[em] = (avg[em] / total) * 100; });
+        }
+        return avg;
+    });
+
+    emotionBySourceChart = new Chart(document.getElementById("emotionBySourceChart"), {
+        type: "bar",
+        data: {
+            labels: sources.map(s => SOURCE_LABELS[s] || s),
+            datasets: dominantEmotions.map(e => ({
+                label: e.charAt(0).toUpperCase() + e.slice(1),
+                data: sourceAvgPcts.map(avg => avg[e]),
+                backgroundColor: EMOTION_COLORS[e],
+            })),
+        },
+        options: chartOpts({ scales:{
+            x:{stacked:true,ticks:{color:"#aaa"},grid:{color:"rgba(255,255,255,0.08)"}},
+            y:{stacked:true,ticks:{color:"#aaa"},grid:{color:"rgba(255,255,255,0.08)"},max:100},
+        }}),
+    });
+}
+
+// ---- CROSS-FILTER CHART ----
+function buildCrossFilterChart() {
+    if (crossFilterChart) crossFilterChart.destroy();
+
+    const sentKey = "mean_sentiment";
+    const sentFields = ["mean_sentiment"];
+
+    const filters = [
+        { name: "tight",  label: "Tight Filter",   color: "#f44336" },
+        { name: "loose",  label: "Loose Filter",   color: "#2196F3" },
+        { name: "sample", label: "Random Sample",  color: "#4CAF50" },
+    ];
+
+    // Aggregate each filter's dataset using current source/period selection
+    const datasets = filters.map(({ name, label, color }) => {
+        const raw = allSentimentRaw[`${name}_${currentModel}`] || [];
+        const filtered = applyFilters(raw);
+        const agg = fillGaps(aggregateByMonth(filtered, sentFields), sentFields);
+        return {
+            label,
+            data: agg.map(d => d.sentence_count === 0 ? null : d[sentKey]),
+            borderColor: color,
+            backgroundColor: "transparent",
+            fill: false,
+            tension: 0.3,
+            pointRadius: 3,
+            pointHoverRadius: 7,
+            spanGaps: false,
+            _agg: agg,
+        };
+    });
+
+    // All three share the same month labels — use the longest (loose usually has most)
+    const allLabels = fillGaps(
+        aggregateByMonth(applyFilters(allSentimentRaw[`loose_${currentModel}`] || []), sentFields),
+        sentFields
+    ).map(d => d.year_month);
+
+    crossFilterChart = new Chart(document.getElementById("crossFilterChart"), {
+        type: "line",
+        data: { labels: allLabels, datasets },
+        options: chartOpts({
+            scales: {
+                x: { ticks: { color: "#aaa" }, grid: { color: "rgba(255,255,255,0.08)" } },
+                y: { ticks: { color: "#aaa" }, grid: { color: "rgba(255,255,255,0.08)" }, min: -1, max: 1 },
+            },
+            plugins: {
+                legend: { labels: { color: "#fff" } },
+                sentimentFill: { enabled: false },
+                zeroLine: { enabled: true },
+                tooltip: {
+                    callbacks: {
+                        afterBody(context) {
+                            const headline = TIMELINE_HEADLINES[context[0]?.label];
+                            return headline ? ["", ...wrapText(headline, 52)] : [];
+                        },
+                    },
+                },
+            },
+        }),
+    });
+}
+
+// ---- INTER-MODEL AGREEMENT CHART ----
+function buildModelAgreementChart() {
+    if (modelAgreementChart) modelAgreementChart.destroy();
+
+    // Skip for sample filter where VADER emotion data is absent — sentiment still works
+    const sentFields = ["mean_sentiment"];
+    const robRaw = allSentimentRaw[`${currentFilter}_altmodel`] || [];
+    const vadRaw = allSentimentRaw[`${currentFilter}_vader`] || [];
+
+    const robFiltered = applyFilters(robRaw);
+    const vadFiltered = applyFilters(vadRaw);
+    const robAgg = fillGaps(aggregateByMonth(robFiltered, sentFields), sentFields);
+    const vadAgg = aggregateByMonth(vadFiltered, sentFields);
+
+    const labels = robAgg.map(d => d.year_month);
+
+    // Build a lookup from vadAgg so we can align to robAgg's months
+    const vadByMonth = {};
+    vadAgg.forEach(d => { vadByMonth[d.year_month] = d; });
+
+    const robData = robAgg.map(d => d.sentence_count === 0 ? null : d.mean_sentiment);
+    const vadData = robAgg.map(d => {
+        const v = vadByMonth[d.year_month];
+        return v && v.sentence_count > 0 ? v.mean_sentiment : null;
+    });
+
+    // Agreement score per month: 1 - |roberta - vader| / 2  (1 = perfect, 0 = opposite ends)
+    const agreementData = robAgg.map((d, i) => {
+        const r = robData[i];
+        const v = vadData[i];
+        if (r == null || v == null) return null;
+        return +(1 - Math.abs(r - v) / 2).toFixed(4);
+    });
+
+    modelAgreementChart = new Chart(document.getElementById("modelAgreementChart"), {
+        type: "line",
+        data: {
+            labels,
+            datasets: [
+                {
+                    label: "RoBERTa",
+                    data: robData,
+                    borderColor: "#2196F3",
+                    backgroundColor: "rgba(33,150,243,0.12)",
+                    fill: "+1",
+                    tension: 0.3,
+                    pointRadius: 3,
+                    pointHoverRadius: 7,
+                    spanGaps: false,
+                    yAxisID: "ySent",
+                },
+                {
+                    label: "VADER",
+                    data: vadData,
+                    borderColor: "#FF9800",
+                    backgroundColor: "transparent",
+                    fill: false,
+                    tension: 0.3,
+                    pointRadius: 3,
+                    pointHoverRadius: 7,
+                    spanGaps: false,
+                    yAxisID: "ySent",
+                },
+                {
+                    label: "Agreement Score",
+                    data: agreementData,
+                    borderColor: "#4CAF50",
+                    backgroundColor: "rgba(76,175,80,0.08)",
+                    fill: true,
+                    tension: 0.3,
+                    pointRadius: 2,
+                    pointHoverRadius: 5,
+                    borderDash: [4, 3],
+                    spanGaps: false,
+                    yAxisID: "yAgree",
+                },
+            ],
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: { labels: { color: "#fff" } },
+                zeroLine: { enabled: true },
+                tooltip: {
+                    callbacks: {
+                        afterBody(context) {
+                            const headline = TIMELINE_HEADLINES[context[0]?.label];
+                            return headline ? ["", ...wrapText(headline, 52)] : [];
+                        },
+                    },
+                },
+            },
+            scales: {
+                x: { ticks: { color: "#aaa" }, grid: { color: "rgba(255,255,255,0.08)" } },
+                ySent: {
+                    type: "linear",
+                    position: "left",
+                    min: -1, max: 1,
+                    ticks: { color: "#aaa" },
+                    grid: { color: "rgba(255,255,255,0.08)" },
+                    title: { display: true, text: "Mean Sentiment", color: "#aaa" },
+                },
+                yAgree: {
+                    type: "linear",
+                    position: "right",
+                    min: 0, max: 1,
+                    ticks: { color: "#4CAF50" },
+                    grid: { drawOnChartArea: false },
+                    title: { display: true, text: "Agreement (0–1)", color: "#4CAF50" },
+                },
+            },
+        },
+    });
+}
+
+// ---- COMPARISON SECTION ----
+function buildCompareSection() {
+    destroy(compareBarChart, covidControlChart);
+
+    const sources = [...new Set(sentimentRaw.map(d => d.source))].sort();
+    const { period } = getFilters();
+
+    // mean sentiment per source (for selected period)
+    const sentBySource = sources.map(src => {
+        const rows = sentimentRaw.filter(d => d.source === src && (period === "both" || d.period === period));
+        if (!rows.length) return { source: src, mean: 0 };
+        const mean = rows.reduce((s,r) => s + parseFloat(r.mean_sentiment), 0) / rows.length;
+        return { source: src, mean };
+    });
+
+    compareBarChart = new Chart(document.getElementById("compareBarChart"), {
+        type: "bar",
+        data: {
+            labels: sources.map(s => SOURCE_LABELS[s] || s),
+            datasets: [{
+                label: "Mean Sentiment",
+                data: sentBySource.map(d => d.mean.toFixed(4)),
+                backgroundColor: sources.map((_,i) => SOURCE_COLORS[i % SOURCE_COLORS.length]),
+                borderRadius: 6,
+                base: -1,
+            }],
+        },
+        options: chartOpts({ scales:{
+            x:{ticks:{color:"#aaa"},grid:{color:"rgba(255,255,255,0.08)"}},
+            y:{ticks:{color:"#aaa"},grid:{color:"rgba(255,255,255,0.08)"},min:-1,max:1},
+        }, plugins: { legend:{labels:{color:"#fff"}}, zeroLine:{enabled:true} } }),
+    });
+
+    // covid vs control per source
+    const covidMeans   = sources.map(src => {
+        const rows = sentimentRaw.filter(d => d.source===src && d.period==="covid");
+        return rows.length ? rows.reduce((s,r)=>s+parseFloat(r.mean_sentiment),0)/rows.length : 0;
+    });
+    const controlMeans = sources.map(src => {
+        const rows = sentimentRaw.filter(d => d.source===src && d.period==="control");
+        return rows.length ? rows.reduce((s,r)=>s+parseFloat(r.mean_sentiment),0)/rows.length : 0;
+    });
+
+    covidControlChart = new Chart(document.getElementById("covidControlChart"), {
+        type: "bar",
+        data: {
+            labels: sources.map(s => SOURCE_LABELS[s] || s),
+            datasets: [
+                { label:"COVID Period",   data: covidMeans,   backgroundColor:"#f44336", borderRadius:4, base:-1 },
+                { label:"Control Period", data: controlMeans, backgroundColor:"#2196F3", borderRadius:4, base:-1 },
+            ],
+        },
+        options: chartOpts({ scales:{
+            x:{ticks:{color:"#aaa"},grid:{color:"rgba(255,255,255,0.08)"}},
+            y:{ticks:{color:"#aaa"},grid:{color:"rgba(255,255,255,0.08)"},min:-1,max:1},
+        }, plugins: { legend:{labels:{color:"#fff"}}, zeroLine:{enabled:true} } }),
+    });
+
+    buildSourceRadar();
+    buildDominantEmotionChart(sources, period);
+}
+
+// ---- events ----
+document.getElementById("timeSlider").addEventListener("input", e => {
+    updateSlider(parseInt(e.target.value));
+});
+
+document.getElementById("radarSlider").addEventListener("input", e => {
+    updateRadarSlider(parseInt(e.target.value));
+});
+
+
+document.querySelectorAll(".toggle-btn[data-dataset]").forEach(btn => {
+    btn.addEventListener("click", function () {
+        document.querySelectorAll(".toggle-btn[data-dataset]").forEach(b => b.classList.remove("active"));
+        this.classList.add("active");
+        currentFilter  = this.dataset.dataset;
+        currentDataset = currentFilter === "sample"
+            ? `sample_${currentModel}`
+            : `${currentFilter}_${currentModel}`;
+        countProportional = false;
+        loadAll();
+    });
+});
+
+document.querySelectorAll(".toggle-btn[data-model]").forEach(btn => {
+    btn.addEventListener("click", function () {
+        document.querySelectorAll(".toggle-btn[data-model]").forEach(b => b.classList.remove("active"));
+        this.classList.add("active");
+        currentModel   = this.dataset.model;
+        currentDataset = currentFilter === "sample"
+            ? `sample_${currentModel}`
+            : `${currentFilter}_${currentModel}`;
+        loadAll();
+    });
+});
+
+document.getElementById("sourceSelect").addEventListener("change", refresh);
+document.getElementById("periodSelect").addEventListener("change", refresh);
+
+document.getElementById("minCountSlider").addEventListener("input", function () {
+    minCount = parseInt(this.value);
+    document.getElementById("minCountVal").textContent = minCount;
+    refresh();
+});
+
+function updateOverlay() {
+    if (!meanChart) return;
+    const overlayIndex = { trend: 3, ma3: 4, ma6: 5, ma12: 6 };
+    Object.values(overlayIndex).forEach(idx => { meanChart.data.datasets[idx].hidden = true; });
+    if (overlayMode && overlayIndex[overlayMode] !== undefined) {
+        meanChart.data.datasets[overlayIndex[overlayMode]].hidden = false;
+    }
+    meanChart.update();
+}
+
+document.getElementById("stdBandToggle").addEventListener("click", function () {
+    showStdBand = !showStdBand;
+    this.classList.toggle("active", showStdBand);
+    if (meanChart) {
+        meanChart.data.datasets[1].hidden = !showStdBand;
+        meanChart.data.datasets[2].hidden = !showStdBand;
+        meanChart.update();
+    }
+});
+
+document.querySelectorAll(".toggle-btn[data-overlay]").forEach(btn => {
+    btn.addEventListener("click", function () {
+        const isActive = this.classList.contains("active");
+        document.querySelectorAll(".toggle-btn[data-overlay]").forEach(b => b.classList.remove("active"));
+        overlayMode = isActive ? null : this.dataset.overlay;
+        if (!isActive) this.classList.add("active");
+        updateOverlay();
+    });
+});
+
+document.getElementById("countProportionalToggle").addEventListener("click", function () {
+    countProportional = !countProportional;
+    this.textContent = countProportional ? "Proportional (on)" : "Proportional";
+    this.classList.toggle("active", countProportional);
+    const data = window._sentData || [];
+    if (countChart && data.length) {
+        countChart.data.datasets[0].data = data.map(d => countProportional ? d.proportional_covid_count : d.covid_sentence_count);
+        countChart.update();
+    }
+});
+
+document.getElementById("radarBySourceBtn").addEventListener("click", function () {
+    compareRadarByGroup = false;
+    this.classList.add("active");
+    document.getElementById("radarByGroupBtn").classList.remove("active");
+    buildSourceRadar();
+});
+
+document.getElementById("radarByGroupBtn").addEventListener("click", function () {
+    compareRadarByGroup = true;
+    this.classList.add("active");
+    document.getElementById("radarBySourceBtn").classList.remove("active");
+    buildSourceRadar();
+});
+
+document.getElementById("neutralToggle").addEventListener("click", function () {
+    showNeutral = !showNeutral;
+    this.textContent = showNeutral ? "Hide Neutral" : "Show Neutral";
+    this.classList.toggle("active", !showNeutral);
+    const emFields = EMOTIONS.map(e => `${e}_pct`);
+    const emData = fillGaps(aggregateByMonth(filteredEmotion, emFields), emFields);
+    buildEmotionSection(emData);
+    updateRadarSlider(parseInt(document.getElementById("radarSlider").value));
+    buildSourceRadar();
+    const sources = [...new Set(sentimentRaw.map(d => d.source))].sort();
+    const { period } = getFilters();
+    buildDominantEmotionChart(sources, period);
+});
+
+document.querySelectorAll(".section-tab").forEach(tab => {
+    tab.addEventListener("click", function () {
+        document.querySelectorAll(".section-tab").forEach(t => t.classList.remove("active"));
+        document.querySelectorAll(".section").forEach(s => s.classList.remove("active"));
+        this.classList.add("active");
+        document.getElementById("section-" + this.dataset.section).classList.add("active");
+        const isEmotion = this.dataset.section === "emotion";
+        document.getElementById("modelToggleContainer").style.display = isEmotion ? "none" : "contents";
+    });
+});
+
+loadAll();
+</script>
+</body>
+</html>
