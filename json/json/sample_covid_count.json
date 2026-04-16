@@ -1,0 +1,3264 @@
+[
+  {
+    "source": "bbc_news_tv",
+    "period": "control",
+    "year_month": "2016-08",
+    "total_sampled": 70,
+    "covid_count": 0
+  },
+  {
+    "source": "bbc_news_tv",
+    "period": "control",
+    "year_month": "2016-12",
+    "total_sampled": 87,
+    "covid_count": 2
+  },
+  {
+    "source": "bbc_news_tv",
+    "period": "control",
+    "year_month": "2016-07",
+    "total_sampled": 41,
+    "covid_count": 0
+  },
+  {
+    "source": "bbc_news_tv",
+    "period": "control",
+    "year_month": "2016-06",
+    "total_sampled": 74,
+    "covid_count": 1
+  },
+  {
+    "source": "bbc_news_tv",
+    "period": "control",
+    "year_month": "2016-11",
+    "total_sampled": 66,
+    "covid_count": 3
+  },
+  {
+    "source": "bbc_news_tv",
+    "period": "control",
+    "year_month": "2016-10",
+    "total_sampled": 55,
+    "covid_count": 0
+  },
+  {
+    "source": "bbc_news_tv",
+    "period": "control",
+    "year_month": "2016-09",
+    "total_sampled": 58,
+    "covid_count": 3
+  },
+  {
+    "source": "bbc_news_tv",
+    "period": "control",
+    "year_month": "2017-04",
+    "total_sampled": 99,
+    "covid_count": 0
+  },
+  {
+    "source": "bbc_news_tv",
+    "period": "control",
+    "year_month": "2017-08",
+    "total_sampled": 88,
+    "covid_count": 2
+  },
+  {
+    "source": "bbc_news_tv",
+    "period": "control",
+    "year_month": "2017-12",
+    "total_sampled": 86,
+    "covid_count": 3
+  },
+  {
+    "source": "bbc_news_tv",
+    "period": "control",
+    "year_month": "2017-02",
+    "total_sampled": 97,
+    "covid_count": 1
+  },
+  {
+    "source": "bbc_news_tv",
+    "period": "control",
+    "year_month": "2017-01",
+    "total_sampled": 85,
+    "covid_count": 1
+  },
+  {
+    "source": "bbc_news_tv",
+    "period": "control",
+    "year_month": "2017-07",
+    "total_sampled": 90,
+    "covid_count": 3
+  },
+  {
+    "source": "bbc_news_tv",
+    "period": "control",
+    "year_month": "2017-06",
+    "total_sampled": 100,
+    "covid_count": 2
+  },
+  {
+    "source": "bbc_news_tv",
+    "period": "control",
+    "year_month": "2017-03",
+    "total_sampled": 66,
+    "covid_count": 0
+  },
+  {
+    "source": "bbc_news_tv",
+    "period": "control",
+    "year_month": "2017-05",
+    "total_sampled": 79,
+    "covid_count": 1
+  },
+  {
+    "source": "bbc_news_tv",
+    "period": "control",
+    "year_month": "2017-11",
+    "total_sampled": 91,
+    "covid_count": 3
+  },
+  {
+    "source": "bbc_news_tv",
+    "period": "control",
+    "year_month": "2017-10",
+    "total_sampled": 65,
+    "covid_count": 2
+  },
+  {
+    "source": "bbc_news_tv",
+    "period": "control",
+    "year_month": "2017-09",
+    "total_sampled": 108,
+    "covid_count": 1
+  },
+  {
+    "source": "bbc_news_tv",
+    "period": "control",
+    "year_month": "2018-04",
+    "total_sampled": 97,
+    "covid_count": 0
+  },
+  {
+    "source": "bbc_news_tv",
+    "period": "control",
+    "year_month": "2018-08",
+    "total_sampled": 91,
+    "covid_count": 4
+  },
+  {
+    "source": "bbc_news_tv",
+    "period": "control",
+    "year_month": "2018-12",
+    "total_sampled": 93,
+    "covid_count": 3
+  },
+  {
+    "source": "bbc_news_tv",
+    "period": "control",
+    "year_month": "2018-02",
+    "total_sampled": 88,
+    "covid_count": 0
+  },
+  {
+    "source": "bbc_news_tv",
+    "period": "control",
+    "year_month": "2018-01",
+    "total_sampled": 65,
+    "covid_count": 4
+  },
+  {
+    "source": "bbc_news_tv",
+    "period": "control",
+    "year_month": "2018-07",
+    "total_sampled": 65,
+    "covid_count": 1
+  },
+  {
+    "source": "bbc_news_tv",
+    "period": "control",
+    "year_month": "2018-06",
+    "total_sampled": 85,
+    "covid_count": 2
+  },
+  {
+    "source": "bbc_news_tv",
+    "period": "control",
+    "year_month": "2018-03",
+    "total_sampled": 75,
+    "covid_count": 1
+  },
+  {
+    "source": "bbc_news_tv",
+    "period": "control",
+    "year_month": "2018-05",
+    "total_sampled": 93,
+    "covid_count": 3
+  },
+  {
+    "source": "bbc_news_tv",
+    "period": "control",
+    "year_month": "2018-11",
+    "total_sampled": 88,
+    "covid_count": 0
+  },
+  {
+    "source": "bbc_news_tv",
+    "period": "control",
+    "year_month": "2018-10",
+    "total_sampled": 77,
+    "covid_count": 0
+  },
+  {
+    "source": "bbc_news_tv",
+    "period": "control",
+    "year_month": "2018-09",
+    "total_sampled": 66,
+    "covid_count": 1
+  },
+  {
+    "source": "bbc_news_tv",
+    "period": "control",
+    "year_month": "2019-04",
+    "total_sampled": 80,
+    "covid_count": 4
+  },
+  {
+    "source": "bbc_news_tv",
+    "period": "control",
+    "year_month": "2019-08",
+    "total_sampled": 87,
+    "covid_count": 3
+  },
+  {
+    "source": "bbc_news_tv",
+    "period": "control",
+    "year_month": "2019-02",
+    "total_sampled": 62,
+    "covid_count": 0
+  },
+  {
+    "source": "bbc_news_tv",
+    "period": "control",
+    "year_month": "2019-01",
+    "total_sampled": 74,
+    "covid_count": 0
+  },
+  {
+    "source": "bbc_news_tv",
+    "period": "control",
+    "year_month": "2019-07",
+    "total_sampled": 93,
+    "covid_count": 1
+  },
+  {
+    "source": "bbc_news_tv",
+    "period": "control",
+    "year_month": "2019-06",
+    "total_sampled": 80,
+    "covid_count": 1
+  },
+  {
+    "source": "bbc_news_tv",
+    "period": "control",
+    "year_month": "2019-03",
+    "total_sampled": 91,
+    "covid_count": 1
+  },
+  {
+    "source": "bbc_news_tv",
+    "period": "control",
+    "year_month": "2019-05",
+    "total_sampled": 1,
+    "covid_count": 0
+  },
+  {
+    "source": "bbc_news_tv",
+    "period": "control",
+    "year_month": "2019-11",
+    "total_sampled": 58,
+    "covid_count": 1
+  },
+  {
+    "source": "bbc_news_tv",
+    "period": "control",
+    "year_month": "2019-10",
+    "total_sampled": 63,
+    "covid_count": 1
+  },
+  {
+    "source": "bbc_news_tv",
+    "period": "control",
+    "year_month": "2019-09",
+    "total_sampled": 74,
+    "covid_count": 0
+  },
+  {
+    "source": "bbc_news_tv",
+    "period": "covid",
+    "year_month": "2019-12",
+    "total_sampled": 61,
+    "covid_count": 1
+  },
+  {
+    "source": "bbc_news_tv",
+    "period": "covid",
+    "year_month": "2020-04",
+    "total_sampled": 47,
+    "covid_count": 15
+  },
+  {
+    "source": "bbc_news_tv",
+    "period": "covid",
+    "year_month": "2020-08",
+    "total_sampled": 52,
+    "covid_count": 4
+  },
+  {
+    "source": "bbc_news_tv",
+    "period": "covid",
+    "year_month": "2020-12",
+    "total_sampled": 51,
+    "covid_count": 12
+  },
+  {
+    "source": "bbc_news_tv",
+    "period": "covid",
+    "year_month": "2020-02",
+    "total_sampled": 80,
+    "covid_count": 4
+  },
+  {
+    "source": "bbc_news_tv",
+    "period": "covid",
+    "year_month": "2020-01",
+    "total_sampled": 62,
+    "covid_count": 2
+  },
+  {
+    "source": "bbc_news_tv",
+    "period": "covid",
+    "year_month": "2020-07",
+    "total_sampled": 49,
+    "covid_count": 7
+  },
+  {
+    "source": "bbc_news_tv",
+    "period": "covid",
+    "year_month": "2020-06",
+    "total_sampled": 48,
+    "covid_count": 7
+  },
+  {
+    "source": "bbc_news_tv",
+    "period": "covid",
+    "year_month": "2020-03",
+    "total_sampled": 49,
+    "covid_count": 11
+  },
+  {
+    "source": "bbc_news_tv",
+    "period": "covid",
+    "year_month": "2020-05",
+    "total_sampled": 47,
+    "covid_count": 14
+  },
+  {
+    "source": "bbc_news_tv",
+    "period": "covid",
+    "year_month": "2020-11",
+    "total_sampled": 50,
+    "covid_count": 11
+  },
+  {
+    "source": "bbc_news_tv",
+    "period": "covid",
+    "year_month": "2020-10",
+    "total_sampled": 50,
+    "covid_count": 9
+  },
+  {
+    "source": "bbc_news_tv",
+    "period": "covid",
+    "year_month": "2020-09",
+    "total_sampled": 49,
+    "covid_count": 5
+  },
+  {
+    "source": "bbc_news_tv",
+    "period": "covid",
+    "year_month": "2021-04",
+    "total_sampled": 49,
+    "covid_count": 8
+  },
+  {
+    "source": "bbc_news_tv",
+    "period": "covid",
+    "year_month": "2021-08",
+    "total_sampled": 50,
+    "covid_count": 9
+  },
+  {
+    "source": "bbc_news_tv",
+    "period": "covid",
+    "year_month": "2021-12",
+    "total_sampled": 45,
+    "covid_count": 13
+  },
+  {
+    "source": "bbc_news_tv",
+    "period": "covid",
+    "year_month": "2021-02",
+    "total_sampled": 51,
+    "covid_count": 11
+  },
+  {
+    "source": "bbc_news_tv",
+    "period": "covid",
+    "year_month": "2021-01",
+    "total_sampled": 48,
+    "covid_count": 6
+  },
+  {
+    "source": "bbc_news_tv",
+    "period": "covid",
+    "year_month": "2021-07",
+    "total_sampled": 55,
+    "covid_count": 3
+  },
+  {
+    "source": "bbc_news_tv",
+    "period": "covid",
+    "year_month": "2021-06",
+    "total_sampled": 51,
+    "covid_count": 4
+  },
+  {
+    "source": "bbc_news_tv",
+    "period": "covid",
+    "year_month": "2021-03",
+    "total_sampled": 46,
+    "covid_count": 10
+  },
+  {
+    "source": "bbc_news_tv",
+    "period": "covid",
+    "year_month": "2021-05",
+    "total_sampled": 73,
+    "covid_count": 8
+  },
+  {
+    "source": "bbc_news_tv",
+    "period": "covid",
+    "year_month": "2021-11",
+    "total_sampled": 42,
+    "covid_count": 1
+  },
+  {
+    "source": "bbc_news_tv",
+    "period": "covid",
+    "year_month": "2021-10",
+    "total_sampled": 60,
+    "covid_count": 2
+  },
+  {
+    "source": "bbc_news_tv",
+    "period": "covid",
+    "year_month": "2021-09",
+    "total_sampled": 79,
+    "covid_count": 5
+  },
+  {
+    "source": "bbc_news_tv",
+    "period": "covid",
+    "year_month": "2022-04",
+    "total_sampled": 60,
+    "covid_count": 1
+  },
+  {
+    "source": "bbc_news_tv",
+    "period": "covid",
+    "year_month": "2022-08",
+    "total_sampled": 69,
+    "covid_count": 1
+  },
+  {
+    "source": "bbc_news_tv",
+    "period": "covid",
+    "year_month": "2022-12",
+    "total_sampled": 63,
+    "covid_count": 6
+  },
+  {
+    "source": "bbc_news_tv",
+    "period": "covid",
+    "year_month": "2022-02",
+    "total_sampled": 52,
+    "covid_count": 4
+  },
+  {
+    "source": "bbc_news_tv",
+    "period": "covid",
+    "year_month": "2022-01",
+    "total_sampled": 40,
+    "covid_count": 9
+  },
+  {
+    "source": "bbc_news_tv",
+    "period": "covid",
+    "year_month": "2022-07",
+    "total_sampled": 55,
+    "covid_count": 4
+  },
+  {
+    "source": "bbc_news_tv",
+    "period": "covid",
+    "year_month": "2022-06",
+    "total_sampled": 57,
+    "covid_count": 0
+  },
+  {
+    "source": "bbc_news_tv",
+    "period": "covid",
+    "year_month": "2022-03",
+    "total_sampled": 79,
+    "covid_count": 0
+  },
+  {
+    "source": "bbc_news_tv",
+    "period": "covid",
+    "year_month": "2022-05",
+    "total_sampled": 71,
+    "covid_count": 4
+  },
+  {
+    "source": "bbc_news_tv",
+    "period": "covid",
+    "year_month": "2022-11",
+    "total_sampled": 56,
+    "covid_count": 0
+  },
+  {
+    "source": "bbc_news_tv",
+    "period": "covid",
+    "year_month": "2022-10",
+    "total_sampled": 127,
+    "covid_count": 2
+  },
+  {
+    "source": "bbc_news_tv",
+    "period": "covid",
+    "year_month": "2022-09",
+    "total_sampled": 59,
+    "covid_count": 0
+  },
+  {
+    "source": "bbc_news_tv",
+    "period": "covid",
+    "year_month": "2023-04",
+    "total_sampled": 51,
+    "covid_count": 3
+  },
+  {
+    "source": "bbc_news_tv",
+    "period": "covid",
+    "year_month": "2023-02",
+    "total_sampled": 78,
+    "covid_count": 2
+  },
+  {
+    "source": "bbc_news_tv",
+    "period": "covid",
+    "year_month": "2023-01",
+    "total_sampled": 56,
+    "covid_count": 5
+  },
+  {
+    "source": "bbc_news_tv",
+    "period": "covid",
+    "year_month": "2023-03",
+    "total_sampled": 57,
+    "covid_count": 4
+  },
+  {
+    "source": "bbc_news_tv",
+    "period": "covid",
+    "year_month": "2023-05",
+    "total_sampled": 55,
+    "covid_count": 2
+  },
+  {
+    "source": "bbc_radio4",
+    "period": "control",
+    "year_month": "2016-08",
+    "total_sampled": 8,
+    "covid_count": 0
+  },
+  {
+    "source": "bbc_radio4",
+    "period": "control",
+    "year_month": "2016-12",
+    "total_sampled": 10,
+    "covid_count": 0
+  },
+  {
+    "source": "bbc_radio4",
+    "period": "control",
+    "year_month": "2016-07",
+    "total_sampled": 9,
+    "covid_count": 0
+  },
+  {
+    "source": "bbc_radio4",
+    "period": "control",
+    "year_month": "2016-06",
+    "total_sampled": 8,
+    "covid_count": 0
+  },
+  {
+    "source": "bbc_radio4",
+    "period": "control",
+    "year_month": "2016-11",
+    "total_sampled": 10,
+    "covid_count": 0
+  },
+  {
+    "source": "bbc_radio4",
+    "period": "control",
+    "year_month": "2016-10",
+    "total_sampled": 8,
+    "covid_count": 0
+  },
+  {
+    "source": "bbc_radio4",
+    "period": "control",
+    "year_month": "2016-09",
+    "total_sampled": 9,
+    "covid_count": 0
+  },
+  {
+    "source": "bbc_radio4",
+    "period": "control",
+    "year_month": "2017-04",
+    "total_sampled": 11,
+    "covid_count": 0
+  },
+  {
+    "source": "bbc_radio4",
+    "period": "control",
+    "year_month": "2017-08",
+    "total_sampled": 9,
+    "covid_count": 1
+  },
+  {
+    "source": "bbc_radio4",
+    "period": "control",
+    "year_month": "2017-12",
+    "total_sampled": 9,
+    "covid_count": 0
+  },
+  {
+    "source": "bbc_radio4",
+    "period": "control",
+    "year_month": "2017-02",
+    "total_sampled": 10,
+    "covid_count": 0
+  },
+  {
+    "source": "bbc_radio4",
+    "period": "control",
+    "year_month": "2017-01",
+    "total_sampled": 11,
+    "covid_count": 0
+  },
+  {
+    "source": "bbc_radio4",
+    "period": "control",
+    "year_month": "2017-07",
+    "total_sampled": 9,
+    "covid_count": 0
+  },
+  {
+    "source": "bbc_radio4",
+    "period": "control",
+    "year_month": "2017-06",
+    "total_sampled": 10,
+    "covid_count": 0
+  },
+  {
+    "source": "bbc_radio4",
+    "period": "control",
+    "year_month": "2017-03",
+    "total_sampled": 10,
+    "covid_count": 1
+  },
+  {
+    "source": "bbc_radio4",
+    "period": "control",
+    "year_month": "2017-05",
+    "total_sampled": 9,
+    "covid_count": 0
+  },
+  {
+    "source": "bbc_radio4",
+    "period": "control",
+    "year_month": "2017-11",
+    "total_sampled": 9,
+    "covid_count": 0
+  },
+  {
+    "source": "bbc_radio4",
+    "period": "control",
+    "year_month": "2017-10",
+    "total_sampled": 11,
+    "covid_count": 0
+  },
+  {
+    "source": "bbc_radio4",
+    "period": "control",
+    "year_month": "2017-09",
+    "total_sampled": 10,
+    "covid_count": 0
+  },
+  {
+    "source": "bbc_radio4",
+    "period": "control",
+    "year_month": "2018-04",
+    "total_sampled": 9,
+    "covid_count": 1
+  },
+  {
+    "source": "bbc_radio4",
+    "period": "control",
+    "year_month": "2018-08",
+    "total_sampled": 10,
+    "covid_count": 1
+  },
+  {
+    "source": "bbc_radio4",
+    "period": "control",
+    "year_month": "2018-12",
+    "total_sampled": 10,
+    "covid_count": 0
+  },
+  {
+    "source": "bbc_radio4",
+    "period": "control",
+    "year_month": "2018-02",
+    "total_sampled": 12,
+    "covid_count": 0
+  },
+  {
+    "source": "bbc_radio4",
+    "period": "control",
+    "year_month": "2018-01",
+    "total_sampled": 10,
+    "covid_count": 1
+  },
+  {
+    "source": "bbc_radio4",
+    "period": "control",
+    "year_month": "2018-07",
+    "total_sampled": 9,
+    "covid_count": 0
+  },
+  {
+    "source": "bbc_radio4",
+    "period": "control",
+    "year_month": "2018-06",
+    "total_sampled": 11,
+    "covid_count": 0
+  },
+  {
+    "source": "bbc_radio4",
+    "period": "control",
+    "year_month": "2018-03",
+    "total_sampled": 9,
+    "covid_count": 2
+  },
+  {
+    "source": "bbc_radio4",
+    "period": "control",
+    "year_month": "2018-05",
+    "total_sampled": 10,
+    "covid_count": 0
+  },
+  {
+    "source": "bbc_radio4",
+    "period": "control",
+    "year_month": "2018-11",
+    "total_sampled": 12,
+    "covid_count": 2
+  },
+  {
+    "source": "bbc_radio4",
+    "period": "control",
+    "year_month": "2018-10",
+    "total_sampled": 10,
+    "covid_count": 0
+  },
+  {
+    "source": "bbc_radio4",
+    "period": "control",
+    "year_month": "2018-09",
+    "total_sampled": 11,
+    "covid_count": 1
+  },
+  {
+    "source": "bbc_radio4",
+    "period": "control",
+    "year_month": "2019-04",
+    "total_sampled": 10,
+    "covid_count": 0
+  },
+  {
+    "source": "bbc_radio4",
+    "period": "control",
+    "year_month": "2019-08",
+    "total_sampled": 11,
+    "covid_count": 0
+  },
+  {
+    "source": "bbc_radio4",
+    "period": "control",
+    "year_month": "2019-02",
+    "total_sampled": 10,
+    "covid_count": 1
+  },
+  {
+    "source": "bbc_radio4",
+    "period": "control",
+    "year_month": "2019-01",
+    "total_sampled": 10,
+    "covid_count": 1
+  },
+  {
+    "source": "bbc_radio4",
+    "period": "control",
+    "year_month": "2019-07",
+    "total_sampled": 9,
+    "covid_count": 0
+  },
+  {
+    "source": "bbc_radio4",
+    "period": "control",
+    "year_month": "2019-06",
+    "total_sampled": 10,
+    "covid_count": 0
+  },
+  {
+    "source": "bbc_radio4",
+    "period": "control",
+    "year_month": "2019-03",
+    "total_sampled": 10,
+    "covid_count": 1
+  },
+  {
+    "source": "bbc_radio4",
+    "period": "control",
+    "year_month": "2019-05",
+    "total_sampled": 9,
+    "covid_count": 1
+  },
+  {
+    "source": "bbc_radio4",
+    "period": "control",
+    "year_month": "2019-11",
+    "total_sampled": 10,
+    "covid_count": 1
+  },
+  {
+    "source": "bbc_radio4",
+    "period": "control",
+    "year_month": "2019-10",
+    "total_sampled": 11,
+    "covid_count": 0
+  },
+  {
+    "source": "bbc_radio4",
+    "period": "control",
+    "year_month": "2019-09",
+    "total_sampled": 23,
+    "covid_count": 0
+  },
+  {
+    "source": "bbc_radio4",
+    "period": "control",
+    "year_month": "unknown-01",
+    "total_sampled": 11,
+    "covid_count": 0
+  },
+  {
+    "source": "bbc_radio4",
+    "period": "covid",
+    "year_month": "2019-12",
+    "total_sampled": 10,
+    "covid_count": 0
+  },
+  {
+    "source": "bbc_radio4",
+    "period": "covid",
+    "year_month": "2020-04",
+    "total_sampled": 11,
+    "covid_count": 4
+  },
+  {
+    "source": "bbc_radio4",
+    "period": "covid",
+    "year_month": "2020-08",
+    "total_sampled": 9,
+    "covid_count": 2
+  },
+  {
+    "source": "bbc_radio4",
+    "period": "covid",
+    "year_month": "2020-12",
+    "total_sampled": 10,
+    "covid_count": 0
+  },
+  {
+    "source": "bbc_radio4",
+    "period": "covid",
+    "year_month": "2020-02",
+    "total_sampled": 10,
+    "covid_count": 2
+  },
+  {
+    "source": "bbc_radio4",
+    "period": "covid",
+    "year_month": "2020-01",
+    "total_sampled": 10,
+    "covid_count": 1
+  },
+  {
+    "source": "bbc_radio4",
+    "period": "covid",
+    "year_month": "2020-07",
+    "total_sampled": 10,
+    "covid_count": 1
+  },
+  {
+    "source": "bbc_radio4",
+    "period": "covid",
+    "year_month": "2020-06",
+    "total_sampled": 10,
+    "covid_count": 0
+  },
+  {
+    "source": "bbc_radio4",
+    "period": "covid",
+    "year_month": "2020-03",
+    "total_sampled": 10,
+    "covid_count": 0
+  },
+  {
+    "source": "bbc_radio4",
+    "period": "covid",
+    "year_month": "2020-05",
+    "total_sampled": 11,
+    "covid_count": 2
+  },
+  {
+    "source": "bbc_radio4",
+    "period": "covid",
+    "year_month": "2020-11",
+    "total_sampled": 9,
+    "covid_count": 0
+  },
+  {
+    "source": "bbc_radio4",
+    "period": "covid",
+    "year_month": "2020-10",
+    "total_sampled": 10,
+    "covid_count": 3
+  },
+  {
+    "source": "bbc_radio4",
+    "period": "covid",
+    "year_month": "2020-09",
+    "total_sampled": 9,
+    "covid_count": 1
+  },
+  {
+    "source": "bbc_radio4",
+    "period": "covid",
+    "year_month": "2021-04",
+    "total_sampled": 9,
+    "covid_count": 0
+  },
+  {
+    "source": "bbc_radio4",
+    "period": "covid",
+    "year_month": "2021-08",
+    "total_sampled": 11,
+    "covid_count": 2
+  },
+  {
+    "source": "bbc_radio4",
+    "period": "covid",
+    "year_month": "2021-12",
+    "total_sampled": 9,
+    "covid_count": 0
+  },
+  {
+    "source": "bbc_radio4",
+    "period": "covid",
+    "year_month": "2021-02",
+    "total_sampled": 10,
+    "covid_count": 2
+  },
+  {
+    "source": "bbc_radio4",
+    "period": "covid",
+    "year_month": "2021-01",
+    "total_sampled": 9,
+    "covid_count": 3
+  },
+  {
+    "source": "bbc_radio4",
+    "period": "covid",
+    "year_month": "2021-07",
+    "total_sampled": 10,
+    "covid_count": 4
+  },
+  {
+    "source": "bbc_radio4",
+    "period": "covid",
+    "year_month": "2021-06",
+    "total_sampled": 10,
+    "covid_count": 2
+  },
+  {
+    "source": "bbc_radio4",
+    "period": "covid",
+    "year_month": "2021-03",
+    "total_sampled": 10,
+    "covid_count": 3
+  },
+  {
+    "source": "bbc_radio4",
+    "period": "covid",
+    "year_month": "2021-05",
+    "total_sampled": 10,
+    "covid_count": 1
+  },
+  {
+    "source": "bbc_radio4",
+    "period": "covid",
+    "year_month": "2021-11",
+    "total_sampled": 10,
+    "covid_count": 0
+  },
+  {
+    "source": "bbc_radio4",
+    "period": "covid",
+    "year_month": "2021-10",
+    "total_sampled": 10,
+    "covid_count": 0
+  },
+  {
+    "source": "bbc_radio4",
+    "period": "covid",
+    "year_month": "2021-09",
+    "total_sampled": 9,
+    "covid_count": 0
+  },
+  {
+    "source": "bbc_radio4",
+    "period": "covid",
+    "year_month": "2022-04",
+    "total_sampled": 10,
+    "covid_count": 2
+  },
+  {
+    "source": "bbc_radio4",
+    "period": "covid",
+    "year_month": "2022-08",
+    "total_sampled": 9,
+    "covid_count": 1
+  },
+  {
+    "source": "bbc_radio4",
+    "period": "covid",
+    "year_month": "2022-12",
+    "total_sampled": 11,
+    "covid_count": 1
+  },
+  {
+    "source": "bbc_radio4",
+    "period": "covid",
+    "year_month": "2022-02",
+    "total_sampled": 10,
+    "covid_count": 0
+  },
+  {
+    "source": "bbc_radio4",
+    "period": "covid",
+    "year_month": "2022-01",
+    "total_sampled": 9,
+    "covid_count": 1
+  },
+  {
+    "source": "bbc_radio4",
+    "period": "covid",
+    "year_month": "2022-07",
+    "total_sampled": 9,
+    "covid_count": 1
+  },
+  {
+    "source": "bbc_radio4",
+    "period": "covid",
+    "year_month": "2022-06",
+    "total_sampled": 10,
+    "covid_count": 0
+  },
+  {
+    "source": "bbc_radio4",
+    "period": "covid",
+    "year_month": "2022-03",
+    "total_sampled": 12,
+    "covid_count": 0
+  },
+  {
+    "source": "bbc_radio4",
+    "period": "covid",
+    "year_month": "2022-05",
+    "total_sampled": 10,
+    "covid_count": 0
+  },
+  {
+    "source": "bbc_radio4",
+    "period": "covid",
+    "year_month": "2022-11",
+    "total_sampled": 9,
+    "covid_count": 0
+  },
+  {
+    "source": "bbc_radio4",
+    "period": "covid",
+    "year_month": "2022-10",
+    "total_sampled": 10,
+    "covid_count": 1
+  },
+  {
+    "source": "bbc_radio4",
+    "period": "covid",
+    "year_month": "2022-09",
+    "total_sampled": 10,
+    "covid_count": 1
+  },
+  {
+    "source": "bbc_radio4",
+    "period": "covid",
+    "year_month": "2023-04",
+    "total_sampled": 10,
+    "covid_count": 1
+  },
+  {
+    "source": "bbc_radio4",
+    "period": "covid",
+    "year_month": "2023-02",
+    "total_sampled": 11,
+    "covid_count": 1
+  },
+  {
+    "source": "bbc_radio4",
+    "period": "covid",
+    "year_month": "2023-01",
+    "total_sampled": 11,
+    "covid_count": 0
+  },
+  {
+    "source": "bbc_radio4",
+    "period": "covid",
+    "year_month": "2023-03",
+    "total_sampled": 9,
+    "covid_count": 1
+  },
+  {
+    "source": "bbc_radio4",
+    "period": "covid",
+    "year_month": "2023-05",
+    "total_sampled": 11,
+    "covid_count": 0
+  },
+  {
+    "source": "bbc_radio4",
+    "period": "covid",
+    "year_month": "unknown-01",
+    "total_sampled": 11,
+    "covid_count": 0
+  },
+  {
+    "source": "graham_norton",
+    "period": "control",
+    "year_month": "2016-12",
+    "total_sampled": 33,
+    "covid_count": 1
+  },
+  {
+    "source": "graham_norton",
+    "period": "control",
+    "year_month": "2016-07",
+    "total_sampled": 24,
+    "covid_count": 0
+  },
+  {
+    "source": "graham_norton",
+    "period": "control",
+    "year_month": "2016-06",
+    "total_sampled": 24,
+    "covid_count": 0
+  },
+  {
+    "source": "graham_norton",
+    "period": "control",
+    "year_month": "2016-11",
+    "total_sampled": 27,
+    "covid_count": 0
+  },
+  {
+    "source": "graham_norton",
+    "period": "control",
+    "year_month": "2016-10",
+    "total_sampled": 30,
+    "covid_count": 0
+  },
+  {
+    "source": "graham_norton",
+    "period": "control",
+    "year_month": "2016-09",
+    "total_sampled": 25,
+    "covid_count": 0
+  },
+  {
+    "source": "graham_norton",
+    "period": "control",
+    "year_month": "2017-04",
+    "total_sampled": 34,
+    "covid_count": 0
+  },
+  {
+    "source": "graham_norton",
+    "period": "control",
+    "year_month": "2017-12",
+    "total_sampled": 25,
+    "covid_count": 0
+  },
+  {
+    "source": "graham_norton",
+    "period": "control",
+    "year_month": "2017-02",
+    "total_sampled": 27,
+    "covid_count": 0
+  },
+  {
+    "source": "graham_norton",
+    "period": "control",
+    "year_month": "2017-01",
+    "total_sampled": 27,
+    "covid_count": 0
+  },
+  {
+    "source": "graham_norton",
+    "period": "control",
+    "year_month": "2017-07",
+    "total_sampled": 32,
+    "covid_count": 0
+  },
+  {
+    "source": "graham_norton",
+    "period": "control",
+    "year_month": "2017-06",
+    "total_sampled": 31,
+    "covid_count": 0
+  },
+  {
+    "source": "graham_norton",
+    "period": "control",
+    "year_month": "2017-03",
+    "total_sampled": 35,
+    "covid_count": 0
+  },
+  {
+    "source": "graham_norton",
+    "period": "control",
+    "year_month": "2017-05",
+    "total_sampled": 31,
+    "covid_count": 0
+  },
+  {
+    "source": "graham_norton",
+    "period": "control",
+    "year_month": "2017-11",
+    "total_sampled": 23,
+    "covid_count": 0
+  },
+  {
+    "source": "graham_norton",
+    "period": "control",
+    "year_month": "2017-10",
+    "total_sampled": 24,
+    "covid_count": 1
+  },
+  {
+    "source": "graham_norton",
+    "period": "control",
+    "year_month": "2017-09",
+    "total_sampled": 25,
+    "covid_count": 0
+  },
+  {
+    "source": "graham_norton",
+    "period": "control",
+    "year_month": "2018-04",
+    "total_sampled": 27,
+    "covid_count": 0
+  },
+  {
+    "source": "graham_norton",
+    "period": "control",
+    "year_month": "2018-12",
+    "total_sampled": 37,
+    "covid_count": 0
+  },
+  {
+    "source": "graham_norton",
+    "period": "control",
+    "year_month": "2018-02",
+    "total_sampled": 28,
+    "covid_count": 0
+  },
+  {
+    "source": "graham_norton",
+    "period": "control",
+    "year_month": "2018-01",
+    "total_sampled": 28,
+    "covid_count": 0
+  },
+  {
+    "source": "graham_norton",
+    "period": "control",
+    "year_month": "2018-07",
+    "total_sampled": 35,
+    "covid_count": 0
+  },
+  {
+    "source": "graham_norton",
+    "period": "control",
+    "year_month": "2018-06",
+    "total_sampled": 30,
+    "covid_count": 0
+  },
+  {
+    "source": "graham_norton",
+    "period": "control",
+    "year_month": "2018-05",
+    "total_sampled": 25,
+    "covid_count": 0
+  },
+  {
+    "source": "graham_norton",
+    "period": "control",
+    "year_month": "2018-11",
+    "total_sampled": 26,
+    "covid_count": 0
+  },
+  {
+    "source": "graham_norton",
+    "period": "control",
+    "year_month": "2018-10",
+    "total_sampled": 30,
+    "covid_count": 0
+  },
+  {
+    "source": "graham_norton",
+    "period": "control",
+    "year_month": "2018-09",
+    "total_sampled": 22,
+    "covid_count": 0
+  },
+  {
+    "source": "graham_norton",
+    "period": "control",
+    "year_month": "2019-04",
+    "total_sampled": 25,
+    "covid_count": 0
+  },
+  {
+    "source": "graham_norton",
+    "period": "control",
+    "year_month": "2019-02",
+    "total_sampled": 26,
+    "covid_count": 0
+  },
+  {
+    "source": "graham_norton",
+    "period": "control",
+    "year_month": "2019-01",
+    "total_sampled": 29,
+    "covid_count": 0
+  },
+  {
+    "source": "graham_norton",
+    "period": "control",
+    "year_month": "2019-07",
+    "total_sampled": 39,
+    "covid_count": 0
+  },
+  {
+    "source": "graham_norton",
+    "period": "control",
+    "year_month": "2019-06",
+    "total_sampled": 31,
+    "covid_count": 0
+  },
+  {
+    "source": "graham_norton",
+    "period": "control",
+    "year_month": "2019-05",
+    "total_sampled": 32,
+    "covid_count": 0
+  },
+  {
+    "source": "graham_norton",
+    "period": "control",
+    "year_month": "2019-11",
+    "total_sampled": 28,
+    "covid_count": 0
+  },
+  {
+    "source": "graham_norton",
+    "period": "control",
+    "year_month": "2019-10",
+    "total_sampled": 24,
+    "covid_count": 0
+  },
+  {
+    "source": "graham_norton",
+    "period": "control",
+    "year_month": "2019-09",
+    "total_sampled": 30,
+    "covid_count": 0
+  },
+  {
+    "source": "graham_norton",
+    "period": "covid",
+    "year_month": "2019-12",
+    "total_sampled": 37,
+    "covid_count": 0
+  },
+  {
+    "source": "graham_norton",
+    "period": "covid",
+    "year_month": "2020-04",
+    "total_sampled": 16,
+    "covid_count": 0
+  },
+  {
+    "source": "graham_norton",
+    "period": "covid",
+    "year_month": "2020-12",
+    "total_sampled": 27,
+    "covid_count": 0
+  },
+  {
+    "source": "graham_norton",
+    "period": "covid",
+    "year_month": "2020-02",
+    "total_sampled": 31,
+    "covid_count": 0
+  },
+  {
+    "source": "graham_norton",
+    "period": "covid",
+    "year_month": "2020-01",
+    "total_sampled": 37,
+    "covid_count": 1
+  },
+  {
+    "source": "graham_norton",
+    "period": "covid",
+    "year_month": "2020-06",
+    "total_sampled": 20,
+    "covid_count": 1
+  },
+  {
+    "source": "graham_norton",
+    "period": "covid",
+    "year_month": "2020-03",
+    "total_sampled": 30,
+    "covid_count": 0
+  },
+  {
+    "source": "graham_norton",
+    "period": "covid",
+    "year_month": "2020-05",
+    "total_sampled": 16,
+    "covid_count": 0
+  },
+  {
+    "source": "graham_norton",
+    "period": "covid",
+    "year_month": "2020-11",
+    "total_sampled": 26,
+    "covid_count": 0
+  },
+  {
+    "source": "graham_norton",
+    "period": "covid",
+    "year_month": "2020-10",
+    "total_sampled": 20,
+    "covid_count": 1
+  },
+  {
+    "source": "graham_norton",
+    "period": "covid",
+    "year_month": "2020-09",
+    "total_sampled": 18,
+    "covid_count": 0
+  },
+  {
+    "source": "graham_norton",
+    "period": "covid",
+    "year_month": "2021-04",
+    "total_sampled": 32,
+    "covid_count": 1
+  },
+  {
+    "source": "graham_norton",
+    "period": "covid",
+    "year_month": "2021-12",
+    "total_sampled": 34,
+    "covid_count": 0
+  },
+  {
+    "source": "graham_norton",
+    "period": "covid",
+    "year_month": "2021-02",
+    "total_sampled": 26,
+    "covid_count": 1
+  },
+  {
+    "source": "graham_norton",
+    "period": "covid",
+    "year_month": "2021-01",
+    "total_sampled": 27,
+    "covid_count": 0
+  },
+  {
+    "source": "graham_norton",
+    "period": "covid",
+    "year_month": "2021-03",
+    "total_sampled": 31,
+    "covid_count": 0
+  },
+  {
+    "source": "graham_norton",
+    "period": "covid",
+    "year_month": "2021-05",
+    "total_sampled": 35,
+    "covid_count": 0
+  },
+  {
+    "source": "graham_norton",
+    "period": "covid",
+    "year_month": "2021-11",
+    "total_sampled": 41,
+    "covid_count": 0
+  },
+  {
+    "source": "graham_norton",
+    "period": "covid",
+    "year_month": "2021-10",
+    "total_sampled": 29,
+    "covid_count": 0
+  },
+  {
+    "source": "graham_norton",
+    "period": "covid",
+    "year_month": "2021-09",
+    "total_sampled": 29,
+    "covid_count": 0
+  },
+  {
+    "source": "graham_norton",
+    "period": "covid",
+    "year_month": "2022-08",
+    "total_sampled": 37,
+    "covid_count": 0
+  },
+  {
+    "source": "graham_norton",
+    "period": "covid",
+    "year_month": "2022-12",
+    "total_sampled": 22,
+    "covid_count": 0
+  },
+  {
+    "source": "graham_norton",
+    "period": "covid",
+    "year_month": "2022-02",
+    "total_sampled": 28,
+    "covid_count": 1
+  },
+  {
+    "source": "graham_norton",
+    "period": "covid",
+    "year_month": "2022-01",
+    "total_sampled": 35,
+    "covid_count": 0
+  },
+  {
+    "source": "graham_norton",
+    "period": "covid",
+    "year_month": "2022-07",
+    "total_sampled": 36,
+    "covid_count": 0
+  },
+  {
+    "source": "graham_norton",
+    "period": "covid",
+    "year_month": "2022-06",
+    "total_sampled": 35,
+    "covid_count": 0
+  },
+  {
+    "source": "graham_norton",
+    "period": "covid",
+    "year_month": "2022-03",
+    "total_sampled": 22,
+    "covid_count": 2
+  },
+  {
+    "source": "graham_norton",
+    "period": "covid",
+    "year_month": "2022-05",
+    "total_sampled": 87,
+    "covid_count": 0
+  },
+  {
+    "source": "graham_norton",
+    "period": "covid",
+    "year_month": "2022-11",
+    "total_sampled": 25,
+    "covid_count": 0
+  },
+  {
+    "source": "graham_norton",
+    "period": "covid",
+    "year_month": "2022-10",
+    "total_sampled": 21,
+    "covid_count": 0
+  },
+  {
+    "source": "graham_norton",
+    "period": "covid",
+    "year_month": "2022-09",
+    "total_sampled": 18,
+    "covid_count": 0
+  },
+  {
+    "source": "graham_norton",
+    "period": "covid",
+    "year_month": "2023-02",
+    "total_sampled": 25,
+    "covid_count": 0
+  },
+  {
+    "source": "graham_norton",
+    "period": "covid",
+    "year_month": "2023-01",
+    "total_sampled": 22,
+    "covid_count": 0
+  },
+  {
+    "source": "graham_norton",
+    "period": "covid",
+    "year_month": "2023-03",
+    "total_sampled": 26,
+    "covid_count": 0
+  },
+  {
+    "source": "graham_norton",
+    "period": "covid",
+    "year_month": "2023-05",
+    "total_sampled": 14,
+    "covid_count": 0
+  },
+  {
+    "source": "qi",
+    "period": "control",
+    "year_month": "2016-08",
+    "total_sampled": 18,
+    "covid_count": 0
+  },
+  {
+    "source": "qi",
+    "period": "control",
+    "year_month": "2016-12",
+    "total_sampled": 27,
+    "covid_count": 0
+  },
+  {
+    "source": "qi",
+    "period": "control",
+    "year_month": "2016-07",
+    "total_sampled": 20,
+    "covid_count": 0
+  },
+  {
+    "source": "qi",
+    "period": "control",
+    "year_month": "2016-06",
+    "total_sampled": 19,
+    "covid_count": 0
+  },
+  {
+    "source": "qi",
+    "period": "control",
+    "year_month": "2016-11",
+    "total_sampled": 17,
+    "covid_count": 0
+  },
+  {
+    "source": "qi",
+    "period": "control",
+    "year_month": "2016-10",
+    "total_sampled": 18,
+    "covid_count": 0
+  },
+  {
+    "source": "qi",
+    "period": "control",
+    "year_month": "2016-09",
+    "total_sampled": 25,
+    "covid_count": 0
+  },
+  {
+    "source": "qi",
+    "period": "control",
+    "year_month": "2017-04",
+    "total_sampled": 20,
+    "covid_count": 0
+  },
+  {
+    "source": "qi",
+    "period": "control",
+    "year_month": "2017-08",
+    "total_sampled": 18,
+    "covid_count": 0
+  },
+  {
+    "source": "qi",
+    "period": "control",
+    "year_month": "2017-12",
+    "total_sampled": 18,
+    "covid_count": 0
+  },
+  {
+    "source": "qi",
+    "period": "control",
+    "year_month": "2017-02",
+    "total_sampled": 27,
+    "covid_count": 1
+  },
+  {
+    "source": "qi",
+    "period": "control",
+    "year_month": "2017-01",
+    "total_sampled": 28,
+    "covid_count": 0
+  },
+  {
+    "source": "qi",
+    "period": "control",
+    "year_month": "2017-07",
+    "total_sampled": 27,
+    "covid_count": 0
+  },
+  {
+    "source": "qi",
+    "period": "control",
+    "year_month": "2017-06",
+    "total_sampled": 18,
+    "covid_count": 0
+  },
+  {
+    "source": "qi",
+    "period": "control",
+    "year_month": "2017-03",
+    "total_sampled": 27,
+    "covid_count": 0
+  },
+  {
+    "source": "qi",
+    "period": "control",
+    "year_month": "2017-05",
+    "total_sampled": 29,
+    "covid_count": 0
+  },
+  {
+    "source": "qi",
+    "period": "control",
+    "year_month": "2017-11",
+    "total_sampled": 27,
+    "covid_count": 0
+  },
+  {
+    "source": "qi",
+    "period": "control",
+    "year_month": "2017-10",
+    "total_sampled": 17,
+    "covid_count": 0
+  },
+  {
+    "source": "qi",
+    "period": "control",
+    "year_month": "2017-09",
+    "total_sampled": 18,
+    "covid_count": 0
+  },
+  {
+    "source": "qi",
+    "period": "control",
+    "year_month": "2018-04",
+    "total_sampled": 16,
+    "covid_count": 0
+  },
+  {
+    "source": "qi",
+    "period": "control",
+    "year_month": "2018-08",
+    "total_sampled": 24,
+    "covid_count": 2
+  },
+  {
+    "source": "qi",
+    "period": "control",
+    "year_month": "2018-12",
+    "total_sampled": 26,
+    "covid_count": 0
+  },
+  {
+    "source": "qi",
+    "period": "control",
+    "year_month": "2018-02",
+    "total_sampled": 18,
+    "covid_count": 0
+  },
+  {
+    "source": "qi",
+    "period": "control",
+    "year_month": "2018-01",
+    "total_sampled": 20,
+    "covid_count": 0
+  },
+  {
+    "source": "qi",
+    "period": "control",
+    "year_month": "2018-07",
+    "total_sampled": 20,
+    "covid_count": 0
+  },
+  {
+    "source": "qi",
+    "period": "control",
+    "year_month": "2018-06",
+    "total_sampled": 16,
+    "covid_count": 0
+  },
+  {
+    "source": "qi",
+    "period": "control",
+    "year_month": "2018-03",
+    "total_sampled": 21,
+    "covid_count": 0
+  },
+  {
+    "source": "qi",
+    "period": "control",
+    "year_month": "2018-05",
+    "total_sampled": 18,
+    "covid_count": 0
+  },
+  {
+    "source": "qi",
+    "period": "control",
+    "year_month": "2018-11",
+    "total_sampled": 30,
+    "covid_count": 0
+  },
+  {
+    "source": "qi",
+    "period": "control",
+    "year_month": "2018-10",
+    "total_sampled": 25,
+    "covid_count": 1
+  },
+  {
+    "source": "qi",
+    "period": "control",
+    "year_month": "2018-09",
+    "total_sampled": 19,
+    "covid_count": 0
+  },
+  {
+    "source": "qi",
+    "period": "control",
+    "year_month": "2019-04",
+    "total_sampled": 19,
+    "covid_count": 0
+  },
+  {
+    "source": "qi",
+    "period": "control",
+    "year_month": "2019-08",
+    "total_sampled": 27,
+    "covid_count": 1
+  },
+  {
+    "source": "qi",
+    "period": "control",
+    "year_month": "2019-02",
+    "total_sampled": 29,
+    "covid_count": 0
+  },
+  {
+    "source": "qi",
+    "period": "control",
+    "year_month": "2019-01",
+    "total_sampled": 30,
+    "covid_count": 0
+  },
+  {
+    "source": "qi",
+    "period": "control",
+    "year_month": "2019-07",
+    "total_sampled": 36,
+    "covid_count": 0
+  },
+  {
+    "source": "qi",
+    "period": "control",
+    "year_month": "2019-06",
+    "total_sampled": 16,
+    "covid_count": 0
+  },
+  {
+    "source": "qi",
+    "period": "control",
+    "year_month": "2019-03",
+    "total_sampled": 18,
+    "covid_count": 1
+  },
+  {
+    "source": "qi",
+    "period": "control",
+    "year_month": "2019-05",
+    "total_sampled": 23,
+    "covid_count": 0
+  },
+  {
+    "source": "qi",
+    "period": "control",
+    "year_month": "2019-11",
+    "total_sampled": 27,
+    "covid_count": 0
+  },
+  {
+    "source": "qi",
+    "period": "control",
+    "year_month": "2019-10",
+    "total_sampled": 29,
+    "covid_count": 1
+  },
+  {
+    "source": "qi",
+    "period": "control",
+    "year_month": "2019-09",
+    "total_sampled": 18,
+    "covid_count": 1
+  },
+  {
+    "source": "qi",
+    "period": "covid",
+    "year_month": "2019-12",
+    "total_sampled": 18,
+    "covid_count": 0
+  },
+  {
+    "source": "qi",
+    "period": "covid",
+    "year_month": "2020-04",
+    "total_sampled": 27,
+    "covid_count": 0
+  },
+  {
+    "source": "qi",
+    "period": "covid",
+    "year_month": "2020-08",
+    "total_sampled": 27,
+    "covid_count": 0
+  },
+  {
+    "source": "qi",
+    "period": "covid",
+    "year_month": "2020-12",
+    "total_sampled": 28,
+    "covid_count": 0
+  },
+  {
+    "source": "qi",
+    "period": "covid",
+    "year_month": "2020-02",
+    "total_sampled": 30,
+    "covid_count": 0
+  },
+  {
+    "source": "qi",
+    "period": "covid",
+    "year_month": "2020-01",
+    "total_sampled": 21,
+    "covid_count": 0
+  },
+  {
+    "source": "qi",
+    "period": "covid",
+    "year_month": "2020-07",
+    "total_sampled": 20,
+    "covid_count": 0
+  },
+  {
+    "source": "qi",
+    "period": "covid",
+    "year_month": "2020-06",
+    "total_sampled": 20,
+    "covid_count": 0
+  },
+  {
+    "source": "qi",
+    "period": "covid",
+    "year_month": "2020-03",
+    "total_sampled": 17,
+    "covid_count": 0
+  },
+  {
+    "source": "qi",
+    "period": "covid",
+    "year_month": "2020-05",
+    "total_sampled": 21,
+    "covid_count": 0
+  },
+  {
+    "source": "qi",
+    "period": "covid",
+    "year_month": "2020-11",
+    "total_sampled": 25,
+    "covid_count": 0
+  },
+  {
+    "source": "qi",
+    "period": "covid",
+    "year_month": "2020-10",
+    "total_sampled": 29,
+    "covid_count": 0
+  },
+  {
+    "source": "qi",
+    "period": "covid",
+    "year_month": "2020-09",
+    "total_sampled": 27,
+    "covid_count": 0
+  },
+  {
+    "source": "qi",
+    "period": "covid",
+    "year_month": "2021-04",
+    "total_sampled": 29,
+    "covid_count": 0
+  },
+  {
+    "source": "qi",
+    "period": "covid",
+    "year_month": "2021-08",
+    "total_sampled": 18,
+    "covid_count": 0
+  },
+  {
+    "source": "qi",
+    "period": "covid",
+    "year_month": "2021-12",
+    "total_sampled": 20,
+    "covid_count": 0
+  },
+  {
+    "source": "qi",
+    "period": "covid",
+    "year_month": "2021-01",
+    "total_sampled": 20,
+    "covid_count": 0
+  },
+  {
+    "source": "qi",
+    "period": "covid",
+    "year_month": "2021-07",
+    "total_sampled": 29,
+    "covid_count": 0
+  },
+  {
+    "source": "qi",
+    "period": "covid",
+    "year_month": "2021-06",
+    "total_sampled": 16,
+    "covid_count": 0
+  },
+  {
+    "source": "qi",
+    "period": "covid",
+    "year_month": "2021-03",
+    "total_sampled": 29,
+    "covid_count": 0
+  },
+  {
+    "source": "qi",
+    "period": "covid",
+    "year_month": "2021-05",
+    "total_sampled": 24,
+    "covid_count": 0
+  },
+  {
+    "source": "qi",
+    "period": "covid",
+    "year_month": "2021-10",
+    "total_sampled": 19,
+    "covid_count": 0
+  },
+  {
+    "source": "qi",
+    "period": "covid",
+    "year_month": "2021-09",
+    "total_sampled": 18,
+    "covid_count": 1
+  },
+  {
+    "source": "qi",
+    "period": "covid",
+    "year_month": "2022-02",
+    "total_sampled": 28,
+    "covid_count": 0
+  },
+  {
+    "source": "qi",
+    "period": "covid",
+    "year_month": "2022-01",
+    "total_sampled": 32,
+    "covid_count": 1
+  },
+  {
+    "source": "qi",
+    "period": "covid",
+    "year_month": "2022-07",
+    "total_sampled": 17,
+    "covid_count": 1
+  },
+  {
+    "source": "qi",
+    "period": "covid",
+    "year_month": "2022-06",
+    "total_sampled": 25,
+    "covid_count": 0
+  },
+  {
+    "source": "qi",
+    "period": "covid",
+    "year_month": "2022-03",
+    "total_sampled": 13,
+    "covid_count": 0
+  },
+  {
+    "source": "qi",
+    "period": "covid",
+    "year_month": "2022-11",
+    "total_sampled": 17,
+    "covid_count": 0
+  },
+  {
+    "source": "qi",
+    "period": "covid",
+    "year_month": "2022-10",
+    "total_sampled": 16,
+    "covid_count": 0
+  },
+  {
+    "source": "qi",
+    "period": "covid",
+    "year_month": "2023-04",
+    "total_sampled": 23,
+    "covid_count": 0
+  },
+  {
+    "source": "qi",
+    "period": "covid",
+    "year_month": "2023-01",
+    "total_sampled": 16,
+    "covid_count": 0
+  },
+  {
+    "source": "qi",
+    "period": "covid",
+    "year_month": "2023-03",
+    "total_sampled": 15,
+    "covid_count": 0
+  },
+  {
+    "source": "the_last_leg",
+    "period": "control",
+    "year_month": "2016-12",
+    "total_sampled": 25,
+    "covid_count": 0
+  },
+  {
+    "source": "the_last_leg",
+    "period": "control",
+    "year_month": "2016-07",
+    "total_sampled": 17,
+    "covid_count": 1
+  },
+  {
+    "source": "the_last_leg",
+    "period": "control",
+    "year_month": "2016-06",
+    "total_sampled": 24,
+    "covid_count": 0
+  },
+  {
+    "source": "the_last_leg",
+    "period": "control",
+    "year_month": "2016-11",
+    "total_sampled": 22,
+    "covid_count": 0
+  },
+  {
+    "source": "the_last_leg",
+    "period": "control",
+    "year_month": "2016-10",
+    "total_sampled": 27,
+    "covid_count": 0
+  },
+  {
+    "source": "the_last_leg",
+    "period": "control",
+    "year_month": "2016-09",
+    "total_sampled": 23,
+    "covid_count": 0
+  },
+  {
+    "source": "the_last_leg",
+    "period": "control",
+    "year_month": "2017-04",
+    "total_sampled": 21,
+    "covid_count": 0
+  },
+  {
+    "source": "the_last_leg",
+    "period": "control",
+    "year_month": "2017-08",
+    "total_sampled": 19,
+    "covid_count": 0
+  },
+  {
+    "source": "the_last_leg",
+    "period": "control",
+    "year_month": "2017-12",
+    "total_sampled": 20,
+    "covid_count": 0
+  },
+  {
+    "source": "the_last_leg",
+    "period": "control",
+    "year_month": "2017-02",
+    "total_sampled": 24,
+    "covid_count": 0
+  },
+  {
+    "source": "the_last_leg",
+    "period": "control",
+    "year_month": "2017-01",
+    "total_sampled": 27,
+    "covid_count": 0
+  },
+  {
+    "source": "the_last_leg",
+    "period": "control",
+    "year_month": "2017-07",
+    "total_sampled": 23,
+    "covid_count": 0
+  },
+  {
+    "source": "the_last_leg",
+    "period": "control",
+    "year_month": "2017-06",
+    "total_sampled": 36,
+    "covid_count": 0
+  },
+  {
+    "source": "the_last_leg",
+    "period": "control",
+    "year_month": "2017-03",
+    "total_sampled": 22,
+    "covid_count": 0
+  },
+  {
+    "source": "the_last_leg",
+    "period": "control",
+    "year_month": "2017-05",
+    "total_sampled": 21,
+    "covid_count": 0
+  },
+  {
+    "source": "the_last_leg",
+    "period": "control",
+    "year_month": "2017-11",
+    "total_sampled": 22,
+    "covid_count": 0
+  },
+  {
+    "source": "the_last_leg",
+    "period": "control",
+    "year_month": "2017-10",
+    "total_sampled": 19,
+    "covid_count": 0
+  },
+  {
+    "source": "the_last_leg",
+    "period": "control",
+    "year_month": "2017-09",
+    "total_sampled": 26,
+    "covid_count": 0
+  },
+  {
+    "source": "the_last_leg",
+    "period": "control",
+    "year_month": "2018-08",
+    "total_sampled": 25,
+    "covid_count": 0
+  },
+  {
+    "source": "the_last_leg",
+    "period": "control",
+    "year_month": "2018-12",
+    "total_sampled": 47,
+    "covid_count": 1
+  },
+  {
+    "source": "the_last_leg",
+    "period": "control",
+    "year_month": "2018-02",
+    "total_sampled": 21,
+    "covid_count": 0
+  },
+  {
+    "source": "the_last_leg",
+    "period": "control",
+    "year_month": "2018-01",
+    "total_sampled": 19,
+    "covid_count": 0
+  },
+  {
+    "source": "the_last_leg",
+    "period": "control",
+    "year_month": "2018-07",
+    "total_sampled": 24,
+    "covid_count": 0
+  },
+  {
+    "source": "the_last_leg",
+    "period": "control",
+    "year_month": "2018-06",
+    "total_sampled": 34,
+    "covid_count": 0
+  },
+  {
+    "source": "the_last_leg",
+    "period": "control",
+    "year_month": "2018-03",
+    "total_sampled": 22,
+    "covid_count": 0
+  },
+  {
+    "source": "the_last_leg",
+    "period": "control",
+    "year_month": "2018-11",
+    "total_sampled": 25,
+    "covid_count": 0
+  },
+  {
+    "source": "the_last_leg",
+    "period": "control",
+    "year_month": "2018-10",
+    "total_sampled": 26,
+    "covid_count": 0
+  },
+  {
+    "source": "the_last_leg",
+    "period": "control",
+    "year_month": "2019-04",
+    "total_sampled": 23,
+    "covid_count": 0
+  },
+  {
+    "source": "the_last_leg",
+    "period": "control",
+    "year_month": "2019-02",
+    "total_sampled": 22,
+    "covid_count": 0
+  },
+  {
+    "source": "the_last_leg",
+    "period": "control",
+    "year_month": "2019-01",
+    "total_sampled": 22,
+    "covid_count": 0
+  },
+  {
+    "source": "the_last_leg",
+    "period": "control",
+    "year_month": "2019-07",
+    "total_sampled": 22,
+    "covid_count": 1
+  },
+  {
+    "source": "the_last_leg",
+    "period": "control",
+    "year_month": "2019-06",
+    "total_sampled": 22,
+    "covid_count": 0
+  },
+  {
+    "source": "the_last_leg",
+    "period": "control",
+    "year_month": "2019-03",
+    "total_sampled": 21,
+    "covid_count": 0
+  },
+  {
+    "source": "the_last_leg",
+    "period": "control",
+    "year_month": "2019-05",
+    "total_sampled": 23,
+    "covid_count": 0
+  },
+  {
+    "source": "the_last_leg",
+    "period": "control",
+    "year_month": "2019-11",
+    "total_sampled": 24,
+    "covid_count": 1
+  },
+  {
+    "source": "the_last_leg",
+    "period": "control",
+    "year_month": "2019-10",
+    "total_sampled": 23,
+    "covid_count": 2
+  },
+  {
+    "source": "the_last_leg",
+    "period": "covid",
+    "year_month": "2019-12",
+    "total_sampled": 22,
+    "covid_count": 0
+  },
+  {
+    "source": "the_last_leg",
+    "period": "covid",
+    "year_month": "2020-12",
+    "total_sampled": 23,
+    "covid_count": 1
+  },
+  {
+    "source": "the_last_leg",
+    "period": "covid",
+    "year_month": "2020-02",
+    "total_sampled": 31,
+    "covid_count": 1
+  },
+  {
+    "source": "the_last_leg",
+    "period": "covid",
+    "year_month": "2020-01",
+    "total_sampled": 52,
+    "covid_count": 0
+  },
+  {
+    "source": "the_last_leg",
+    "period": "covid",
+    "year_month": "2020-06",
+    "total_sampled": 19,
+    "covid_count": 2
+  },
+  {
+    "source": "the_last_leg",
+    "period": "covid",
+    "year_month": "2020-03",
+    "total_sampled": 23,
+    "covid_count": 3
+  },
+  {
+    "source": "the_last_leg",
+    "period": "covid",
+    "year_month": "2020-05",
+    "total_sampled": 21,
+    "covid_count": 0
+  },
+  {
+    "source": "the_last_leg",
+    "period": "covid",
+    "year_month": "2020-11",
+    "total_sampled": 35,
+    "covid_count": 0
+  },
+  {
+    "source": "the_last_leg",
+    "period": "covid",
+    "year_month": "2020-10",
+    "total_sampled": 36,
+    "covid_count": 1
+  },
+  {
+    "source": "the_last_leg",
+    "period": "covid",
+    "year_month": "2021-08",
+    "total_sampled": 18,
+    "covid_count": 1
+  },
+  {
+    "source": "the_last_leg",
+    "period": "covid",
+    "year_month": "2021-12",
+    "total_sampled": 26,
+    "covid_count": 1
+  },
+  {
+    "source": "the_last_leg",
+    "period": "covid",
+    "year_month": "2021-02",
+    "total_sampled": 47,
+    "covid_count": 1
+  },
+  {
+    "source": "the_last_leg",
+    "period": "covid",
+    "year_month": "2021-01",
+    "total_sampled": 32,
+    "covid_count": 3
+  },
+  {
+    "source": "the_last_leg",
+    "period": "covid",
+    "year_month": "2021-07",
+    "total_sampled": 35,
+    "covid_count": 1
+  },
+  {
+    "source": "the_last_leg",
+    "period": "covid",
+    "year_month": "2021-06",
+    "total_sampled": 35,
+    "covid_count": 3
+  },
+  {
+    "source": "the_last_leg",
+    "period": "covid",
+    "year_month": "2021-03",
+    "total_sampled": 23,
+    "covid_count": 2
+  },
+  {
+    "source": "the_last_leg",
+    "period": "covid",
+    "year_month": "2021-11",
+    "total_sampled": 40,
+    "covid_count": 1
+  },
+  {
+    "source": "the_last_leg",
+    "period": "covid",
+    "year_month": "2021-10",
+    "total_sampled": 27,
+    "covid_count": 4
+  },
+  {
+    "source": "the_last_leg",
+    "period": "covid",
+    "year_month": "2021-09",
+    "total_sampled": 16,
+    "covid_count": 0
+  },
+  {
+    "source": "the_last_leg",
+    "period": "covid",
+    "year_month": "2022-08",
+    "total_sampled": 20,
+    "covid_count": 0
+  },
+  {
+    "source": "the_last_leg",
+    "period": "covid",
+    "year_month": "2022-12",
+    "total_sampled": 25,
+    "covid_count": 0
+  },
+  {
+    "source": "the_last_leg",
+    "period": "covid",
+    "year_month": "2022-02",
+    "total_sampled": 14,
+    "covid_count": 0
+  },
+  {
+    "source": "the_last_leg",
+    "period": "covid",
+    "year_month": "2022-01",
+    "total_sampled": 30,
+    "covid_count": 0
+  },
+  {
+    "source": "the_last_leg",
+    "period": "covid",
+    "year_month": "2022-07",
+    "total_sampled": 26,
+    "covid_count": 0
+  },
+  {
+    "source": "the_last_leg",
+    "period": "covid",
+    "year_month": "2022-03",
+    "total_sampled": 23,
+    "covid_count": 0
+  },
+  {
+    "source": "the_last_leg",
+    "period": "covid",
+    "year_month": "2022-11",
+    "total_sampled": 19,
+    "covid_count": 0
+  },
+  {
+    "source": "the_last_leg",
+    "period": "covid",
+    "year_month": "2022-09",
+    "total_sampled": 21,
+    "covid_count": 0
+  },
+  {
+    "source": "the_last_leg",
+    "period": "covid",
+    "year_month": "2023-02",
+    "total_sampled": 21,
+    "covid_count": 0
+  },
+  {
+    "source": "the_last_leg",
+    "period": "covid",
+    "year_month": "2023-01",
+    "total_sampled": 27,
+    "covid_count": 0
+  },
+  {
+    "source": "the_last_leg",
+    "period": "covid",
+    "year_month": "2023-03",
+    "total_sampled": 21,
+    "covid_count": 0
+  },
+  {
+    "source": "the_one_show",
+    "period": "control",
+    "year_month": "2016-08",
+    "total_sampled": 16,
+    "covid_count": 0
+  },
+  {
+    "source": "the_one_show",
+    "period": "control",
+    "year_month": "2016-12",
+    "total_sampled": 15,
+    "covid_count": 0
+  },
+  {
+    "source": "the_one_show",
+    "period": "control",
+    "year_month": "2016-07",
+    "total_sampled": 15,
+    "covid_count": 0
+  },
+  {
+    "source": "the_one_show",
+    "period": "control",
+    "year_month": "2016-06",
+    "total_sampled": 14,
+    "covid_count": 0
+  },
+  {
+    "source": "the_one_show",
+    "period": "control",
+    "year_month": "2016-11",
+    "total_sampled": 15,
+    "covid_count": 0
+  },
+  {
+    "source": "the_one_show",
+    "period": "control",
+    "year_month": "2016-10",
+    "total_sampled": 20,
+    "covid_count": 0
+  },
+  {
+    "source": "the_one_show",
+    "period": "control",
+    "year_month": "2016-09",
+    "total_sampled": 14,
+    "covid_count": 0
+  },
+  {
+    "source": "the_one_show",
+    "period": "control",
+    "year_month": "2017-04",
+    "total_sampled": 18,
+    "covid_count": 0
+  },
+  {
+    "source": "the_one_show",
+    "period": "control",
+    "year_month": "2017-08",
+    "total_sampled": 19,
+    "covid_count": 0
+  },
+  {
+    "source": "the_one_show",
+    "period": "control",
+    "year_month": "2017-12",
+    "total_sampled": 29,
+    "covid_count": 0
+  },
+  {
+    "source": "the_one_show",
+    "period": "control",
+    "year_month": "2017-02",
+    "total_sampled": 27,
+    "covid_count": 1
+  },
+  {
+    "source": "the_one_show",
+    "period": "control",
+    "year_month": "2017-01",
+    "total_sampled": 26,
+    "covid_count": 0
+  },
+  {
+    "source": "the_one_show",
+    "period": "control",
+    "year_month": "2017-07",
+    "total_sampled": 19,
+    "covid_count": 0
+  },
+  {
+    "source": "the_one_show",
+    "period": "control",
+    "year_month": "2017-06",
+    "total_sampled": 19,
+    "covid_count": 0
+  },
+  {
+    "source": "the_one_show",
+    "period": "control",
+    "year_month": "2017-03",
+    "total_sampled": 19,
+    "covid_count": 2
+  },
+  {
+    "source": "the_one_show",
+    "period": "control",
+    "year_month": "2017-05",
+    "total_sampled": 18,
+    "covid_count": 0
+  },
+  {
+    "source": "the_one_show",
+    "period": "control",
+    "year_month": "2017-11",
+    "total_sampled": 18,
+    "covid_count": 0
+  },
+  {
+    "source": "the_one_show",
+    "period": "control",
+    "year_month": "2017-10",
+    "total_sampled": 17,
+    "covid_count": 1
+  },
+  {
+    "source": "the_one_show",
+    "period": "control",
+    "year_month": "2017-09",
+    "total_sampled": 17,
+    "covid_count": 0
+  },
+  {
+    "source": "the_one_show",
+    "period": "control",
+    "year_month": "2018-04",
+    "total_sampled": 17,
+    "covid_count": 0
+  },
+  {
+    "source": "the_one_show",
+    "period": "control",
+    "year_month": "2018-08",
+    "total_sampled": 17,
+    "covid_count": 0
+  },
+  {
+    "source": "the_one_show",
+    "period": "control",
+    "year_month": "2018-12",
+    "total_sampled": 16,
+    "covid_count": 0
+  },
+  {
+    "source": "the_one_show",
+    "period": "control",
+    "year_month": "2018-02",
+    "total_sampled": 29,
+    "covid_count": 1
+  },
+  {
+    "source": "the_one_show",
+    "period": "control",
+    "year_month": "2018-01",
+    "total_sampled": 29,
+    "covid_count": 0
+  },
+  {
+    "source": "the_one_show",
+    "period": "control",
+    "year_month": "2018-07",
+    "total_sampled": 13,
+    "covid_count": 1
+  },
+  {
+    "source": "the_one_show",
+    "period": "control",
+    "year_month": "2018-06",
+    "total_sampled": 16,
+    "covid_count": 0
+  },
+  {
+    "source": "the_one_show",
+    "period": "control",
+    "year_month": "2018-03",
+    "total_sampled": 29,
+    "covid_count": 0
+  },
+  {
+    "source": "the_one_show",
+    "period": "control",
+    "year_month": "2018-05",
+    "total_sampled": 26,
+    "covid_count": 0
+  },
+  {
+    "source": "the_one_show",
+    "period": "control",
+    "year_month": "2018-11",
+    "total_sampled": 19,
+    "covid_count": 0
+  },
+  {
+    "source": "the_one_show",
+    "period": "control",
+    "year_month": "2018-10",
+    "total_sampled": 16,
+    "covid_count": 0
+  },
+  {
+    "source": "the_one_show",
+    "period": "control",
+    "year_month": "2018-09",
+    "total_sampled": 16,
+    "covid_count": 1
+  },
+  {
+    "source": "the_one_show",
+    "period": "control",
+    "year_month": "2019-04",
+    "total_sampled": 17,
+    "covid_count": 0
+  },
+  {
+    "source": "the_one_show",
+    "period": "control",
+    "year_month": "2019-08",
+    "total_sampled": 16,
+    "covid_count": 0
+  },
+  {
+    "source": "the_one_show",
+    "period": "control",
+    "year_month": "2019-02",
+    "total_sampled": 16,
+    "covid_count": 1
+  },
+  {
+    "source": "the_one_show",
+    "period": "control",
+    "year_month": "2019-01",
+    "total_sampled": 29,
+    "covid_count": 0
+  },
+  {
+    "source": "the_one_show",
+    "period": "control",
+    "year_month": "2019-07",
+    "total_sampled": 17,
+    "covid_count": 0
+  },
+  {
+    "source": "the_one_show",
+    "period": "control",
+    "year_month": "2019-06",
+    "total_sampled": 14,
+    "covid_count": 0
+  },
+  {
+    "source": "the_one_show",
+    "period": "control",
+    "year_month": "2019-03",
+    "total_sampled": 1,
+    "covid_count": 0
+  },
+  {
+    "source": "the_one_show",
+    "period": "control",
+    "year_month": "2019-05",
+    "total_sampled": 16,
+    "covid_count": 0
+  },
+  {
+    "source": "the_one_show",
+    "period": "control",
+    "year_month": "2019-11",
+    "total_sampled": 15,
+    "covid_count": 0
+  },
+  {
+    "source": "the_one_show",
+    "period": "control",
+    "year_month": "2019-10",
+    "total_sampled": 27,
+    "covid_count": 0
+  },
+  {
+    "source": "the_one_show",
+    "period": "control",
+    "year_month": "2019-09",
+    "total_sampled": 26,
+    "covid_count": 3
+  },
+  {
+    "source": "the_one_show",
+    "period": "covid",
+    "year_month": "2019-12",
+    "total_sampled": 14,
+    "covid_count": 0
+  },
+  {
+    "source": "the_one_show",
+    "period": "covid",
+    "year_month": "2020-04",
+    "total_sampled": 14,
+    "covid_count": 1
+  },
+  {
+    "source": "the_one_show",
+    "period": "covid",
+    "year_month": "2020-08",
+    "total_sampled": 17,
+    "covid_count": 1
+  },
+  {
+    "source": "the_one_show",
+    "period": "covid",
+    "year_month": "2020-12",
+    "total_sampled": 15,
+    "covid_count": 0
+  },
+  {
+    "source": "the_one_show",
+    "period": "covid",
+    "year_month": "2020-02",
+    "total_sampled": 25,
+    "covid_count": 0
+  },
+  {
+    "source": "the_one_show",
+    "period": "covid",
+    "year_month": "2020-01",
+    "total_sampled": 16,
+    "covid_count": 0
+  },
+  {
+    "source": "the_one_show",
+    "period": "covid",
+    "year_month": "2020-07",
+    "total_sampled": 16,
+    "covid_count": 1
+  },
+  {
+    "source": "the_one_show",
+    "period": "covid",
+    "year_month": "2020-06",
+    "total_sampled": 17,
+    "covid_count": 0
+  },
+  {
+    "source": "the_one_show",
+    "period": "covid",
+    "year_month": "2020-03",
+    "total_sampled": 16,
+    "covid_count": 1
+  },
+  {
+    "source": "the_one_show",
+    "period": "covid",
+    "year_month": "2020-05",
+    "total_sampled": 19,
+    "covid_count": 2
+  },
+  {
+    "source": "the_one_show",
+    "period": "covid",
+    "year_month": "2020-11",
+    "total_sampled": 17,
+    "covid_count": 0
+  },
+  {
+    "source": "the_one_show",
+    "period": "covid",
+    "year_month": "2020-10",
+    "total_sampled": 14,
+    "covid_count": 0
+  },
+  {
+    "source": "the_one_show",
+    "period": "covid",
+    "year_month": "2020-09",
+    "total_sampled": 16,
+    "covid_count": 4
+  },
+  {
+    "source": "the_one_show",
+    "period": "covid",
+    "year_month": "2021-04",
+    "total_sampled": 19,
+    "covid_count": 0
+  },
+  {
+    "source": "the_one_show",
+    "period": "covid",
+    "year_month": "2021-08",
+    "total_sampled": 14,
+    "covid_count": 0
+  },
+  {
+    "source": "the_one_show",
+    "period": "covid",
+    "year_month": "2021-12",
+    "total_sampled": 15,
+    "covid_count": 0
+  },
+  {
+    "source": "the_one_show",
+    "period": "covid",
+    "year_month": "2021-02",
+    "total_sampled": 17,
+    "covid_count": 1
+  },
+  {
+    "source": "the_one_show",
+    "period": "covid",
+    "year_month": "2021-01",
+    "total_sampled": 20,
+    "covid_count": 2
+  },
+  {
+    "source": "the_one_show",
+    "period": "covid",
+    "year_month": "2021-07",
+    "total_sampled": 17,
+    "covid_count": 0
+  },
+  {
+    "source": "the_one_show",
+    "period": "covid",
+    "year_month": "2021-06",
+    "total_sampled": 19,
+    "covid_count": 0
+  },
+  {
+    "source": "the_one_show",
+    "period": "covid",
+    "year_month": "2021-03",
+    "total_sampled": 17,
+    "covid_count": 0
+  },
+  {
+    "source": "the_one_show",
+    "period": "covid",
+    "year_month": "2021-05",
+    "total_sampled": 18,
+    "covid_count": 0
+  },
+  {
+    "source": "the_one_show",
+    "period": "covid",
+    "year_month": "2021-11",
+    "total_sampled": 15,
+    "covid_count": 1
+  },
+  {
+    "source": "the_one_show",
+    "period": "covid",
+    "year_month": "2021-10",
+    "total_sampled": 19,
+    "covid_count": 1
+  },
+  {
+    "source": "the_one_show",
+    "period": "covid",
+    "year_month": "2021-09",
+    "total_sampled": 18,
+    "covid_count": 0
+  },
+  {
+    "source": "the_one_show",
+    "period": "covid",
+    "year_month": "2022-04",
+    "total_sampled": 20,
+    "covid_count": 0
+  },
+  {
+    "source": "the_one_show",
+    "period": "covid",
+    "year_month": "2022-08",
+    "total_sampled": 20,
+    "covid_count": 0
+  },
+  {
+    "source": "the_one_show",
+    "period": "covid",
+    "year_month": "2022-12",
+    "total_sampled": 23,
+    "covid_count": 0
+  },
+  {
+    "source": "the_one_show",
+    "period": "covid",
+    "year_month": "2022-02",
+    "total_sampled": 32,
+    "covid_count": 0
+  },
+  {
+    "source": "the_one_show",
+    "period": "covid",
+    "year_month": "2022-01",
+    "total_sampled": 17,
+    "covid_count": 0
+  },
+  {
+    "source": "the_one_show",
+    "period": "covid",
+    "year_month": "2022-07",
+    "total_sampled": 19,
+    "covid_count": 0
+  },
+  {
+    "source": "the_one_show",
+    "period": "covid",
+    "year_month": "2022-06",
+    "total_sampled": 38,
+    "covid_count": 1
+  },
+  {
+    "source": "the_one_show",
+    "period": "covid",
+    "year_month": "2022-03",
+    "total_sampled": 16,
+    "covid_count": 1
+  },
+  {
+    "source": "the_one_show",
+    "period": "covid",
+    "year_month": "2022-05",
+    "total_sampled": 19,
+    "covid_count": 0
+  },
+  {
+    "source": "the_one_show",
+    "period": "covid",
+    "year_month": "2022-11",
+    "total_sampled": 22,
+    "covid_count": 0
+  },
+  {
+    "source": "the_one_show",
+    "period": "covid",
+    "year_month": "2022-10",
+    "total_sampled": 20,
+    "covid_count": 0
+  },
+  {
+    "source": "the_one_show",
+    "period": "covid",
+    "year_month": "2022-09",
+    "total_sampled": 19,
+    "covid_count": 0
+  },
+  {
+    "source": "the_one_show",
+    "period": "covid",
+    "year_month": "2023-04",
+    "total_sampled": 15,
+    "covid_count": 1
+  },
+  {
+    "source": "the_one_show",
+    "period": "covid",
+    "year_month": "2023-02",
+    "total_sampled": 16,
+    "covid_count": 0
+  },
+  {
+    "source": "the_one_show",
+    "period": "covid",
+    "year_month": "2023-01",
+    "total_sampled": 22,
+    "covid_count": 0
+  },
+  {
+    "source": "the_one_show",
+    "period": "covid",
+    "year_month": "2023-03",
+    "total_sampled": 19,
+    "covid_count": 0
+  },
+  {
+    "source": "the_one_show",
+    "period": "covid",
+    "year_month": "2023-05",
+    "total_sampled": 20,
+    "covid_count": 0
+  }
+]
