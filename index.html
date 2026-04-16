@@ -1740,6 +1740,9 @@ document.querySelectorAll(".section-tab").forEach(tab => {
         document.getElementById("section-" + this.dataset.section).classList.add("active");
         const isEmotion = this.dataset.section === "emotion";
         document.getElementById("modelToggleContainer").style.display = isEmotion ? "none" : "contents";
+        if (isEmotion) {
+            [radarChart, emotionPieChart, emotionAreaNorm, emotionAreaAbs].forEach(c => { if (c) c.resize(); });
+        }
     });
 });
 
