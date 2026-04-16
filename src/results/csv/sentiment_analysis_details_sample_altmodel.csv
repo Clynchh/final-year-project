@@ -1479,10 +1479,10 @@ sentence_id,year,month,year_month,source,period,sentence,sentiment_label,sentime
 01477,2017,09,2017-09,bbc_news_tv,control,"in a way having had the referendum we now don’t have the voices saying we’ve got to leave the , it’s going to happen, so we now have to negotiate in the national interests and get the best possible deal for the country.",positive,1,0.9980269074440002
 01478,2017,09,2017-09,bbc_news_tv,control,the head of the catholic church said mother teresa was a wonderful example of how to help people in need.,positive,1,0.9988114833831787
 01479,2017,09,2017-09,bbc_news_tv,control,the glass is coming off mns’s new is going on.,negative,-1,0.9975188970565796
-01480,2017,09,2017-09,bbc_news_tv,control,hello.,positive,1,0.9968133568763733
+01480,2017,09,2017-09,bbc_news_tv,control,hello.,positive,1,0.9968134760856628
 01481,2017,09,2017-09,bbc_news_tv,control,i think it should be as prohibited as with alcohol.,negative,-1,0.9992774128913879
 01482,2017,09,2017-09,bbc_news_tv,control,"we come here every match, we want to see success, we want to win trophies.",positive,1,0.9987486600875854
-01483,2017,09,2017-09,bbc_news_tv,control,but is likely due to i’m a change.,positive,1,0.9931668639183044
+01483,2017,09,2017-09,bbc_news_tv,control,but is likely due to i’m a change.,positive,1,0.993165910243988
 01484,2017,09,2017-09,bbc_news_tv,control,"the former chancellor of the exchequer - an ally of yours - george osborne, dismissed with some relish by theresa may last year, described her after this year’s disappointing election result - with more than a little relish of his own, you might imagine - as a ""dead woman walking"".",negative,-1,0.9984582662582397
 01485,2017,09,2017-09,bbc_news_tv,control,a club like that can get a nike shirt deal for around $180 million.,negative,-1,0.9819660782814026
 01486,2017,09,2017-09,bbc_news_tv,control,"staying in south asia, at least 24 people have died after a building collapsed in mumbai.",negative,-1,0.9936525821685791
