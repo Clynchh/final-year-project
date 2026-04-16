@@ -1,4 +1,4 @@
-# Orchestrates the full pipeline: cleanse → segment → filter → sentiment → summary → convert.
+# Orchestrates the full pipeline: cleanse → segment → filter → sample → filter_sample → sentiment → summary → convert.
 # Supports resuming from a named step via --from <step>.
 # Use --model vader to run VADER instead of RoBERTa for the sentiment step.
 
@@ -16,8 +16,9 @@ STEPS = [
         SRC / "preprocessing" / "filter_relevant_loose.py",
         SRC / "preprocessing" / "filter_relevant_tight.py",
     ]),
-    ("sample",    SRC / "preprocessing" / "sample_sentences.py"),
-    ("sentiment", None),  # resolved at runtime based on --model
+    ("sample",        SRC / "preprocessing" / "sample_sentences.py"),
+    ("filter_sample", SRC / "preprocessing" / "filter_sample.py"),
+    ("sentiment",     None),  # resolved at runtime based on --model
     ("emotion",   SRC / "analysis" / "emotion_analysis.py"),
     ("summary",   SRC / "analysis" / "summary.py"),
     ("convert",   [
@@ -91,8 +92,8 @@ def main() -> None:
         for script in script_list:
             if "sentence_count_to_json" in script.name or "generate_sentence_count" in script.name:
                 run_script(script, [])
-            elif "emotion_to_json" in script.name:
-                # only run emotion_to_json for altmodel, not vader
+            elif name == "emotion" or "emotion_to_json" in script.name:
+                # emotion steps only run for altmodel, not vader
                 if model == "altmodel":
                     run_script(script, filter_arg)
             else:

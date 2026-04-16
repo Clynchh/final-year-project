@@ -53,8 +53,8 @@ if __name__ == "__main__":
         if not month:
             month = "01"
 
-        sentences = [s.strip() for s in txt_file.read_text(encoding="utf-8").splitlines() if s.strip()]
-        covid_count = sum(1 for s in sentences if COVID_REGEX.search(s))
+        sentences = [line.strip() for line in txt_file.read_text(encoding="utf-8").splitlines() if line.strip()]
+        covid_count = sum(1 for sentence in sentences if COVID_REGEX.search(sentence))
         total = len(sentences)
 
         rows.append({
@@ -66,8 +66,8 @@ if __name__ == "__main__":
         })
 
     csv_out = RESULTS / "csv" / "sample_covid_count.csv"
-    with open(csv_out, "w", newline="", encoding="utf-8") as f:
-        writer = csv.DictWriter(f, fieldnames=["source", "period", "year_month", "total_sampled", "covid_count"])
+    with open(csv_out, "w", newline="", encoding="utf-8") as csv_file:
+        writer = csv.DictWriter(csv_file, fieldnames=["source", "period", "year_month", "total_sampled", "covid_count"])
         writer.writeheader()
         writer.writerows(rows)
     print(f"Sample COVID counts written to: {csv_out} ({len(rows)} rows)")

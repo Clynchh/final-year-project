@@ -19,16 +19,16 @@ if __name__ == "__main__":
     output_json = RESULTS / "json" / f"emotion_data_{args.filter}.json"
 
     data = []
-    with open(input_csv, "r", encoding="utf-8") as f:
-        for row in csv.DictReader(f):
+    with open(input_csv, "r", encoding="utf-8") as csv_file:
+        for row in csv.DictReader(csv_file):
             entry = {
                 "source": row["source"],
                 "period": row["period"],
                 "year_month": row["year_month"],
                 "sentence_count": int(row["sentence_count"]),
             }
-            for e in EMOTIONS:
-                entry[f"{e}_pct"] = float(row[f"{e}_pct"])
+            for emotion in EMOTIONS:
+                entry[f"{emotion}_pct"] = float(row[f"{emotion}_pct"])
             data.append(entry)
 
     output_json.write_text(json.dumps(data, indent=2), encoding="utf-8")

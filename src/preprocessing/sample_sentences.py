@@ -22,7 +22,7 @@ if __name__ == "__main__":
 
     total = 0
     for input_path in sorted(SEGMENTED_DIR.rglob("*.txt")):
-        sentences = [s.strip() for s in input_path.read_text(encoding="utf-8").splitlines() if s.strip()]
+        sentences = [line.strip() for line in input_path.read_text(encoding="utf-8").splitlines() if line.strip()]
 
         n_sample = max(1, round(len(sentences) * SAMPLE_RATE))
         sampled = random.sample(sentences, min(n_sample, len(sentences)))

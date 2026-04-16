@@ -30,15 +30,15 @@ def main() -> None:
                     if len(parts) != 2 or parts[0] not in MONTH_ABBR:
                         continue
                     month, year = parts[0], int(parts[1])
-                    lines = [l for l in txt.read_text(encoding="utf-8").splitlines() if l.strip()]
+                    lines = [line for line in txt.read_text(encoding="utf-8").splitlines() if line.strip()]
                     counts[(month, year)] += len(lines)
 
     # sort by year then month index
-    rows = sorted(counts.items(), key=lambda kv: (kv[0][1], MONTH_ABBR.index(kv[0][0])))
+    rows = sorted(counts.items(), key=lambda month_year_count: (month_year_count[0][1], MONTH_ABBR.index(month_year_count[0][0])))
 
     output_csv = RESULTS / "csv" / "sentence_count.csv"
-    with open(output_csv, "w", newline="", encoding="utf-8") as f:
-        writer = csv.writer(f)
+    with open(output_csv, "w", newline="", encoding="utf-8") as csv_file:
+        writer = csv.writer(csv_file)
         writer.writerow(["month", "year", "count"])
         for (month, year), count in rows:
             writer.writerow([month, year, count])

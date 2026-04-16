@@ -1,0 +1,11 @@
+pages:
+  stage: deploy
+  script:
+    - mkdir public
+    - cp src/results/sentiment_analysis.html public/index.html
+    - cp -r src/results/json public/json
+  artifacts:
+    paths:
+      - public
+  only:
+    - main

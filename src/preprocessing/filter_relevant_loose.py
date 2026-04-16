@@ -21,7 +21,7 @@ if __name__ == "__main__":
         output_dir.mkdir(parents=True, exist_ok=True)
 
         sentences = input_path.read_text(encoding="utf-8").splitlines()
-        relevant = [s.strip() for s in sentences if COVID_REGEX.search(s)]
+        relevant = [sentence.strip() for sentence in sentences if COVID_REGEX.search(sentence)]
 
         if not relevant:
             continue

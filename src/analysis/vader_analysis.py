@@ -55,7 +55,7 @@ def analyse_vader(input_dir: Path, output_csv: Path) -> None:
         if not month:
             month = "01"
 
-        sentences = [s for s in txt_file.read_text(encoding="utf-8").splitlines() if s.strip()]
+        sentences = [line for line in txt_file.read_text(encoding="utf-8").splitlines() if line.strip()]
 
         for sentence in sentences:
             scores = sia.polarity_scores(sentence)
@@ -82,8 +82,8 @@ def analyse_vader(input_dir: Path, output_csv: Path) -> None:
         "sentence_id", "year", "month", "year_month", "source", "period",
         "sentence", "sentiment_label", "sentiment_score", "confidence",
     ]
-    with open(output_csv, "w", newline="", encoding="utf-8") as f:
-        writer = csv.DictWriter(f, fieldnames=fieldnames)
+    with open(output_csv, "w", newline="", encoding="utf-8") as csv_file:
+        writer = csv.DictWriter(csv_file, fieldnames=fieldnames)
         writer.writeheader()
         writer.writerows(rows)
 

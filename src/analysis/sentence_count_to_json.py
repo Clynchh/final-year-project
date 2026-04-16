@@ -8,8 +8,8 @@ RESULTS = _CURRENT.parent.parent / "results"
 
 def convert_csv_to_json(input_csv: Path, output_json: Path) -> None:
     data = []
-    with open(input_csv, "r", encoding="utf-8") as f:
-        for row in csv.DictReader(f):
+    with open(input_csv, "r", encoding="utf-8") as csv_file:
+        for row in csv.DictReader(csv_file):
             data.append({
                 "month": row["month"],
                 "year": int(row["year"]),

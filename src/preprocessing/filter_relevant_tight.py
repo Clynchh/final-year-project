@@ -32,7 +32,7 @@ if __name__ == "__main__":
         output_dir.mkdir(parents=True, exist_ok=True)
 
         sentences = input_path.read_text(encoding="utf-8").splitlines()
-        relevant = [s.strip() for s in sentences if is_covid_relevant(s)]
+        relevant = [sentence.strip() for sentence in sentences if is_covid_relevant(sentence)]
 
         if not relevant:
             continue

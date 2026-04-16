@@ -28,7 +28,7 @@ def get_emotion_batch(texts: list[str], tokenizer, model, device, id2label: dict
         max_length=512,
         padding=True,
     )
-    inputs = {k: v.to(device) for k, v in inputs.items()}
+    inputs = {tensor_key: tensor_val.to(device) for tensor_key, tensor_val in inputs.items()}
 
     with torch.no_grad():
         outputs = model(**inputs)
@@ -70,7 +70,7 @@ def analyse_emotions(input_dir: Path, output_csv: Path, tokenizer, model, device
         if not month:
             month = "01"
 
-        sentences = [s for s in txt_file.read_text(encoding="utf-8").splitlines() if s.strip()]
+        sentences = [line for line in txt_file.read_text(encoding="utf-8").splitlines() if line.strip()]
 
         for batch_start in range(0, len(sentences), BATCH_SIZE):
             batch = sentences[batch_start: batch_start + BATCH_SIZE]
@@ -97,8 +97,8 @@ def analyse_emotions(input_dir: Path, output_csv: Path, tokenizer, model, device
         "sentence_id", "year", "month", "year_month", "source", "period",
         "sentence", "emotion", "confidence",
     ]
-    with open(output_csv, "w", newline="", encoding="utf-8") as f:
-        writer = csv.DictWriter(f, fieldnames=fieldnames)
+    with open(output_csv, "w", newline="", encoding="utf-8") as csv_file:
+        writer = csv.DictWriter(csv_file, fieldnames=fieldnames)
         writer.writeheader()
         writer.writerows(rows)
 
