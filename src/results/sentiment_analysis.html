@@ -447,7 +447,7 @@
 
 <div class="citations-section">
     <button class="citations-toggle-btn" id="citationsToggle" aria-expanded="false" aria-controls="citationsPanel">
-        References &#9660;
+        Headline References
     </button>
     <div class="citations-panel" id="citationsPanel" role="region" aria-label="Timeline citations">
         <h3>COVID-19 Timeline Citations</h3>
@@ -707,7 +707,7 @@ document.getElementById('citationsToggle').addEventListener('click', function ()
     const expanded = this.getAttribute('aria-expanded') === 'true';
     panel.style.display = expanded ? 'none' : 'block';
     this.setAttribute('aria-expanded', String(!expanded));
-    this.innerHTML = expanded ? 'References &#9660;' : 'References &#9650;';
+    this.innerHTML = 'Headline References';
 });
 </script>
 
