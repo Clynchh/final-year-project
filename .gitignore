@@ -21,6 +21,7 @@ data/segmented/
 # Misc files
 FYP_Demo.odp
 demo and improvement.txt
+.coverage
 
 # Documentation
 docs/
