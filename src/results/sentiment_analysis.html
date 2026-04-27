@@ -163,6 +163,82 @@
             border-bottom: 1px solid rgba(255,255,255,0.15);
             letter-spacing: 0.02em;
         }
+
+        .citations-section {
+            max-width: 1400px;
+            margin: 0 auto 40px;
+        }
+
+        .citations-toggle-btn {
+            display: block;
+            margin: 0 auto;
+            padding: 10px 28px;
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 8px;
+            color: #ccc;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: background 0.2s, color 0.2s;
+        }
+
+        .citations-toggle-btn:hover {
+            background: rgba(255,255,255,0.15);
+            color: #fff;
+        }
+
+        .citations-panel {
+            display: none;
+            margin-top: 16px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 12px;
+            padding: 24px 28px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+        }
+
+        .citations-panel h3 {
+            color: #fff;
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            border-bottom: 1px solid rgba(255,255,255,0.12);
+            padding-bottom: 10px;
+        }
+
+        .citation-month {
+            margin-bottom: 18px;
+        }
+
+        .citation-month-label {
+            color: #9db4d8;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            margin-bottom: 6px;
+        }
+
+        .citation-headline {
+            color: #ddd;
+            font-size: 0.9rem;
+            margin-bottom: 4px;
+        }
+
+        .citation-ref {
+            color: #aaa;
+            font-size: 0.78rem;
+            margin-left: 12px;
+            margin-bottom: 2px;
+        }
+
+        .citation-ref a {
+            color: #6ea8d8;
+            text-decoration: none;
+        }
+
+        .citation-ref a:hover {
+            text-decoration: underline;
+        }
     </style>
 </head>
 <body>
@@ -369,6 +445,272 @@
     </div>
 </div>
 
+<div class="citations-section">
+    <button class="citations-toggle-btn" id="citationsToggle" aria-expanded="false" aria-controls="citationsPanel">
+        References &#9660;
+    </button>
+    <div class="citations-panel" id="citationsPanel" role="region" aria-label="Timeline citations">
+        <h3>COVID-19 Timeline Citations</h3>
+        <div class="citation-month">
+            <div class="citation-month-label">Dec 2019</div>
+            <div class="citation-headline">First cases of COVID-19 confirmed in Wuhan, China</div>
+            <div class="citation-ref">[1] Z. Allam, "The First 50 days of COVID-19: A Detailed Chronological Timeline and Extensive Review of Literature Documenting the Pandemic," in <em>Surveying the Covid-19 Pandemic and its Implications</em>, pp. 1–7, 2020. doi:10.1016/B978-0-12-824313-8.00001-2. <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7378494/" target="_blank" rel="noopener">PMC7378494</a></div>
+        </div>
+        <div class="citation-month">
+            <div class="citation-month-label">Jan 2020</div>
+            <div class="citation-headline">First two COVID-19 cases confirmed in the UK (York); British Airways suspends all flights to mainland China</div>
+            <div class="citation-ref">[2] "Two coronavirus cases confirmed in UK," <em>BBC News</em>, 31 Jan. 2020. <a href="https://www.bbc.co.uk/news/health-51325192" target="_blank" rel="noopener">bbc.co.uk</a></div>
+            <div class="citation-ref">[3] "Britons evacuated due to coronavirus to be quarantined," <em>The Guardian</em>, 29 Jan. 2020. <a href="https://www.theguardian.com/world/2020/jan/29/evacuation-of-britons-in-coronavirus-hit-hubei-could-begin-thursday" target="_blank" rel="noopener">theguardian.com</a></div>
+        </div>
+        <div class="citation-month">
+            <div class="citation-month-label">Feb 2020</div>
+            <div class="citation-headline">First British COVID-19 death confirmed (Diamond Princess); first cases in Wales and Northern Ireland</div>
+            <div class="citation-ref">[4] "First British coronavirus death confirmed," <em>The Guardian</em>, 28 Feb. 2020. <a href="https://www.theguardian.com/world/2020/feb/28/first-briton-dies-from-coronavirus-japanese-media-report-diamond-princess" target="_blank" rel="noopener">theguardian.com</a></div>
+            <div class="citation-ref">[5] "Coronavirus: First case in Wales confirmed," <em>BBC News</em>, 28 Feb. 2020. <a href="https://www.bbc.co.uk/news/uk-51673068" target="_blank" rel="noopener">bbc.co.uk</a></div>
+            <div class="citation-ref">[6] "Northern Ireland diagnoses first coronavirus case," <em>BBC News</em>, 27 Feb. 2020. <a href="https://www.bbc.co.uk/news/uk-51667483" target="_blank" rel="noopener">bbc.co.uk</a></div>
+        </div>
+        <div class="citation-month">
+            <div class="citation-month-label">Mar 2020</div>
+            <div class="citation-headline">First UK COVID-19 death (5 Mar); all schools closed (20 Mar); first national lockdown (23 Mar)</div>
+            <div class="citation-ref">[7] "Coronavirus: Older patient becomes first virus fatality in UK," <em>BBC News</em>, 5 Mar. 2020. <a href="https://www.bbc.co.uk/news/uk-51759602" target="_blank" rel="noopener">bbc.co.uk</a></div>
+            <div class="citation-ref">[8] "Coronavirus: Schools to close until further notice from Friday," <em>BBC News</em>, 18 Mar. 2020. <a href="https://www.bbc.co.uk/news/uk-51952314" target="_blank" rel="noopener">bbc.co.uk</a></div>
+            <div class="citation-ref">[9] "Coronavirus: PM says everyone should avoid office, pubs and travelling," <em>BBC News</em>, 16 Mar. 2020. <a href="https://www.bbc.co.uk/news/uk-51917562" target="_blank" rel="noopener">bbc.co.uk</a></div>
+        </div>
+        <div class="citation-month">
+            <div class="citation-month-label">Apr 2020</div>
+            <div class="citation-headline">UK weekly deaths reach 21,805 — 207% of five-year average; NHS Nightingale hospitals open</div>
+            <div class="citation-ref">[10] "Deaths registered weekly in England and Wales, provisional," <em>ONS</em>, 12 May 2020. <a href="https://www.ons.gov.uk/peoplepopulationandcommunity/birthsdeathsandmarriages/deaths/bulletins/deathsregisteredweeklyinenglandandwalesprovisional/weekending1may2020" target="_blank" rel="noopener">ons.gov.uk</a></div>
+        </div>
+        <div class="citation-month">
+            <div class="citation-month-label">May 2020</div>
+            <div class="citation-headline">Lockdown begins to ease; Boris Johnson unveils conditional four-step reopening plan and "Stay Alert" messaging</div>
+            <div class="citation-ref">[11] "PM address to the nation on coronavirus," <em>GOV.UK</em>, 10 May 2020. <a href="https://www.gov.uk/government/speeches/pm-address-to-the-nation-on-coronavirus-10-may-2020" target="_blank" rel="noopener">gov.uk</a></div>
+            <div class="citation-ref">[12] "Our plan to rebuild: The UK Government's COVID-19 recovery strategy," <em>GOV.UK</em>, May 2020. <a href="https://www.gov.uk/government/publications/our-plan-to-rebuild-the-uk-governments-covid-19-recovery-strategy" target="_blank" rel="noopener">gov.uk</a></div>
+        </div>
+        <div class="citation-month">
+            <div class="citation-month-label">Jun 2020</div>
+            <div class="citation-headline">Face coverings mandatory on public transport in England (15 Jun); NHS Test and Trace launches</div>
+            <div class="citation-ref">[13] "COVID-19 guidance for mass gatherings," <em>GOV.UK</em>, 16 Mar. 2020. <a href="https://www.gov.uk/guidance/covid-19-guidance-for-mass-gatherings" target="_blank" rel="noopener">gov.uk</a></div>
+        </div>
+        <div class="citation-month">
+            <div class="citation-month-label">Jul 2020</div>
+            <div class="citation-headline">Chancellor Sunak unveils £30bn recovery package; face coverings mandatory in English shops (24 Jul); UK signs vaccine deals with Pfizer/BioNTech and Oxford/AstraZeneca</div>
+            <div class="citation-ref">[14] "Coronavirus: Chancellor unveils £330bn lifeline for economy," <em>BBC News</em>, 17 Mar. 2020. <a href="https://www.bbc.co.uk/news/business-51935467" target="_blank" rel="noopener">bbc.co.uk</a></div>
+        </div>
+        <div class="citation-month">
+            <div class="citation-month-label">Aug 2020</div>
+            <div class="citation-headline">"Eat Out to Help Out" discount dining scheme launches (3 Aug)</div>
+            <div class="citation-ref">[15] "Eat Out to Help Out launches today," <em>GOV.UK / HM Treasury</em>, 3 Aug. 2020. <a href="https://www.gov.uk/government/news/eat-out-to-help-out-launches-today-with-government-paying-half-on-restaurant-bills" target="_blank" rel="noopener">gov.uk</a></div>
+        </div>
+        <div class="citation-month">
+            <div class="citation-month-label">Sep 2020</div>
+            <div class="citation-headline">"Rule of Six" comes into effect</div>
+            <div class="citation-ref">[16] "Rule of Six comes into effect to tackle coronavirus," <em>GOV.UK / Cabinet Office</em>, 14 Sep. 2020. <a href="https://www.gov.uk/government/news/rule-of-six-comes-into-effect-to-tackle-coronavirus" target="_blank" rel="noopener">gov.uk</a></div>
+        </div>
+        <div class="citation-month">
+            <div class="citation-month-label">Oct 2020</div>
+            <div class="citation-headline">England introduces three-tier COVID restriction system (14 Oct)</div>
+            <div class="citation-ref">[17] "Coronavirus: New three-tier system for England," <em>BBC News</em>, 12 Oct. 2020. <a href="https://www.bbc.co.uk/news/uk-54533924" target="_blank" rel="noopener">bbc.co.uk</a></div>
+        </div>
+        <div class="citation-month">
+            <div class="citation-month-label">Nov 2020</div>
+            <div class="citation-headline">England enters second national lockdown (5 Nov)</div>
+            <div class="citation-ref">[18] "Coronavirus: England enters second national lockdown," <em>BBC News</em>, 5 Nov. 2020. <a href="https://www.bbc.co.uk/news/live/uk-54802264" target="_blank" rel="noopener">bbc.co.uk</a></div>
+        </div>
+        <div class="citation-month">
+            <div class="citation-month-label">Dec 2020</div>
+            <div class="citation-headline">UK becomes first country to approve the Pfizer-BioNTech vaccine (2 Dec)</div>
+            <div class="citation-ref">[19] "UK medicines regulator gives approval for first UK COVID-19 vaccine," <em>GOV.UK / MHRA</em>, 2 Dec. 2020. <a href="https://www.gov.uk/government/news/uk-medicines-regulator-gives-approval-for-first-uk-covid-19-vaccine" target="_blank" rel="noopener">gov.uk</a></div>
+        </div>
+        <div class="citation-month">
+            <div class="citation-month-label">Jan 2021</div>
+            <div class="citation-headline">Third national lockdown (5 Jan); record 62,322 daily cases (6 Jan); UK deaths pass 100,000 (26 Jan); Moderna vaccine approved (8 Jan)</div>
+            <div class="citation-ref">[20] "Covid: New lockdown for England as cases surge," <em>BBC News</em>, 4 Jan. 2021. <a href="https://www.bbc.com/news/uk-55538937" target="_blank" rel="noopener">bbc.com</a></div>
+            <div class="citation-ref">[21] "UK records over 50,000 new Covid-19 cases," <em>LBC</em>, 3 Jan. 2021. <a href="https://www.lbc.co.uk/news/covid-uk-latest-figures-cases-deaths-24-hours-3-january-2021/" target="_blank" rel="noopener">lbc.co.uk</a></div>
+            <div class="citation-ref">[22] "Covid-19: UK daily coronavirus cases top 60,000 for first time," <em>BBC News</em>, 5 Jan. 2021. <a href="https://www.bbc.co.uk/news/uk-55550906" target="_blank" rel="noopener">bbc.co.uk</a></div>
+            <div class="citation-ref">[23] "COVID-19 alert level: update from the UK Chief Medical Officers," <em>GOV.UK</em>, Jan. 2021. <a href="https://www.gov.uk/government/news/covid-19-alert-level-update-from-the-uk-chief-medical-officers" target="_blank" rel="noopener">gov.uk</a></div>
+        </div>
+        <div class="citation-month">
+            <div class="citation-month-label">Feb 2021</div>
+            <div class="citation-headline">Prime Minister sets out roadmap to cautiously ease lockdown restrictions (22 Feb)</div>
+            <div class="citation-ref">[24] "Prime Minister sets out roadmap to cautiously ease lockdown restrictions," <em>GOV.UK / PM's Office</em>, 22 Feb. 2021. <a href="https://www.gov.uk/government/news/prime-minister-sets-out-roadmap-to-cautiously-ease-lockdown-restrictions" target="_blank" rel="noopener">gov.uk</a></div>
+        </div>
+        <div class="citation-month">
+            <div class="citation-month-label">Mar 2021</div>
+            <div class="citation-headline">Schools and colleges reopen as Step 1 of roadmap begins (8 Mar)</div>
+            <div class="citation-ref">[25] "Schools and colleges to reopen from tomorrow as part of step one of the roadmap," <em>GOV.UK / DfE</em>, 7 Mar. 2021. <a href="https://www.gov.uk/government/news/schools-and-colleges-to-reopen-from-tomorrow-as-part-of-step-one-of-the-roadmap" target="_blank" rel="noopener">gov.uk</a></div>
+        </div>
+        <div class="citation-month">
+            <div class="citation-month-label">Apr 2021</div>
+            <div class="citation-headline">Further easing of COVID restrictions confirmed for 12 April (Step 2 of roadmap)</div>
+            <div class="citation-ref">[26] "Further easing of Covid restrictions confirmed for 12 April," <em>GOV.UK / Cabinet Office</em>, 5 Apr. 2021. <a href="https://www.gov.uk/government/news/further-easing-of-covid-restrictions-confirmed-for-12-april" target="_blank" rel="noopener">gov.uk</a></div>
+        </div>
+        <div class="citation-month">
+            <div class="citation-month-label">May 2021</div>
+            <div class="citation-headline">England moves to Step 3 of roadmap (17 May); indoor hospitality and larger events permitted</div>
+            <div class="citation-ref">[27] "England moves to Step Three of Roadmap on 17 May," <em>National Catering College</em>, 17 May 2021. <a href="https://www.thencc.org.uk/hubs/news/england-moves-to-step-three-of-roadmap-on-17-may/" target="_blank" rel="noopener">thencc.org.uk</a></div>
+        </div>
+        <div class="citation-month">
+            <div class="citation-month-label">Jun 2021</div>
+            <div class="citation-headline">"Freedom Day" delayed to 19 July due to rising Delta variant cases; daily UK cases exceed 30,000 for first time since February</div>
+            <div class="citation-ref">[28] "Covid: Boris Johnson upbeat about easing lockdown in England on 19 July," <em>BBC News</em>, 1 Jul. 2021. <a href="https://www.bbc.com/news/uk-57681216" target="_blank" rel="noopener">bbc.com</a></div>
+            <div class="citation-ref">[29] "Covid: Cases in UK rise above 30,000 for first time since January," <em>BBC News</em>, 7 Jul. 2021. <a href="https://www.bbc.com/news/uk-57755733" target="_blank" rel="noopener">bbc.com</a></div>
+        </div>
+        <div class="citation-month">
+            <div class="citation-month-label">Jul 2021</div>
+            <div class="citation-headline">"Freedom Day": all legal COVID restrictions lifted in England (19 Jul); nightclubs reopen; "pingdemic" hits businesses and NHS</div>
+            <div class="citation-ref">[30] "19 July: England Covid restrictions ease as PM urges caution," <em>BBC News</em>, 19 Jul. 2021. <a href="https://www.bbc.com/news/uk-57882029" target="_blank" rel="noopener">bbc.com</a></div>
+            <div class="citation-ref">[31] "Covid: Mask law and one metre rule set to end in England," <em>BBC News</em>, 5 Jul. 2021. <a href="https://www.bbc.com/news/uk-57715496" target="_blank" rel="noopener">bbc.com</a></div>
+            <div class="citation-ref">[32] "Iceland and Greene King shut sites amid 'pingdemic'," <em>BBC News</em>, 19 Jul. 2021. <a href="https://www.bbc.com/news/business-57885175" target="_blank" rel="noopener">bbc.com</a></div>
+        </div>
+        <div class="citation-month">
+            <div class="citation-month-label">Aug 2021</div>
+            <div class="citation-headline">All UK adults offered first vaccine dose; "pingdemic" disrupts supply chains; NHS app sends 500,000+ isolation alerts in a single week</div>
+            <div class="citation-ref">[33] "Covid: UK's furlough scheme starts to wind down," <em>BBC News</em>, 1 Jul. 2021. <a href="https://www.bbc.com/news/business-57665735" target="_blank" rel="noopener">bbc.com</a></div>
+            <div class="citation-ref">[34] "Covid: Self-isolation to be scrapped for double-jabbed and children in England," <em>BBC News</em>, 6 Jul. 2021. <a href="https://www.bbc.com/news/uk-57733276" target="_blank" rel="noopener">bbc.com</a></div>
+        </div>
+        <div class="citation-month">
+            <div class="citation-month-label">Sep 2021</div>
+            <div class="citation-headline">NHS begins COVID-19 booster vaccination campaign for over-50s and clinically vulnerable</div>
+            <div class="citation-ref">[35] "NHS begins Covid-19 booster vaccination campaign," <em>NHS England</em>, 16 Sep. 2021. <a href="https://www.england.nhs.uk/2021/09/nhs-begins-covid-19-booster-vaccination-campaign/" target="_blank" rel="noopener">england.nhs.uk</a></div>
+        </div>
+        <div class="citation-month">
+            <div class="citation-month-label">Oct 2021</div>
+            <div class="citation-headline">Government holds off on "Plan B" restrictions despite rising cases; care home staff vaccination mandate comes into force</div>
+            <div class="citation-ref">[36] "Covid: Labour calls for Plan B measures in England," <em>BBC News</em>, 24 Oct. 2021. <a href="https://www.bbc.com/news/uk-59027290" target="_blank" rel="noopener">bbc.com</a></div>
+            <div class="citation-ref">[37] "Covid: Are cases about to plummet without Plan B?," <em>BBC News</em>, 25 Oct. 2021. <a href="https://www.bbc.com/news/health-59039739" target="_blank" rel="noopener">bbc.com</a></div>
+        </div>
+        <div class="citation-month">
+            <div class="citation-month-label">Nov 2021</div>
+            <div class="citation-headline">Two Omicron variant cases detected in UK (27 Nov); face covering requirements reimposed in shops and on public transport</div>
+            <div class="citation-ref">[38] "Covid: Two cases of new variant Omicron detected in UK," <em>BBC News</em>, 27 Nov. 2021. <a href="https://www.bbc.com/news/uk-59445388" target="_blank" rel="noopener">bbc.com</a></div>
+            <div class="citation-ref">[39] "Covid: Travel and mask rules tightened over Omicron variant," <em>BBC News</em>, 27 Nov. 2021. <a href="https://www.bbc.com/news/uk-59445124" target="_blank" rel="noopener">bbc.com</a></div>
+        </div>
+        <div class="citation-month">
+            <div class="citation-month-label">Dec 2021</div>
+            <div class="citation-headline">England moves to "Plan B" (8 Dec) as Omicron surges; first UK Omicron death (13 Dec); Paxlovid antiviral approved</div>
+            <div class="citation-ref">[40] "Covid: New Plan B rules on working from home and masks announced for England," <em>BBC News</em>, 8 Dec. 2021. <a href="https://www.bbc.com/news/uk-59585307" target="_blank" rel="noopener">bbc.com</a></div>
+            <div class="citation-ref">[41] "Covid: First UK death recorded with Omicron variant," <em>BBC News</em>, 13 Dec. 2021. <a href="https://www.bbc.co.uk/news/uk-59639007" target="_blank" rel="noopener">bbc.co.uk</a></div>
+            <div class="citation-ref">[42] "Paxlovid: UK medicines regulator approves second Covid antiviral pill," <em>BBC News</em>, 31 Dec. 2021. <a href="https://www.bbc.com/news/health-59840524" target="_blank" rel="noopener">bbc.com</a></div>
+        </div>
+        <div class="citation-month">
+            <div class="citation-month-label">Jan 2022</div>
+            <div class="citation-headline">Record 218,724 daily COVID cases (4 Jan); UK recorded deaths pass 150,000 (8 Jan); "Partygate" scandal emerges</div>
+            <div class="citation-ref">[43] "Coronavirus: Nothing in current data to support new curbs in England," <em>BBC News</em>, 2 Jan. 2022. <a href="https://www.bbc.com/news/uk-59853621" target="_blank" rel="noopener">bbc.com</a></div>
+            <div class="citation-ref">[44] "Covid: England must stick with Plan B to protect NHS," <em>BBC News</em>, 3 Jan. 2022. <a href="https://www.bbc.com/news/uk-59859923" target="_blank" rel="noopener">bbc.com</a></div>
+            <div class="citation-ref">[45] "Number of confirmed Covid cases passes 200,000 for first time," <em>Metro</em>, 4 Jan. 2022. <a href="https://metro.co.uk/2022/01/04/number-of-confirmed-covid-cases-passes-200000-for-first-time-15863500/" target="_blank" rel="noopener">metro.co.uk</a></div>
+        </div>
+        <div class="citation-month">
+            <div class="citation-month-label">Feb 2022</div>
+            <div class="citation-headline">All remaining COVID restrictions in England lifted; self-isolation legal requirement ends (24 Feb)</div>
+            <div class="citation-ref">[46] "Covid: All remaining England restrictions lifted," <em>BBC News</em>, 24 Feb. 2022. <a href="https://www.bbc.co.uk/news/uk-60467183" target="_blank" rel="noopener">bbc.co.uk</a></div>
+            <div class="citation-ref">[47] "Covid: End of legal need to self-isolate in England," <em>BBC News</em>, 24 Feb. 2022. <a href="https://www.bbc.com/news/uk-60500287" target="_blank" rel="noopener">bbc.com</a></div>
+        </div>
+        <div class="citation-month">
+            <div class="citation-month-label">Mar 2022</div>
+            <div class="citation-headline">Last coronavirus legal restrictions in England revoked (18 Mar); NHS Spring Booster launched; free mass COVID testing to end in April</div>
+            <div class="citation-ref">[48] "Covid in Scotland: All legal restrictions to end on 21 March," <em>BBC News</em>, 22 Feb. 2022. <a href="https://www.bbc.com/news/uk-scotland-60482303" target="_blank" rel="noopener">bbc.com</a></div>
+        </div>
+        <div class="citation-month">
+            <div class="citation-month-label">Apr 2022</div>
+            <div class="citation-headline">Free mass COVID testing ends in England (1 Apr)</div>
+            <div class="citation-ref">[49] "Covid: What are the rules now that free testing has ended?," <em>BBC News</em>, 1 Apr. 2022. <a href="https://www.bbc.co.uk/news/uk-60464881" target="_blank" rel="noopener">bbc.co.uk</a></div>
+        </div>
+        <div class="citation-month">
+            <div class="citation-month-label">May 2022</div>
+            <div class="citation-headline">ONS estimates 1.3 million people in UK have Long COVID; COVID-related NHS backlogs persist</div>
+            <div class="citation-ref">[50] "Covid: UK infections continuing to rise," <em>BBC News</em>, 24 Jun. 2022. <a href="https://www.bbc.com/news/uk-60500287" target="_blank" rel="noopener">bbc.com</a></div>
+        </div>
+        <div class="citation-month">
+            <div class="citation-month-label">Jun 2022</div>
+            <div class="citation-headline">Cases rise driven by Omicron BA.4/BA.5; UK COVID-19 public inquiry formally opens (28 Jun)</div>
+            <div class="citation-ref">[51] R. Booth, "Delayed public inquiry into UK's Covid-19 response opens," <em>The Guardian</em>, 28 Jun. 2022. <a href="https://www.theguardian.com/uk-news/2022/jun/28/delayed-public-inquiry-into-uks-covid-19-response-opens" target="_blank" rel="noopener">theguardian.com</a></div>
+            <div class="citation-ref">[52] "Covid: UK infections continuing to rise," <em>BBC News</em>, 24 Jun. 2022. <a href="https://www.bbc.com/news/uk-60500287" target="_blank" rel="noopener">bbc.com</a></div>
+        </div>
+        <div class="citation-month">
+            <div class="citation-month-label">Jul 2022</div>
+            <div class="citation-headline">UK COVID deaths pass 200,000 (13 Jul); UK public inquiry formally launches (21 Jul); autumn booster extended to all adults over 50</div>
+            <div class="citation-ref">[53] "COVID-19: UK deaths pass 200,000, ONS says," <em>Sky News</em>, 13 Jul. 2022. <a href="https://news.sky.com/story/covid-19-uk-deaths-pass-200-000-ons-says-12651128" target="_blank" rel="noopener">news.sky.com</a></div>
+            <div class="citation-ref">[54] "Covid inquiry: Lessons will be learned before next pandemic," <em>BBC News</em>, 21 Jul. 2022. <a href="https://www.bbc.com/news/health-62250899" target="_blank" rel="noopener">bbc.com</a></div>
+            <div class="citation-ref">[55] "Covid booster: Will be offered to all over 50s this autumn," <em>BBC News</em>, 15 Jul. 2022. <a href="https://www.bbc.com/news/health-62183714" target="_blank" rel="noopener">bbc.com</a></div>
+        </div>
+        <div class="citation-month">
+            <div class="citation-month-label">Aug 2022</div>
+            <div class="citation-headline">UK first to approve Moderna bivalent Omicron vaccine (15 Aug); autumn booster preparations begin; routine hospital COVID testing paused</div>
+            <div class="citation-ref">[56] "Covid: UK approves Moderna's Omicron booster," <em>BBC News</em>, 15 Aug. 2022. <a href="https://www.bbc.com/news/health-62548336" target="_blank" rel="noopener">bbc.com</a></div>
+            <div class="citation-ref">[57] "NHS and care homes in England to pause routine Covid testing," <em>BBC News</em>, 24 Aug. 2022. <a href="https://www.bbc.com/news/health-62665563" target="_blank" rel="noopener">bbc.com</a></div>
+        </div>
+        <div class="citation-month">
+            <div class="citation-month-label">Sep 2022</div>
+            <div class="citation-headline">UK COVID public inquiry begins examining Johnson Government decisions (1 Sep); autumn 2022 booster begins; cases at lowest since October 2021</div>
+            <div class="citation-ref">[58] "Covid inquiry starts to examine Boris Johnson's pandemic decisions," <em>BBC News</em>, 31 Aug. 2022. <a href="https://www.bbc.com/news/health-62744272" target="_blank" rel="noopener">bbc.com</a></div>
+            <div class="citation-ref">[59] "Covid booster rollout to start in early September in England," <em>BBC News</em>, 18 Aug. 2022. <a href="https://www.bbc.com/news/health-62591590" target="_blank" rel="noopener">bbc.com</a></div>
+            <div class="citation-ref">[60] "UK Covid infections lowest since last October," <em>BBC News</em>, 12 Sep. 2022. <a href="https://www.bbc.com/news/health-62876420" target="_blank" rel="noopener">bbc.com</a></div>
+        </div>
+        <div class="citation-month">
+            <div class="citation-month-label">Oct 2022</div>
+            <div class="citation-headline">First preliminary hearing of UK COVID-19 Inquiry (4 Oct); NHS England waiting lists reach record 7 million; COVID cases rise among over-70s</div>
+            <div class="citation-ref">[61] "Loss and suffering at heart of Covid inquiry," <em>BBC News</em>, 4 Oct. 2022. <a href="https://www.bbc.com/news/health-63080466" target="_blank" rel="noopener">bbc.com</a></div>
+            <div class="citation-ref">[62] "Fewer ops being done as NHS waiting list hits seven million," <em>BBC News</em>, 13 Oct. 2022. <a href="https://www.bbc.com/news/health-63219147" target="_blank" rel="noopener">bbc.com</a></div>
+        </div>
+        <div class="citation-month">
+            <div class="citation-month-label">Nov 2022</div>
+            <div class="citation-headline">COVID cases in England fall below one million for first time since September; COVID inquiry requests Boris Johnson's WhatsApp messages; flu admissions overtake COVID</div>
+            <div class="citation-ref">[63] "COVID-19 infections fall across the UK for second week in row," <em>Sky News</em>, 18 Nov. 2022. <a href="https://news.sky.com/story/covid-19-infections-fall-across-the-uk-for-second-week-in-row-12750402" target="_blank" rel="noopener">news.sky.com</a></div>
+            <div class="citation-ref">[64] "Covid: Boris Johnson WhatsApp messages requested by inquiry," <em>BBC News</em>, 31 Oct. 2022. <a href="https://www.bbc.com/news/health-63403844" target="_blank" rel="noopener">bbc.com</a></div>
+        </div>
+        <div class="citation-month">
+            <div class="citation-month-label">Dec 2022</div>
+            <div class="citation-headline">Flu hospital admissions overtake COVID-19 in UK (16 Dec); first UK double-lung transplant post-COVID (7 Dec); XBB.1.5 Omicron subvariant emerging globally</div>
+            <div class="citation-ref">[65] "Flu hospital admission rates shoot up to overtake Covid," <em>BBC News</em>, 16 Dec. 2022. <a href="https://www.bbc.co.uk/news/health-64002174" target="_blank" rel="noopener">bbc.co.uk</a></div>
+            <div class="citation-ref">[66] "Londoner gets first double lung transplant due to Covid complications," <em>BBC News</em>, 7 Dec. 2022. <a href="https://www.bbc.com/news/uk-england-london-63886749" target="_blank" rel="noopener">bbc.com</a></div>
+        </div>
+        <div class="citation-month">
+            <div class="citation-month-label">Jan 2023</div>
+            <div class="citation-headline">COVID, flu and scarlet fever put "massive pressure" on NHS; ONS estimates 2 million UK people have Long COVID; one in 20 test positive in England over Christmas</div>
+            <div class="citation-ref">[67] "Covid and flu putting massive pressure on NHS," <em>BBC News</em>, 3 Jan. 2023. <a href="https://www.bbc.com/news/health-64151557" target="_blank" rel="noopener">bbc.com</a></div>
+            <div class="citation-ref">[68] "COVID cases: Infections leap to six-month high after Christmas," <em>Sky News</em>, 6 Jan. 2023. <a href="https://news.sky.com/story/covid-cases-infections-leap-to-six-month-high-after-christmas-as-one-in-20-test-positive-in-england-12781210" target="_blank" rel="noopener">news.sky.com</a></div>
+            <div class="citation-ref">[69] "Prevalence of ongoing symptoms following coronavirus (COVID-19) infection in the UK," <em>ONS</em>, 2 Feb. 2023. <a href="https://www.ons.gov.uk/peoplepopulationandcommunity/healthandsocialcare/conditionsanddiseases/bulletins/prevalenceofongoingsymptomsfollowingcoronaviruscovid19infectionintheuk/2february2023" target="_blank" rel="noopener">ons.gov.uk</a></div>
+        </div>
+        <div class="citation-month">
+            <div class="citation-month-label">Feb 2023</div>
+            <div class="citation-headline">COVID cases rise in England for first time in 2023; Queen Camilla tests positive (13 Feb); NHS in Wales misses post-COVID outpatient backlog targets</div>
+            <div class="citation-ref">[70] "Covid: Queen Camilla tests positive," <em>BBC News</em>, 13 Feb. 2023. <a href="https://www.bbc.com/news/uk-64619082" target="_blank" rel="noopener">bbc.com</a></div>
+            <div class="citation-ref">[71] "Coronavirus (COVID-19) Infection Survey, UK," <em>ONS</em>, 10 Feb. 2023. <a href="https://www.ons.gov.uk/peoplepopulationandcommunity/healthandsocialcare/conditionsanddiseases/bulletins/coronaviruscovid19infectionsurveypilot/13january2023" target="_blank" rel="noopener">ons.gov.uk</a></div>
+        </div>
+        <div class="citation-month">
+            <div class="citation-month-label">Mar 2023</div>
+            <div class="citation-headline">Matt Hancock WhatsApp messages leaked; Boris Johnson gives evidence to Partygate inquiry (22 Mar); third anniversary of first UK lockdown marked with minute's silence (23 Mar); NHS COVID-19 app announces closure (31 Mar)</div>
+            <div class="citation-ref">[72] "Covid booster jab to be offered this spring," <em>BBC News</em>, 7 Mar. 2023. <a href="https://www.bbc.co.uk/news/health-64876657" target="_blank" rel="noopener">bbc.co.uk</a></div>
+            <div class="citation-ref">[73] "Partygate: I misled MPs but not intentionally, says Boris Johnson," <em>BBC News</em>, 21 Mar. 2023. <a href="https://www.bbc.co.uk/news/uk-politics-65012965" target="_blank" rel="noopener">bbc.co.uk</a></div>
+            <div class="citation-ref">[74] P. Glover, "Minute's silence for National Reflection Day to be held today," <em>The Argus</em>, 23 Mar. 2023. <a href="https://www.theargus.co.uk/news/23406282.minutes-silence-national-reflection-day-held-today/" target="_blank" rel="noopener">theargus.co.uk</a></div>
+            <div class="citation-ref">[75] J. Sollof, "NHS Covid-19 app to close down on 27 April," <em>Digital Health</em>, 31 Mar. 2023. <a href="https://www.digitalhealth.net/2023/03/nhs-covid-19-app-to-close-down-on-27-april-following-decline-in-users/" target="_blank" rel="noopener">digitalhealth.net</a></div>
+        </div>
+        <div class="citation-month">
+            <div class="citation-month-label">Apr 2023</div>
+            <div class="citation-headline">NHS spring booster for over-75s (3 Apr); NHS COVID-19 app closes (27 Apr); COVID-19 no longer leading cause of death in England and Wales</div>
+            <div class="citation-ref">[76] "Covid booster vaccine available for most vulnerable," <em>BBC News</em>, 31 Mar. 2023. <a href="https://www.bbc.co.uk/news/health-65138237" target="_blank" rel="noopener">bbc.co.uk</a></div>
+            <div class="citation-ref">[77] Z. Kleinman and O. Slow, "Pings signal closure of NHS Covid-19 app," <em>BBC News</em>, 29 Apr. 2023. <a href="https://www.bbc.co.uk/news/technology-65435326" target="_blank" rel="noopener">bbc.co.uk</a></div>
+            <div class="citation-ref">[78] L. Russell, "COVID-19 no longer a leading cause of death in England and Wales," <em>Sky News</em>, 11 Apr. 2023. <a href="https://news.sky.com/story/covid-19-no-longer-a-leading-cause-of-death-in-england-and-wales-12855029" target="_blank" rel="noopener">news.sky.com</a></div>
+        </div>
+        <div class="citation-month">
+            <div class="citation-month-label">May 2023</div>
+            <div class="citation-headline">WHO declares end of COVID-19 as a global public health emergency of international concern (5 May)</div>
+            <div class="citation-ref">[79] "Covid global health emergency is over, WHO says," <em>BBC News</em>, 5 May 2023. <a href="https://www.bbc.co.uk/news/health-65499929" target="_blank" rel="noopener">bbc.co.uk</a></div>
+        </div>
+    </div>
+</div>
+
+<script>
+document.getElementById('citationsToggle').addEventListener('click', function () {
+    const panel = document.getElementById('citationsPanel');
+    const expanded = this.getAttribute('aria-expanded') === 'true';
+    panel.style.display = expanded ? 'none' : 'block';
+    this.setAttribute('aria-expanded', String(!expanded));
+    this.innerHTML = expanded ? 'References &#9660;' : 'References &#9650;';
+});
+</script>
+
 <script>
 const EMOTIONS = ["anger","disgust","fear","joy","neutral","sadness","surprise"];
 const EMOTION_COLORS = {
@@ -475,7 +817,7 @@ let showStdBand = true;
 let minCount = 5;
 
 
-// ---- helpers ----
+// helpers 
 function hexToRgba(hex, alpha) {
     const r = parseInt(hex.slice(1, 3), 16);
     const g = parseInt(hex.slice(3, 5), 16);
@@ -642,7 +984,7 @@ const sentimentFillPlugin = {
 };
 Chart.register(sentimentFillPlugin);
 
-// ---- filters ----
+// filters 
 function getFilters() {
     return {
         source: document.getElementById("sourceSelect").value,
@@ -707,7 +1049,7 @@ function fillGaps(data, fields) {
     });
 }
 
-// ---- data load ----
+// data load 
 async function loadAll() {
     const bust = "?v=" + Date.now();
 
@@ -799,7 +1141,7 @@ function refresh() {
     buildModelAgreementChart();
 }
 
-// ---- chart helpers ----
+// chart helpers 
 function chartOpts(extras = {}) {
     return {
         responsive: true,
@@ -817,7 +1159,7 @@ function destroy(...charts) {
     charts.forEach(c => { if (c) c.destroy(); });
 }
 
-// ---- overlay helpers ----
+// overlay helpers 
 function linearRegression(data, valueKey) {
     const points = data.reduce((acc, d, i) => {
         if (d.sentence_count > 0) acc.push({ x: i, y: d[valueKey] });
@@ -845,7 +1187,7 @@ function movingAverage(data, window) {
     });
 }
 
-// ---- SENTIMENT SECTION ----
+// SENTIMENT SECTION 
 function buildSentimentSection(data) {
     const slider = document.getElementById("timeSlider");
     slider.max = Math.max(0, data.length - 1);
@@ -1129,7 +1471,7 @@ function updateSlider(idx) {
     }
 }
 
-// ---- EMOTION SECTION ----
+// EMOTION SECTION 
 function buildEmotionSection(data) {
     const slider = document.getElementById("radarSlider");
     slider.max = Math.max(0, data.length - 1);
@@ -1275,7 +1617,7 @@ function updateRadarSlider(idx) {
     emotionPieChart.update();
 }
 
-// ---- SOURCE RADAR ----
+// SOURCE RADAR 
 function buildSourceRadar() {
     if (sourceRadarChart) sourceRadarChart.destroy();
 
@@ -1336,7 +1678,7 @@ function buildSourceRadar() {
     });
 }
 
-// ---- DOMINANT EMOTION CHART ----
+// DOMINANT EMOTION CHART 
 function buildDominantEmotionChart(sources, period) {
     if (emotionBySourceChart) emotionBySourceChart.destroy();
 
@@ -1378,7 +1720,7 @@ function buildDominantEmotionChart(sources, period) {
     });
 }
 
-// ---- CROSS-FILTER CHART ----
+// CROSS-FILTER CHART 
 function buildCrossFilterChart() {
     if (crossFilterChart) crossFilterChart.destroy();
 
@@ -1441,7 +1783,7 @@ function buildCrossFilterChart() {
     });
 }
 
-// ---- INTER-MODEL AGREEMENT CHART ----
+// INTER-MODEL AGREEMENT CHART
 function buildModelAgreementChart() {
     if (modelAgreementChart) modelAgreementChart.destroy();
 
@@ -1557,7 +1899,7 @@ function buildModelAgreementChart() {
     });
 }
 
-// ---- COMPARISON SECTION ----
+// COMPARISON SECTION 
 function buildCompareSection() {
     destroy(compareBarChart, covidControlChart);
 
@@ -1619,7 +1961,7 @@ function buildCompareSection() {
     buildDominantEmotionChart(sources, period);
 }
 
-// ---- events ----
+// events 
 document.getElementById("timeSlider").addEventListener("input", e => {
     updateSlider(parseInt(e.target.value));
 });
